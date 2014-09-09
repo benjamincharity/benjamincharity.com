@@ -23,16 +23,18 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body set-background-image>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <body>
+    <div id="container" set-background-image>
+      <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
 
-    <div id="preload">
-      <img src="/images/texture.png" width="1000" height="1000" alt="" />
+      <!--<div id="preload">-->
+        <!--<img src="/images/texture.png" width="1000" height="1000" alt="" />-->
+      <!--</div>-->
+
+      <div ui-view></div>
     </div>
-
-    <div ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

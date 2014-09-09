@@ -16,12 +16,39 @@ body {
   width: 100%;
 }
 
-body {
-  background-size: cover;
+html {
+  background-image: url('/images/loader.gif');
+  background-position: center;
   background-repeat: no-repeat;
 }
 
-#preload {
-  display: none;
+body {
+  font-family: $livory;
+  font-style: italic;
 }
 
+#container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  // start at zero and let our directive change this once the images
+  // are loaded
+  opacity: 0;
+  @include customTransition(opacity);
+  width: 100%;
+
+  &.is_active {
+    opacity: 1;
+  }
+}
+
+// <nav> primary navigation container
+.nav {
+  text-align: center;
+}
+
+// <a> primary navigation link
+.nav__link {
+  @extend %link;
+  margin: 0 20px;
+}

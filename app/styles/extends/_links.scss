@@ -13,11 +13,16 @@
 
 // basic link
 %link {
+  color: $color-white;
+  display: inline-block;
+  @include customTransition();
 
   &:focus,
   &:hover {
+    @include transform( translate3d(0, 6px, 0) );
   }
 
   &:visited {
   }
+
 }

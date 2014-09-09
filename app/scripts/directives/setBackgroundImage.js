@@ -5,31 +5,35 @@ angular.module('bc')
 
       link: function(scope, element, attrs) {
 
+        // array of the current images we want to choose from
         var images = [1, 2];
-
-        var isNotMobile = !Modernizr.touch;
 
         // get a random image number from our array
         var imageNumber = images[Math.floor(Math.random()*images.length)];
 
         // set the jpg as our background
         element.css(
-          { 'background-image': 'url(images/bg/' + imageNumber + '.jpg)' }
+          { 'background-image': 'url(/images/bg/' + imageNumber + '.jpg)' }
         );
 
-        // if we are not on a mobile device, preload the gif
-        if( isNotMobile ) {
-          // create a new image for the gif
-          var img = new Image();
+        // preload the gif
+        var bgImg = new Image();
+        bgImg.src = '/images/bg/' + imageNumber + '.gif';
 
-          // build the url and assign to the new image to begin preloading
-          img.src = 'images/bg/' + imageNumber + '.gif';
+        // preload the texture
+        var texture = new Image();
+        texture.src = '/images/texture.png';
 
-          img.onload = function() {
+        // once the texture is loaded, add the texture and gif to the body
+        texture.onload = function() {
+          $timeout(function() {
             element.css(
-              { 'background-image': 'url(images/bg/' + imageNumber + '.gif), url(images/bg/' + imageNumber + '.jpg)' }
-            );
-          }
+              { 'background-image': 'url(/images/texture.png), url(/images/bg/' + imageNumber + '.gif), url(images/bg/' + imageNumber + '.jpg)' }
+            )
+          }, 2000);
+          $timeout(function() {
+            element.addClass('is_active');
+          }, 3000);
         }
 
 

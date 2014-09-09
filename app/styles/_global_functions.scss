@@ -360,6 +360,13 @@ $col_total_width: $col_width + $col_margin;
   flex             : $number;
 }
 
+@mixin transform( $command ) {
+  -webkit-transform: $command;
+  -moz-transform:    $command;
+  -ms-transform:     $command;
+  -o-transform:      $command;
+  transform:         $command;
+}
 
 
 
