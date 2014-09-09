@@ -1,6 +1,6 @@
 angular.module('bc')
-.directive('setBackgroundImage', [
-  function() {
+.directive('setBackgroundImage', ['$timeout',
+  function($timeout) {
     return {
 
       link: function(scope, element, attrs) {
@@ -27,7 +27,7 @@ angular.module('bc')
 
           img.onload = function() {
             element.css(
-              { 'background-image': 'url(images/bg/' + imageNumber + '.gif)' }
+              { 'background-image': 'url(images/bg/' + imageNumber + '.gif), url(images/bg/' + imageNumber + '.jpg)' }
             );
           }
         }
