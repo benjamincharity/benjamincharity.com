@@ -1,116 +1,103 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+////////////////////////////////////////////
+//
+// Setup
+//
+////////////////////////////////////////////
 
-body {
-  margin: 0;
-}
 
-a {
-  text-decoration: none;
-}
+// CONFIG
+// Set up all configurable variables and settings here
+@import "global_config";
 
-.container {
-  width: 1170px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
+// RESET
+// https://github.com/benjamincharity/Resets
+// Zero out all styles to begin with an even browser playing field
+@import "global_reset";
 
-.navbar {
-  position: relative;
-  min-height: 50px;
-  margin-bottom: 20px;
-  background-color: #222;
+// COMPASS
+// http://compass-style.org/
+// Include the Compass library
+//@import "compass";
 
-  &>a {
-    float: left;
-    color: lightgrey;
-    padding: 15px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
-  }
 
-  ul {
-    float: left;
-    padding: 0;
-    margin: 0;
+// FONTS
+// Set up all font-faces and define font mixins
+@import "fonts/fonts";
 
-    li {
-      float: left;
-      position: relative;
-      display: block;
+// FUNCTIONS
+// Create functions to extend your css functionality
+@import "global_functions";
 
-      a {
-        color: white;
-        position: relative;
-        display: block;
-        padding: 15px;
-        line-height: 20px;
-      }
-      &.active a {
-        background-color: black;
-      }
-    }
-  }
-}
 
-.jumbotron {
-  padding: 60px;
-  margin-bottom: 30px;
-  background-color: gainsboro;
-  border-radius: 6px;
-  text-align: center;
-}
 
-.btn {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  color: white;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 6px;
-}
 
-.col {
-  float: left;
-  width: 33.33%;
-  position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
+////////////////////////////////////////////
+//
+// Extends/Mixins
+//
+////////////////////////////////////////////
 
-  .thumbnail {
-    height: 200px;
-    border: 1px solid lightgrey;
-    border-radius: 4px;
-    margin-bottom: 20px;
+// LINKS
+@import "extends/links";
 
-    .caption {
-      padding: 9px;
-    }
+// TEXT
+@import "extends/text";
 
-    img.pull-right {
-      width: 50px;
-    }
-  }
-}
+// LISTS
+@import "extends/lists";
 
-.pull-right {
-  float: right;
-}
 
-hr {
-  clear: both;
-}
+
+
+////////////////////////////////////////////
+//
+// Layouts
+//
+////////////////////////////////////////////
+
+
+// MAIN
+// Layout styles for base pages.
+@import "layouts/main";
+
+
+
+
+////////////////////////////////////////////
+//
+// Views
+//
+////////////////////////////////////////////
+
+
+// PROJECTS
+// Styles for the projects view
+@import "views/projects";
+
+
+
+
+////////////////////////////////////////////
+//
+// Hacks
+//
+////////////////////////////////////////////
+
+
+// SHAME
+// Any hacks, overrides or other shit code goes here.
+@import "shame.scss";
+
+
+
+
+////////////////////////////////////////////
+//
+// Development Files
+//
+////////////////////////////////////////////
+
+
+// DEV
+// Creates visual cues for working with and testing media queries
+//@import "dev";

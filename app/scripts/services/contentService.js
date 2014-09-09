@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('bc')
 .factory( 'contentService', function($http, $window) {
 

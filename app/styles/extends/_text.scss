@@ -1,0 +1,30 @@
+//
+//
+//
+// $TEXT
+//
+//
+// @author Benjamin Charity <ben@benjamincharity.com>
+//
+// @doc
+//  Extends for common text based items
+// @end
+
+
+%page_title {
+  @include rem('font-size',16px);
+  font-weight: 600;
+  // set up for back button
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+%large_message {
+  @include rem('font-size',42px);
+  font-weight: 600;
+  line-height: 1.2em;
+  text-align: left;
+}
+
+

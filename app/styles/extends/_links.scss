@@ -1,0 +1,73 @@
+//
+//
+//
+// $LINKS
+//
+//
+// @author Benjamin Charity <ben@benjamincharity.com>
+//
+// @doc
+//  Base link styles
+// @end
+
+
+// basic link
+%link {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: $color-secondary;
+  display: inline-block;
+  @include rem('padding',4px 8px 5px);
+  @include customTransition();
+
+  &:focus,
+  &:hover {
+    border: 1px solid $color-secondary;
+  }
+
+  &:visited {
+    color: $color-secondary;
+  }
+}
+
+// links that look like a list
+%list_link {
+  border-bottom: 1px solid $color-white;
+  color: $color-white;
+  cursor: pointe;
+  display: block;
+  letter-spacing: 1px;
+  @include rem('line-height',36px);
+  @include rem('padding',20px 8px);
+  width: 100%;
+
+  &:first-of-type {
+    border-top: 1px solid $color-white;
+  }
+
+  // <img>
+  .icon {
+    @include rem('margin-right',8px);
+    position: relative;
+    top: -3px;
+    vertical-align: middle;
+    width: 36px;
+  }
+
+  // <input:radio>
+  .radio {
+    visibility: hidden;
+  }
+}
+
+%page_back {
+  // remove when icon is added
+  color: $color-white;
+  @include rem('font-size',22px);
+  font-weight: 600;
+  // end remove block
+  @include rem('margin-top',-16px);
+  position: absolute;
+  @include rem('left',20px);
+  top: 50%;
+}

@@ -1,0 +1,15 @@
+
+
+
+@include breakpoint(breakpoint-medium-large) {
+  .container {
+    // show the app container
+    border: 1px solid lightblue;
+    // add space for ngInspector
+    margin: auto 400px auto 0;
+  }
+
+  .ngi-inspector {
+    color: #222;
+  }
+}

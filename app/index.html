@@ -1,11 +1,15 @@
 <!doctype html>
-<html class="no-js" ng-app="bc">
+<html class="no-js" data-ng-app="bc">
   <head>
     <meta charset="utf-8">
     <title>frontend</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="author" href="/humans.txt" />
+
+    <script type="text/javascript" src="//use.typekit.net/wqd2nks.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
     <!-- build:css({.tmp,app}) styles/vendor.css -->
     <link rel="stylesheet" href="styles/vendor.css">
@@ -19,7 +23,7 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body>
+  <body set-background-image>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -54,6 +58,8 @@
     <script src="scripts/controllers/ContactCtrl.js"></script>
 
     <script src="scripts/services/contentService.js"></script>
+
+    <script src="scripts/directives/setBackgroundImage.js"></script>
     <!-- inject:partials -->
     <!-- endinject -->
     <!-- endbuild -->
