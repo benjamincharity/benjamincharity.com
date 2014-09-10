@@ -124,6 +124,7 @@
   {
     "name": "Favicon Finder",
     "url": "http://www.faviconfinder.com/",
+    "prettyUrl": "faviconfinder.com",
     "roles": [
       "dev",
       "design"
@@ -133,6 +134,7 @@
   {
     "name": "Nooo",
     "url": "http://www.nooo.me/",
+    "prettyUrl": "nooo.me",
     "roles": [
       "dev",
       "design"
@@ -142,6 +144,7 @@
   {
     "name": "CSS Guidelines",
     "url": "https://github.com/benjamincharity/CSS-Guidelines",
+    "prettyUrl": "CSS-Guidelines",
     "roles": [
       "dev"
     ],
@@ -150,6 +153,7 @@
   {
     "name": "IE Payback",
     "url": "http://www.iepayback.com/",
+    "prettyUrl": "iepayback.com",
     "roles": [
       "dev",
       "design"

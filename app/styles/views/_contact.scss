@@ -10,6 +10,12 @@
 //   Styles for the contact view
 // @end
 
+// <ul> list of contact links
+.contact__list {
+  @include rem('margin-top',40px);
+  text-align: center;
+}
+
 .contact__link {
-  @extend %link;
+  @extend %contact_link;
 }

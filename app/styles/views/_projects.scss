@@ -16,9 +16,11 @@
   @include col(12);
   border: 1px solid rgba($color-white, .3);
   @include rem('font-size',12px);
-  @include rem('height',180px);
+  @include rem('height',140px);
   margin: 2% 0;
   opacity: .9;
+  // set up for open source tag
+  overflow: hidden;
   // set up for open source tag
   position: relative;
   @include rem('padding',12px);
@@ -70,7 +72,7 @@
 .project__organization {
   @extend %project_title;
   @include rem('font-size',14px);
-  font-weight: 200;
+  font-weight: 400;
 }
 
 // <ul> list of roles for a project
@@ -110,4 +112,24 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+// <div> open source flag
+.project__openSource {
+  background-color: rgba($color-white, .6);
+  color: $color-black;
+  font-family: $proxima;
+  @include rem('font-size',10px);
+  font-style: normal;
+  font-weight: 600;
+  @include rem('padding',2px 20px 1px);
+  position: absolute;
+  right: -21px;
+  top: 19px;
+  text-transform: uppercase;
+  -webkit-transform : rotate(45deg);
+  -moz-transform    : rotate(45deg);
+  -ms-transform     : rotate(45deg);
+  -o-transform      : rotate(45deg);
+  transform         : rotate(45deg);
 }

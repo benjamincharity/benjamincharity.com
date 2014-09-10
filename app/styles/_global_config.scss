@@ -60,7 +60,8 @@ $color-placeholders   : $color-light-gray;
 ////////////////////////////////////////////
 
 // Create font-family alias'
-$arimo                             : #{"arimo",sans-serif};
+
+$proxima                             : #{"proxima-nova-alt-condensed","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,sans-serif};
 $goudy                             : #{"sorts-mill-goudy","goudy",georgia,times new roman,serif};
 $helvetica                          : #{"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif};
 $arial                              : #{arial, sans-serif};

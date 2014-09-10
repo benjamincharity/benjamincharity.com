@@ -21,8 +21,20 @@
   &:hover {
     @include transform( translate3d(0, 6px, 0) );
   }
+}
 
-  &:visited {
+%contact_link {
+  color: $color-white;
+  display: inline-block;
+  font-family: $proxima;
+  @include rem('font-size',20px);
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  @include customTransition();
+
+  &:focus,
+  &:hover {
+    @include transform( translate3d(6px, 0, 0) );
   }
-
 }
