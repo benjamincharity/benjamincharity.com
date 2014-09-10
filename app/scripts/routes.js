@@ -22,7 +22,7 @@ angular.module('bc').config(function($stateProvider, $urlRouterProvider) {
     // Projects
     //
     .state('landing.projects', {
-      url: "/projects",
+      url: "projects",
       templateUrl: "/partials/projects.html",
       controller: "ProjectsCtrl"
     })
@@ -31,7 +31,7 @@ angular.module('bc').config(function($stateProvider, $urlRouterProvider) {
     // About
     //
     .state('landing.about', {
-      url: "/about",
+      url: "about",
       templateUrl: "/partials/about.html",
       controller: "AboutCtrl"
     })
@@ -40,7 +40,7 @@ angular.module('bc').config(function($stateProvider, $urlRouterProvider) {
     // Contact
     //
     .state('landing.contact', {
-      url: "/contact",
+      url: "contact",
       templateUrl: "/partials/contact.html",
       controller: "ContactCtrl"
     })

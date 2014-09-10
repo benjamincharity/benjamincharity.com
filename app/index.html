@@ -24,7 +24,13 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div id="container" set-background-image>
+    <div id="loader" data-ng-class="{ is_visible: loaderIsVisible }">
+      <div id="top"></div>
+      <div id="bottom"></div>
+      <div id="line"></div>
+    </div>
+
+    <div id="container" set-background-image ui-view>
       <!--[if lt IE 10]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
@@ -33,7 +39,6 @@
         <!--<img src="/images/texture.png" width="1000" height="1000" alt="" />-->
       <!--</div>-->
 
-      <div ui-view></div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

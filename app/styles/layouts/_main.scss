@@ -17,16 +17,15 @@ body {
 }
 
 html {
-  background-image: url('/images/loader.gif');
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 body {
+  color: $color-white;
   font-family: $livory;
   font-style: italic;
 }
 
+// <section> primary site container
 #container {
   background-size: cover;
   background-repeat: no-repeat;
@@ -34,11 +33,43 @@ body {
   // start at zero and let our directive change this once the images
   // are loaded
   opacity: 0;
+  @include rem('padding-top',60px);
   @include customTransition(opacity);
   width: 100%;
 
   &.is_active {
     opacity: 1;
+  }
+}
+
+.siteHeader {
+  margin: 0 auto 20px;
+  max-width: 300px;
+  // set up for aspect ratio pseudo
+  position: relative;
+  width: 80%;
+
+  // protect our aspect ratio
+  &::after {
+    content: "";
+    display: block;
+    padding-top: 56%;
+  }
+}
+
+// <h1>
+.siteHeader__logo {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  svg {
+    max-width: 100%;
+    position: relative;
+    top: -24px;
   }
 }
 
@@ -50,5 +81,48 @@ body {
 // <a> primary navigation link
 .nav__link {
   @extend %link;
+  text-transform: lowercase;
   margin: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////
+//
+// Slide Vertical
+//
+///////////////////////////////////////////////////
+.slideVertical.ng-enter,
+.slideVertical.ng-leave {
+  @include customTransition(all, 300ms);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+// prep for enter
+.slideVertical.ng-enter {
+  opacity: 0;
+  @include transform( translate3d(0, 30px, 0) );
+  @include customTransition(all, 500ms);
+}
+// left
+.slideVertical.ng-leave.ng-leave-active {
+  opacity: 0;
+  @include transform( translate3d(0, 30px, 0) );
+}
+// active
+.slideVertical.ng-leave,
+.slideVertical.ng-enter.ng-enter-active {
+  opacity: 1;
+  @include transform( translate3d(0, 0, 0) );
 }

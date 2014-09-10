@@ -1,19 +1,15 @@
 //
 //
 //
-// $PROJECTS
+// $CONTACT
 //
 //
 // @author Benjamin Charity <ben@benjamincharity.com>
 //
 // @doc
-//  __documentation__
+//   Styles for the contact view
 // @end
 
-.projects {
-
-}
-
-.projects__project {
-
+.contact__link {
+  @extend %link;
 }
