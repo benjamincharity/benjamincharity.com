@@ -16,23 +16,44 @@
   @include col(12);
   border: 1px solid rgba($color-white, .3);
   @include rem('font-size',12px);
+  @include rem('height',180px);
   margin: 2% 0;
   opacity: .9;
+  // set up for open source tag
+  position: relative;
   @include rem('padding',12px);
 
-  @include breakpoint(breakpoint-mdium) {
+  @include breakpoint(breakpoint-medium-large) {
     @include col(6);
 
-    &:first-of-type {
+    &:nth-of-type(odd) {
       @include first();
     }
   }
 
-  @include breakpoint(breakpoint-mdium) {
+  @include breakpoint(breakpoint-large) {
     @include col(4);
+
+    &:nth-of-type(odd) {
+      @include resetFirst();
+    }
 
     // target 1, 4, 7...
     &:nth-of-type(3n+1) {
+      @include first();
+    }
+  }
+
+  @include breakpoint(breakpoint-huge) {
+    @include col(3);
+
+    // target 1, 4, 7...
+    &:nth-of-type(3n+1) {
+      @include resetFirst();
+    }
+
+    // target 1, 5, 9...
+    &:nth-of-type(4n+1) {
       @include first();
     }
   }
