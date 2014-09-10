@@ -11,10 +11,19 @@
 // @end
 
 
-%page_title {
+%project_title {
+  font-family: $allumi;
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-%large_message {
+%font_smoothing {
+  -webkit-font-smoothing : antialiased;
+  -moz-font-smoothing    : antialiased;
+  -ms-font-smoothing     : antialiased;
+  -o-font-smoothing      : antialiased;
+  font-smoothing         : antialiased;
 }
 
 

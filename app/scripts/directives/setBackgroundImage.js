@@ -12,7 +12,7 @@ angular.module('bc')
           'empire',
           'espresso',
           'espresso2',
-          'heart',
+          //'heart',
           'hotdog',
           'lantern',
           'lightstring',

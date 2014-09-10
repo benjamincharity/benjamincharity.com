@@ -7,13 +7,86 @@
 // @author Benjamin Charity <ben@benjamincharity.com>
 //
 // @doc
-//  __documentation__
+//  Styles for the projects view
 // @end
 
-.projects {
 
+// <article> individual project
+.project {
+  @include col(12);
+  border: 1px solid rgba($color-white, .3);
+  @include rem('font-size',12px);
+  margin: 2% 0;
+  opacity: .9;
+  @include rem('padding',12px);
+
+  @include breakpoint(breakpoint-mdium) {
+    @include col(6);
+
+    &:first-of-type {
+      @include first();
+    }
+  }
+
+  @include breakpoint(breakpoint-mdium) {
+    @include col(4);
+
+    // target 1, 4, 7...
+    &:nth-of-type(3n+1) {
+      @include first();
+    }
+  }
 }
 
-.projects__project {
+// <h1>
+.project__name {
+  @extend %project_title;
+  @include rem('font-size',16px);
+  font-weight: 600;
+}
 
+// h2
+.project__organization {
+  @extend %project_title;
+  @include rem('font-size',14px);
+  font-weight: 200;
+}
+
+// <ul> list of roles for a project
+.project__roles {
+  list-style-type: none;
+  line-height: 1.6em;
+  @include rem('margin',12px 0);
+
+  .dev {
+    @extend %project_role;
+    background-image: url('/images/icon-code.svg');
+    background-size: 20px;
+    background-position-x: -3px;
+  }
+
+  .design {
+    @extend %project_role;
+    background-image: url('/images/icon-design.svg');
+  }
+
+  .ux {
+    @extend %project_role;
+    background-image: url('/images/icon-ux.svg');
+  }
+
+  .pm {
+    @extend %project_role;
+    background-image: url('/images/icon-pm.svg');
+  }
+}
+
+// <a>
+.project__url {
+  color: $color-white;
+
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
 }

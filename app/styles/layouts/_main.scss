@@ -12,7 +12,7 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
@@ -20,20 +20,23 @@ html {
 }
 
 body {
+  @extend %font_smoothing;
   color: $color-white;
-  font-family: $livory;
+  font-family: $goudy;
   font-style: italic;
 }
 
 // <section> primary site container
 #container {
+  @include row();
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
+  background-attachment: fixed;
+  min-height: 100%;
   // start at zero and let our directive change this once the images
   // are loaded
   opacity: 0;
-  @include rem('padding-top',60px);
+  @include rem('padding',60px 8px 8px);
   @include customTransition(opacity);
   width: 100%;
 

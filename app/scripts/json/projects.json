@@ -123,7 +123,7 @@
   },
   {
     "name": "Favicon Finder",
-    "url": "http://www.faviconfinder.com/"
+    "url": "http://www.faviconfinder.com/",
     "roles": [
       "dev",
       "design"
@@ -132,7 +132,7 @@
   },
   {
     "name": "Nooo",
-    "url": "http://www.nooo.me/"
+    "url": "http://www.nooo.me/",
     "roles": [
       "dev",
       "design"
@@ -141,7 +141,7 @@
   },
   {
     "name": "CSS Guidelines",
-    "url": "https://github.com/benjamincharity/CSS-Guidelines"
+    "url": "https://github.com/benjamincharity/CSS-Guidelines",
     "roles": [
       "dev"
     ],
@@ -149,7 +149,7 @@
   },
   {
     "name": "IE Payback",
-    "url": "http://www.iepayback.com/"
+    "url": "http://www.iepayback.com/",
     "roles": [
       "dev",
       "design"
