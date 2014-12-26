@@ -15,10 +15,10 @@
 .project {
   @include col(12);
   border: 1px solid rgba($color-white, .3);
-  @include rem('font-size',12px);
+  @include rem('font-size',14px);
   @include rem('height',140px);
   margin: 2% 0;
-  opacity: .9;
+  //opacity: .9;
   // set up for open source tag
   overflow: hidden;
   // set up for open source tag
@@ -34,10 +34,16 @@
   }
 
   @include breakpoint(breakpoint-large) {
-    @include col(4);
+    @include col(3.5);
+    @include append(.5);
 
     &:nth-of-type(odd) {
       @include resetFirst();
+    }
+
+    // target 1, 4, 7...
+    &:nth-of-type(3n+3) {
+      @include append(0);
     }
 
     // target 1, 4, 7...
@@ -64,15 +70,17 @@
 // <h1>
 .project__name {
   @extend %project_title;
-  @include rem('font-size',16px);
+  @include rem('font-size',18px);
   font-weight: 600;
 }
 
 // h2
 .project__organization {
   @extend %project_title;
-  @include rem('font-size',14px);
+  @include rem('font-size',12px);
   font-weight: 400;
+  position: relative;
+  top: -2px;
 }
 
 // <ul> list of roles for a project
