@@ -17,7 +17,7 @@
   display: inline-block;
   @include customTransition();
 
-  &:focus,
+  &:active,
   &:hover {
     @include transform( translate3d(0, 6px, 0) );
   }

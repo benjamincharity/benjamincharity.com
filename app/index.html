@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" data-ng-app="bc">
+<html class="no-js" data-ng-app="bc" data-ng-controller="AppCtrl">
   <head>
     <meta charset="utf-8">
 
@@ -45,18 +45,34 @@
       <!--<div id="preload">-->
         <!--<img src="/images/texture.png" width="1000" height="1000" alt="" />-->
       <!--</div>-->
-      <ui-view></ui-view>
-    </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <!--<script>-->
-      <!--(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=-->
-      <!--function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;-->
-      <!--e=o.createElement(i);r=o.getElementsByTagName(i)[0];-->
-      <!--e.src='//www.google-analytics.com/analytics.js';-->
-      <!--r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));-->
-      <!--ga('create','UA-XXXXX-X');ga('send','pageview');-->
-    <!--</script>-->
+      <header
+        class="siteHeader"
+        data-ng-class="{ is_compact: headerIsCompact }"
+      >
+        <a
+          ui-sref="landing"
+          class="siteHeader__logo"
+          data-ng-include=" '/images/logo.svg' "
+        >
+          Benjamin Charity
+        </a>
+
+        <nav class="nav">
+          <a class="nav__link" ui-sref="projects">Projects</a>
+          <a class="nav__link" ui-sref="about">About</a>
+          <a class="nav__link" ui-sref="contact">Contact</a>
+        </nav>
+      </header>
+
+
+      <section class="content">
+        <div
+          ui-view
+          class="at-view-slide-in-bottom  at-view-slide-out-bottom"
+          ></div>
+      </section>
+    </div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

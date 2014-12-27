@@ -13,81 +13,49 @@
 
 // <article> individual project
 .project {
-  @include col(12);
-  border: 1px solid rgba($color-white, .3);
+  //border: 1px solid rgba($color-white, .3);
   @include rem('font-size',14px);
-  @include rem('height',140px);
-  margin: 2% 0;
-  //opacity: .9;
-  // set up for open source tag
+  //@include rem('height',140px);
+  margin: 20px auto;
+  max-width: 400px;
+  // set up for open source tag and hr
   overflow: hidden;
+  @include rem('padding',12px);
   // set up for open source tag
   position: relative;
-  @include rem('padding',12px);
+  text-align: center;
+  width: 100%;
 
-  @include breakpoint(breakpoint-medium-large) {
-    @include col(6);
-
-    &:nth-of-type(odd) {
-      @include first();
-    }
-  }
-
-  @include breakpoint(breakpoint-large) {
-    @include col(3.5);
-    @include append(.5);
-
-    &:nth-of-type(odd) {
-      @include resetFirst();
-    }
-
-    // target 1, 4, 7...
-    &:nth-of-type(3n+3) {
-      @include append(0);
-    }
-
-    // target 1, 4, 7...
-    &:nth-of-type(3n+1) {
-      @include first();
-    }
-  }
-
-  @include breakpoint(breakpoint-huge) {
-    @include col(3);
-
-    // target 1, 4, 7...
-    &:nth-of-type(3n+1) {
-      @include resetFirst();
-    }
-
-    // target 1, 5, 9...
-    &:nth-of-type(4n+1) {
-      @include first();
-    }
+  &:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
   }
 }
 
 // <h1>
 .project__name {
   @extend %project_title;
-  @include rem('font-size',18px);
+  @include rem('font-size',22px);
   font-weight: 600;
 }
 
 // h2
 .project__organization {
   @extend %project_title;
-  @include rem('font-size',12px);
+  @include rem('font-size',16px);
   font-weight: 400;
   position: relative;
-  top: -2px;
+  top: -4px;
 }
 
 // <ul> list of roles for a project
 .project__roles {
   list-style-type: none;
-  line-height: 1.6em;
-  @include rem('margin',12px 0);
+  line-height: 1.4em;
+  margin: 12px auto -3px;
+  text-align: left;
+  // magic number based on longest line
+  width: 154px;
 
   .dev {
     @extend %project_role;

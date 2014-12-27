@@ -33,10 +33,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100%;
-  // start at zero and let our directive change this once the images
-  // are loaded
+  // start at zero and let our directive change this once
+  // the images are loaded
   opacity: 0;
-  @include rem('padding',60px 8px 8px);
+  position: relative;
+  padding: 20px 8px;
   @include customTransition(opacity);
   width: 100%;
 
@@ -45,40 +46,70 @@ body {
   }
 }
 
-.siteHeader {
-  margin: 0 auto 20px;
-  max-width: 300px;
-  // set up for aspect ratio pseudo
+// <section> container for site content
+.content {
   position: relative;
-  width: 80%;
+}
 
-  // protect our aspect ratio
-  &::after {
-    content: "";
-    display: block;
-    padding-top: 56%;
+.siteHeader {
+  margin: 60px auto 60px;
+  padding-top: 180px;
+  // set up for logo
+  position: relative;
+  @include customTransition(all, 400ms);
+
+  &.is_compact {
+    padding-top: 150px;
+    margin-top: 0;
+
+    .siteHeader__logo {
+      //@include customTransition(width, 500ms);
+      //@include customTransition(margin, 300ms);
+      margin-bottom: 12px;
+      margin-left: -105px;
+      width: 210px;
+    }
   }
 }
 
-// <h1>
+// <a>
 .siteHeader__logo {
+  @extend %flicker-fix;
   overflow: hidden;
+  margin-left: -150px;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
   top: 0;
+  @include customTransition(all, 600ms);
+  @include transform( translateZ(0) );
+  width: 300px;
+  z-index: 1;
 
   svg {
+    @include transform( translateZ(0) );
+    @extend %flicker-fix;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: -30px;
     max-width: 100%;
-    position: relative;
-    top: -24px;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 65%;
   }
 }
 
 // <nav> primary navigation container
 .nav {
+  // set up for zindex
+  position: relative;
   text-align: center;
+  // bring us above the logo
+  z-index: 4;
 }
 
 // <a> primary navigation link
@@ -101,31 +132,49 @@ body {
 
 ///////////////////////////////////////////////////
 //
-// Slide Vertical
+// Page transitions
 //
 ///////////////////////////////////////////////////
-.slideVertical.ng-enter,
-.slideVertical.ng-leave {
-  @include customTransition(all, 300ms);
-  position: absolute;
-  left: 8px;
-  right: 8px;
+
+.at-view-slide-in-bottom {
+  @include customTransition(all, 500ms);
+  width: 100%;
+
+  &.ng-enter {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    @include transform( translate3d(0, 30px, 0) );
+    z-index: 1;
+  }
+
+  &.ng-enter-active {
+    opacity: 1;
+    position: absolute;
+    @include transform( translate3d(0, 0, 0) );
+  }
 }
 
-// prep for enter
-.slideVertical.ng-enter {
-  opacity: 0;
-  @include transform( translate3d(0, 30px, 0) );
+
+.at-view-slide-out-bottom {
   @include customTransition(all, 500ms);
-}
-// left
-.slideVertical.ng-leave.ng-leave-active {
-  opacity: 0;
-  @include transform( translate3d(0, 30px, 0) );
-}
-// active
-.slideVertical.ng-leave,
-.slideVertical.ng-enter.ng-enter-active {
-  opacity: 1;
-  @include transform( translate3d(0, 0, 0) );
+  width: 100%;
+
+  &.ng-leave {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    @include transform( translate3d(0, 0, 0) );
+    width: 100%;
+    z-index: 3;
+  }
+
+  &.ng-leave-active {
+    opacity: 0;
+    @include transform( translate3d(0, 30px, 0) );
+  }
 }
