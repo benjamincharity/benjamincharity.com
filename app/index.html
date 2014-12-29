@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Benjamin Charity</title>
+    <title set-window-title>Benjamin Charity</title>
 
     <meta name="description" content="I am an energetic UI Engineer and UX
     Designer constantly pushing the boundaries of the web with innovative
@@ -11,6 +11,7 @@
     in the beautiful space where science and art collide.">
 
     <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/images/favicon.ico">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="author" href="/humans.txt" />
@@ -18,33 +19,29 @@
     <script type="text/javascript" src="//use.typekit.net/wqd2nks.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-    <!-- build:css({.tmp,app}) styles/vendor.css -->
-    <link rel="stylesheet" href="styles/vendor.css">
-    <!-- endbuild -->
-
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
-    <!-- build:js scripts/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
   </head>
   <body>
-    <div id="loader" data-ng-if="loaderIsVisible">
-      <div id="top"></div>
-      <div id="bottom"></div>
-      <div id="line"></div>
+
+    <div id="preload">
+      <img src="images/icon-code.svg" alt="">
+      <img src="images/icon-design.svg" alt="">
+      <img src="images/icon-pm.svg" alt="">
+      <img src="images/icon-ux.svg" alt="">
+    </div>
+
+    <div class="loader" data-ng-if="loaderIsVisible">
+      <div class="loader-inner"></div>
     </div>
 
     <div id="container" set-background-image>
+
       <!--[if lt IE 10]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
-
-      <!--<div id="preload">-->
-        <!--<img src="/images/texture.png" width="1000" height="1000" alt="" />-->
-      <!--</div>-->
 
       <header
         class="siteHeader"
@@ -60,7 +57,6 @@
 
         <nav class="nav">
           <a class="nav__link" ui-sref="projects">Projects</a>
-          <a class="nav__link" ui-sref="about">About</a>
           <a class="nav__link" ui-sref="contact">Contact</a>
         </nav>
       </header>
@@ -76,6 +72,7 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -88,12 +85,12 @@
 
     <script src="scripts/controllers/AppCtrl.js"></script>
     <script src="scripts/controllers/ProjectsCtrl.js"></script>
-    <script src="scripts/controllers/AboutCtrl.js"></script>
     <script src="scripts/controllers/ContactCtrl.js"></script>
 
-    <script src="scripts/services/contentService.js"></script>
+    <script src="scripts/services/ContentService.js"></script>
 
     <script src="scripts/directives/setBackgroundImage.js"></script>
+    <script src="scripts/directives/setPageTitle.js"></script>
     <!-- inject:partials -->
     <!-- endinject -->
     <!-- endbuild -->

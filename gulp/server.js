@@ -41,8 +41,11 @@ gulp.task('serve', ['watch'], function () {
     '.tmp'
   ], [
     'app/*.html',
+    'app/*.txt',
+    'app/styles/**/*.css',
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
+    '.tmp/scripts/**/*.js',
     'app/partials/**/*.html',
     'app/images/**/*'
   ]);

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('bc').config(function($stateProvider, $urlRouterProvider) {
 
   //
@@ -12,31 +14,32 @@ angular.module('bc').config(function($stateProvider, $urlRouterProvider) {
     // Home
     .state('landing', {
       url: '/',
-      controller: 'AppCtrl'
+      controller: 'AppCtrl',
+      data: {
+        pageTitle: 'UX Engineer'
+      }
     })
 
     //
     // Projects
     .state('projects', {
       url: '/projects',
-      templateUrl: '/partials/projects.html',
-      controller: 'ProjectsCtrl'
-    })
-
-    //
-    // About
-    .state('about', {
-      url: '/about',
-      templateUrl: '/partials/about.html',
-      controller: 'AboutCtrl'
+      templateUrl: 'partials/projects.html',
+      controller: 'ProjectsCtrl',
+      data: {
+        pageTitle: 'Projects'
+      }
     })
 
     //
     // Contact
     .state('contact', {
       url: '/contact',
-      templateUrl: '/partials/contact.html',
-      controller: 'ContactCtrl'
+      templateUrl: 'partials/contact.html',
+      controller: 'ContactCtrl',
+      data: {
+        pageTitle: 'Contact'
+      }
     })
 
     ;

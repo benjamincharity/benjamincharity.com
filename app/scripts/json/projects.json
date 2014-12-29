@@ -123,23 +123,23 @@
   },
   {
     "name": "Favicon Finder",
+    "organization": "Open Source",
     "url": "http://www.faviconfinder.com/",
     "prettyUrl": "faviconfinder.com",
     "roles": [
       "dev",
       "design"
-    ],
-    "openSource": true
+    ]
   },
   {
     "name": "Nooo",
+    "organization": "Open Source",
     "url": "http://www.nooo.me/",
     "prettyUrl": "nooo.me",
     "roles": [
       "dev",
       "design"
-    ],
-    "openSource": true
+    ]
   },
   {
     "name": "CSS Guidelines",
@@ -147,17 +147,16 @@
     "prettyUrl": "CSS-Guidelines",
     "roles": [
       "dev"
-    ],
-    "openSource": true
+    ]
   },
   {
     "name": "IE Payback",
+    "organization": "Open Source",
     "url": "http://www.iepayback.com/",
     "prettyUrl": "iepayback.com",
     "roles": [
       "dev",
       "design"
-    ],
-    "openSource": true
+    ]
   }
 ]

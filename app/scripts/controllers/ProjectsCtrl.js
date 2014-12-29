@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('bc')
-.controller('ProjectsCtrl', function ($scope, contentService) {
+.controller('ProjectsCtrl', function ($scope, ContentService) {
 
   $scope.title = 'Projects';
 
-  contentService.projects().then(function(result) {
+  ContentService.projects().then(function(result) {
     $scope.projects = result;
   });
 

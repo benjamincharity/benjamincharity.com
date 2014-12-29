@@ -1,9 +1,12 @@
+/* global Image */
+'use strict';
+
 angular.module('bc')
-.directive('setBackgroundImage', ['$timeout', '$rootScope',
+.directive('setBackgroundImage',
   function($timeout, $rootScope) {
     return {
 
-      link: function(scope, element, attrs) {
+      link: function(scope, element) {
 
         // array of the current images we want to choose from
         var images = [
@@ -49,7 +52,7 @@ angular.module('bc')
           //$timeout(function() {
             element.css(
               { 'background-image': 'url(/images/texture.png), url(/images/bg/' + imageName + '.gif), url(images/bg/' + imageName + '.jpg)' }
-            )
+            );
           //}, 2000);
           //$timeout(function() {
             element.addClass('is_active');
@@ -57,11 +60,11 @@ angular.module('bc')
               $rootScope.loaderIsVisible = false;
             });
           //}, 3000);
-        }
+        };
 
 
       }
 
-    }
+    };
   }
-]);
+);

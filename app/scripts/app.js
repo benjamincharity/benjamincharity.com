@@ -1,3 +1,4 @@
+/* global document, FastClick */
 'use strict';
 
 angular.module('bc', ['ngAnimate', 'ui.router'])
@@ -24,5 +25,20 @@ angular.module('bc', ['ngAnimate', 'ui.router'])
     }
 
   });
+
+
+
+
+  //////////////////////////////////////////////////
+  //
+  // Initialize FastClick.js
+  //
+  //////////////////////////////////////////////////
+
+  if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+  }
 
 });

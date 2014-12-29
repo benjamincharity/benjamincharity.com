@@ -1,0 +1,10 @@
+{
+  "aws": {
+    "key": "AKIAJ73PIXJEZKSF6RFQ",
+    "secret": "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",
+    "bucket": "dev.benjamincharity.com",
+    "region": "us-east-1"
+  },
+  "max_age": "3600"
+}
+

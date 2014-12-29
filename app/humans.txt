@@ -1,8 +1,8 @@
 /* TEAM */
 
-Development/Design: Benjamin Charity
-Twitter: @benjamincharity
+Design/Development: Benjamin Charity (@benjamincharity)
 Location: Atlanta, USA.
+
 
 
 /* THANKS */
@@ -25,7 +25,8 @@ FlatIcons: For the great icon resources!
 
 /* SITE */
 
-Last update: 2014/09/11
+Last update: @@LastUpdated
 Standards: HTML5, CSS3
-Components: Modernizr, Angular, SCSS, Gulp
-Software: MacVim, iTerm2, Transmit
+Components: Angular, SCSS, Gulp, Compass, NodeJS,
+Software: MacVim, iTerm2, Transmit, Chrome, NG-Inspector
+
