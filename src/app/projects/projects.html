@@ -1,0 +1,36 @@
+<article class="project" data-ng-repeat="project in projects">
+
+  <h1 class="project__name">{{ project.name }}</h1>
+  <h2
+    class="project__organization"
+    data-ng-if="project.organization"
+  >{{ project.organization }}</h2>
+
+  <ul class="project__roles">
+    <li
+      data-ng-repeat="role in project.roles"
+      class="{{ role }}"
+      data-ng-switch="role"
+    >
+
+      <div data-ng-switch-when="dev">Front-End Development</div>
+      <div data-ng-switch-when="design">Design/User Interface</div>
+      <div data-ng-switch-when="ux">User Experience</div>
+      <div data-ng-switch-when="pm">Project Management</div>
+
+    </li>
+  </ul>
+
+  <a
+    href="{{ project.url }}"
+    class="project__url"
+    data-ng-if="project.url"
+  >{{ project.prettyUrl }}</a>
+
+  <div
+    class="project__openSource"
+    data-ng-if="project.openSource"
+  >Open source</div>
+
+</article>
+

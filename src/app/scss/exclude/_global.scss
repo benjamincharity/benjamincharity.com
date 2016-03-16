@@ -1,0 +1,93 @@
+//
+//
+//
+// $GLOBAL
+//
+//
+// @author Benjamin Charity <ben@benjamincharity.com>
+//
+// @doc
+//  Styles that effect global items
+// @end
+
+
+html,
+body {
+  background-color: $color_secondary;
+  backface-visibility: hidden;
+  color: $color_secondary;
+  font-family: $medium;
+  font-smoothing: antialiased;
+  height: 100%;
+  tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: none;
+  touch-callout: none;
+}
+
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+}
+
+body {
+  background-color: #eee;
+  color: $color-white;
+  font-family: $goudy;
+  font-smoothing: antialiased;
+  font-style: italic;
+}
+
+#preload {
+  display: none;
+}
+
+// <div> primary site container
+.app {
+  @include row();
+  -webkit-overflow-scrolling: touch;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  //min-height: 100%;
+  // start at zero and let our directive change this once
+  // the images are loaded
+  opacity: 0;
+  overflow-y: auto;
+  position: relative;
+  padding: 20px 8px;
+  @include customTransition(opacity);
+  width: 100%;
+
+  &.is_active {
+    opacity: 1;
+  }
+}
+
+// <section> container for site content
+.content {
+  position: relative;
+  // bring us above the particles layer
+  z-index: 4;
+}
+
+
+.browsehappy {
+  margin: .2em 0;
+  padding: .2em 0;
+}
+
+// scss-lint:disable IdSelector
+#preload {
+  // scss-lint:disable ImportantRule
+  display: none !important;
+  // scss-lint:enable ImportantRule
+}
+// scss-lint:enable IdSelector
+
