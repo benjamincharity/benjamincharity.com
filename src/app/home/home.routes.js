@@ -6,6 +6,9 @@ export function HomeRouterConfig($stateProvider) {
             url: '/',
             templateUrl: 'app/home/home.html',
             controller: 'HomeController as vm',
+            data: {
+                compactHeader: false,
+            },
         })
     ;
 

@@ -7,7 +7,8 @@ export function ProjectsRouterConfig($stateProvider) {
             templateUrl: 'app/projects/projects.html',
             controller: 'ProjectsController as vm',
             data: {
-                pageTitle: 'Projects',
+                viewTitle: 'Projects',
+                compactHeader: true,
             },
         })
     ;

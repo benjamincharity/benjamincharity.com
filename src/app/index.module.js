@@ -2,7 +2,6 @@ import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 
-import './components/set-title/';
 import './components/set-background/';
 import './components/preload/';
 import './home/';
@@ -16,7 +15,6 @@ angular.module('bc', [
     'ui.router',
 
     // components
-    'bc.SetTitle',
     'bc.SetBackground',
     'bc.Preload',
 

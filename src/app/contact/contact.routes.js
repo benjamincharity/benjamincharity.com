@@ -7,7 +7,8 @@ export function ContactRouterConfig($stateProvider) {
             templateUrl: 'app/contact/contact.html',
             controller: 'ContactController as vm',
             data: {
-                pageTitle: 'Contact',
+                viewTitle: 'Contact',
+                compactHeader: true,
             },
         })
     ;
