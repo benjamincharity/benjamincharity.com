@@ -77,16 +77,16 @@
   &__organization {
     @include project__title();
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 100;
+    margin-bottom: .6rem;
     position: relative;
-    top: -.25rem;
   }
 
   // <ul> list of roles for a project
   &__roles {
     list-style-type: none;
     line-height: 1.4em;
-    margin: .75rem auto;
+    margin-bottom: .6em;
   }
 
   &__role {

@@ -1,6 +1,15 @@
 export const PROJECTS = {
     contract: [
         {
+            'name': 'Moment',
+            'organization': 'Kenzie Lane Innovations',
+            'roles': [
+                'dev',
+                'design',
+                'ux',
+            ],
+        },
+        {
             'name': 'Clutch',
             'organization': 'Kenzie Lane Innovations',
             'roles': [
@@ -146,6 +155,12 @@ export const PROJECTS = {
     ],
     openSource: [
         {
+            'name': 'angular-flickity',
+            'organization': 'Open Source',
+            'url': 'https://github.com/benjamincharity/angular-flickity',
+            'prettyUrl': 'github.com/.../angular-flickity',
+        },
+        {
             'name': 'angular-ratings',
             'organization': 'Open Source',
             'url': 'https://github.com/benjamincharity/angular-ratings',
@@ -158,22 +173,22 @@ export const PROJECTS = {
             'prettyUrl': 'github.com/.../angular-telephone-filter',
         },
         {
+            'name': 'angular-url-encode',
+            'organization': 'Open Source',
+            'url': 'https://github.com/benjamincharity/angular-url-encode',
+            'prettyUrl': 'github.com/.../angular-url-encode',
+        },
+        {
             'name': 'Favicon Finder',
             'organization': 'Open Source',
             'url': 'http://www.faviconfinder.com/',
             'prettyUrl': 'faviconfinder.com',
         },
         {
-            'name': 'Nooo',
-            'organization': 'Open Source',
-            'url': 'http://www.nooo.me/',
-            'prettyUrl': 'nooo.me',
-        },
-        {
             'name': 'CSS Guidelines',
             'organization': 'Open Source',
             'url': 'https://github.com/benjamincharity/CSS-Guidelines',
-            'prettyUrl': 'CSS-Guidelines',
+            'prettyUrl': 'github.com/.../CSS-Guidelines',
         },
         {
             'name': 'IE Payback',
