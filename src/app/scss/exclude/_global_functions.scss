@@ -11,40 +11,7 @@
 // @end
 
 
-// set a base font that should match the browser default
-//$base-font-size: 16px;
 
-//$site-width: 100%;
-
-// Baseline, measured in pixels
-// The value should be the same as the font-size value for the html element
-// If the html element's font-size is set to 62.5% (of the browser's default font-size of 16px),
-// then the variable below would be 10px.
-$baseline-px: 16px;
-
-@mixin rem($property, $px-values) {
-  // Convert the baseline into rems
-  $baseline-rem: $baseline-px / 1rem;
-  // Print the first line in pixel values
-  #{$property}: $px-values;
-  // If there is only one (numeric) value, return the property/value line for it.
-  @if type-of($px-values) == "number" {
-    #{$property}: $px-values / $baseline-rem; }
-  @else {
-    // Create an empty list that we can dump values into
-    $rem-values: unquote("");
-    @each $value in $px-values {
-      // If the value is zero, return 0
-      @if $value == 0 {
-        $rem-values: append($rem-values, $value); }
-      @else {
-        $rem-values: append($rem-values, $value / $baseline-rem);
-      }
-    }
-    // Return the property and its list of converted values
-    #{$property}: $rem-values;
-  }
-}
 
 
 //
@@ -96,13 +63,8 @@ $baseline-px: 16px;
 // My custom transition function - much more humanistic than easing etc
 //
 ///////////////////////////
-
-@mixin customTransition($property: all, $timing: 200ms) {
-  -webkit-transition: $property $timing cubic-bezier(0.26, 0.86, 0.44, 0.985);
-  -moz-transition:    $property $timing cubic-bezier(0.26, 0.86, 0.44, 0.985);
-  -ms-transition:     $property $timing cubic-bezier(0.26, 0.86, 0.44, 0.985);
-  -o-transition:      $property $timing cubic-bezier(0.26, 0.86, 0.44, 0.985);
-  transition:         $property $timing cubic-bezier(0.26, 0.86, 0.44, 0.985);
+@mixin transition__custom($property: all, $timing: 200ms) {
+  transition: $property $timing cubic-bezier(.26, .86, .44, .985);
 }
 
 
@@ -113,7 +75,6 @@ $baseline-px: 16px;
 // Hide text
 //
 ///////////////////////////
-
 @mixin hideText {
   color: transparent;
   overflow: hidden;

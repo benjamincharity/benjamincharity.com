@@ -1,0 +1,18 @@
+//
+//
+//
+// $UTILITIES
+//
+//
+// @author Benjamin Charity <ben@benjamincharity.com>
+//
+// @doc
+//  Mixins and Extends for various needs
+// @end
+
+
+// CSS Flicker Fix
+@mixin flicker_fix() {
+  backface-visibility: hidden;
+  perspective: 1000;
+}

@@ -16,17 +16,16 @@ export function SetTitleDirective(
      */
     function linkFunction(scope, element) {
 
-        var listener = function(event, toState) {
-            var title = 'Benjamin Charity';
+        const listner = $rootScope.$on('$stateChangeStart', (event, toState) => {
+            let title = 'Benjamin Charity';
 
             if (toState.data && toState.data.pageTitle) {
                 title = title + ' - ' + toState.data.pageTitle;
             }
 
             element.text(title);
-        };
+        });
 
-        $rootScope.$on('$stateChangeStart', listener);
     }
 
 }

@@ -1,6 +1,6 @@
 <header
-  class="siteHeader"
-  data-ng-class="{ is_compact: headerIsCompact }"
+  class="header"
+  data-ng-class="{'header--compact': headerIsCompact}"
 >
 
   <a
@@ -11,9 +11,14 @@
     Benjamin Charity
   </a>
 
-  <nav class="nav">
-    <a class="nav__link" ui-sref="projects">Projects</a>
-    <a class="nav__link" ui-sref="contact">Contact</a>
+  <nav class="header__nav">
+    <a class="header__nav-link" ui-sref="projects">
+      Projects
+    </a>
+
+    <a class="header__nav-link" ui-sref="contact">
+      Contact
+    </a>
   </nav>
 
 </header>

@@ -12,10 +12,12 @@
 
 // <ul> list of contact links
 .contact__list {
-  text-align: center;
   list-style-type: none;
+  text-align: center;
+
+  // <a> individual link
+  &-link {
+    @include link__contact();
+  }
 }
 
-.contact__link {
-  @extend %contact_link;
-}

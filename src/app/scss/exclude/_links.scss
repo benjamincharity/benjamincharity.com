@@ -7,28 +7,28 @@
 // @author Benjamin Charity <ben@benjamincharity.com>
 //
 // @doc
-//  Base link styles
+//  Reusable link styles
 // @end
 
 
 // basic link
-%link {
-  color: $color-white;
+@mixin link() {
+  color: $color_white;
   display: inline-block;
   // set up for pseudo
   position: relative;
 
   &::after {
-    background-color: $color-white;
-    content: "";
+    @include transition__custom();
+    background-color: $color_white;
+    content: '';
     height: 1px;
     opacity: 0;
     position: absolute;
     bottom: 1px;
     left: 0;
     right: 0;
-    @include transform( translateY(4px) );
-    @include customTransition();
+    transform: translateY(.25rem);
     width: 100%;
   }
 
@@ -36,24 +36,25 @@
   &:hover {
     &::after {
       opacity: 1;
-      @include transform( translateY(0) );
+      transform: translateY(0);
     }
   }
 }
 
-%contact_link {
-  color: $color-white;
+//%contact_link {
+@mixin link__contact() {
+  @include transition__custom();
+  color: $color_white;
   display: inline-block;
   font-family: $proxima;
-  @include rem('font-size',26px);
+  font-size: 1.625rem;
   font-style: normal;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  letter-spacing: .0625em;
+  margin-bottom: .25em;
   text-transform: uppercase;
-  @include customTransition();
 
   &:focus,
   &:hover {
-    @include transform( translate3d(6px, 0, 0) );
+    transform: translate3d(.375rem, 0, 0);
   }
 }

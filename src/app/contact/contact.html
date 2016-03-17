@@ -1,8 +1,10 @@
 <ul class="contact__list">
-  <li data-ng-repeat="contact in contactList">
-    <a class="contact__link" href="{{ contact.url }}">
+  <li data-ng-repeat="contact in ::vm.contactList track by $index">
+
+    <a class="contact__list-link" data-ng-href="{{ ::contact.url }}">
       {{ contact.title }}
     </a>
+
   </li>
 </ul>
 

@@ -16,40 +16,19 @@
 
 ////////////////////////////////////////////
 //
-// Compass Defaults
-//
-////////////////////////////////////////////
-
-$default-transition-duration        : 0.2s;
-$default-transition-function        : ease-in-out;
-$default-box-shadow-color           : #000;
-$default-box-shadow-h-offset        : 0;
-$default-box-shadow-v-offset        : 0;
-$default-box-shadow-blur            : 6px;
-$default-box-shadow-spread          : 0;
-$default-border-radius              : 2px;
-
-
-
-
-////////////////////////////////////////////
-//
 // Colors
 //
 ////////////////////////////////////////////
-
-// Standard colors
-$color-white      : #fafafa;
-$color-off-white  : #fafafa;
-$color-light-gray : #aaa;
-$color-gray       : #ccc;
-$color-mid-gray   : #7e7e7e;
-$color-dark-gray  : #444;
-$color-black      : #222;
-$color-red        : #db7769;
+$color_white: #fafafa;
+$color_gray_light: #aaa;
+//$color_gray: #ccc;
+//$color_gray_mid: #7e7e7e;
+$color_gray_dark: #444;
+$color_black: #222;
+$color_primary: #db7769;
 
 // Specific use cases
-$color-placeholders   : $color-light-gray;
+//$color_placeholders   : $color_gray_light;
 
 
 
@@ -58,20 +37,22 @@ $color-placeholders   : $color-light-gray;
 // Typography
 //
 ////////////////////////////////////////////
-
 // Create font-family alias'
 
-$proxima                             : #{"proxima-nova-alt-condensed","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,sans-serif};
-$goudy                             : #{"sorts-mill-goudy","goudy",georgia,times new roman,serif};
-$helvetica                          : #{"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif};
-$arial                              : #{arial, sans-serif};
-$monospaced_serif                   : #{"Courier New", Courier, FreeMono, "Nimbus Mono L", monospace};
-$monospaced_sans                    : #{"Lucida Console", Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace};
+$proxima: #{"proxima-nova-alt-condensed", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica
+  Neue", Helvetica, sans-serif};
+$goudy: #{"sorts-mill-goudy", "goudy", georgia, times new roman, serif};
+$helvetica: #{"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial,
+  "Lucida Grande", sans-serif};
+$arial: #{arial, sans-serif};
+$monospaced_serif: #{"Courier New", Courier, FreeMono, "Nimbus Mono L", monospace};
+$monospaced_sans: #{"Lucida Console", Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+  monospace};
 
 // Define the site base values
-$font-base                          : #{'Helvetica Neue', Helvetica, sans-serif};
-$font-base_size                     : 16px;
-$font-base_lineHeight               : $font-base_size * 1.5;
+$font_base: #{'Helvetica Neue', Helvetica, sans-serif};
+$font_base_size: 16px;
+$font_base_line_height: $font_base_size * 1.5;
 
 
 
@@ -81,10 +62,7 @@ $font-base_lineHeight               : $font-base_size * 1.5;
 // Layout
 //
 ////////////////////////////////////////////
-
-$site-width                         : 100%;
-//$site-width_max                     : 2400px;
-//$site-width_min                     : 300px;
+$site_width: 100%;
 
 
 
@@ -94,9 +72,8 @@ $site-width                         : 100%;
 // Grid Helpers
 //
 ////////////////////////////////////////////
-
 // total width of page
-$width : $site-width;
+$width: $site_width;
 // number of columns
 $columns: 12;
 // margin between columns

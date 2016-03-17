@@ -11,16 +11,35 @@
 // @end
 
 
+@mixin project__title() {
+  font-family: $proxima;
+  font-style: normal;
+  letter-spacing: .0625rem;
+  text-transform: uppercase;
+}
+
+@mixin project__roles() {
+  display: block;
+  padding-left: 1.25rem;
+  text-align: center;
+
+  div {
+    background-repeat: no-repeat;
+    background-position: .0625rem 10%;
+    background-size: .75rem;
+    display: inline-block;
+    padding-left: 1.125rem;
+  }
+}
+
 // <article> individual project
 .project {
-  //border: 1px solid rgba($color-white, .3);
-  @include rem('font-size',14px);
-  //@include rem('height',140px);
-  margin: 20px auto;
-  max-width: 400px;
+  font-size: .875rem;
+  margin: 1.25rem auto;
+  max-width: 25rem;
   // set up for open source tag and hr
   overflow: hidden;
-  @include rem('padding',12px);
+  padding: .75rem;
   // set up for open source tag
   position: relative;
   text-align: center;
@@ -30,67 +49,69 @@
     margin-top: 0;
     padding-top: 0;
   }
-}
 
-// <h1>
-.project__name {
-  @extend %project_title;
-  @include rem('font-size',22px);
-  font-weight: 600;
-}
+  // <h1>
+  &__name {
+    @include project__title();
+    font-size: 1.375rem;
+    font-weight: 600;
+  }
 
-// h2
-.project__organization {
-  @extend %project_title;
-  @include rem('font-size',16px);
-  font-weight: 400;
-  position: relative;
-  top: -4px;
-}
+  // <h2>
+  &__organization {
+    @include project__title();
+    font-size: 1rem;
+    font-weight: 400;
+    position: relative;
+    top: -.25rem;
+  }
 
-// <ul> list of roles for a project
-.project__roles {
-  list-style-type: none;
-  line-height: 1.4em;
-  margin: 12px auto;
+  // <ul> list of roles for a project
+  &__roles {
+    list-style-type: none;
+    line-height: 1.4em;
+    margin: .75rem auto;
+  }
 
-  .dev {
-    @extend %project_role;
+  &__role {
+    &--dev {
+      @include project__roles();
 
-    div {
-      background-image: url('/images/icon-code.svg');
-      background-size: 20px;
-      background-position-x: -3px;
+      div {
+        background-image: url('/images/icon-code.svg');
+        background-size: 20px;
+        background-position-x: -3px;
+      }
+    }
+
+    &--design {
+      @include project__roles();
+
+      div {
+        background-image: url('/images/icon-design.svg');
+      }
+    }
+
+    &--ux {
+      @include project__roles();
+
+      div {
+        background-image: url('/images/icon-ux.svg');
+      }
+    }
+
+    &--pm {
+      @include project__roles();
+
+      div {
+        background-image: url('/images/icon-pm.svg');
+      }
     }
   }
 
-  .design {
-    @extend %project_role;
-
-    div {
-      background-image: url('/images/icon-design.svg');
-    }
+  // <a>
+  &__url {
+    @include link();
   }
-
-  .ux {
-    @extend %project_role;
-
-    div {
-      background-image: url('/images/icon-ux.svg');
-    }
-  }
-
-  .pm {
-    @extend %project_role;
-
-    div {
-      background-image: url('/images/icon-pm.svg');
-    }
-  }
-}
-
-// <a>
-.project__url {
-  @extend %link;
 }
 
