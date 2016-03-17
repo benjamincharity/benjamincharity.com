@@ -20,7 +20,6 @@
 
 @mixin project__roles() {
   display: block;
-  padding-left: 1.25rem;
   text-align: center;
 
   div {
@@ -41,10 +40,6 @@
   @include breakpoint(breakpoint-medium-large) {
     flex-flow: row nowrap;
     justify-content: space-around;
-  }
-
-  // <div>
-  &__list {
   }
 }
 
