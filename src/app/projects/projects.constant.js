@@ -2,8 +2,6 @@ export const PROJECTS = [
     {
         'name': 'Clutch',
         'organization': 'Kenzie Lane Innovations',
-        'url': 'http://www.driveclutch.com/',
-        'prettyUrl': 'driveclutch.com',
         'roles': [
             'dev',
             'ux',

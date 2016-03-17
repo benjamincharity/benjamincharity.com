@@ -78,7 +78,7 @@
       @include project__roles();
 
       div {
-        background-image: url('/images/icon-code.svg');
+        background-image: url('/assets/images/icon-code.svg');
         background-size: 20px;
         background-position-x: -3px;
       }
@@ -88,7 +88,7 @@
       @include project__roles();
 
       div {
-        background-image: url('/images/icon-design.svg');
+        background-image: url('/assets/images/icon-design.svg');
       }
     }
 
@@ -96,7 +96,7 @@
       @include project__roles();
 
       div {
-        background-image: url('/images/icon-ux.svg');
+        background-image: url('/assets/images/icon-ux.svg');
       }
     }
 
@@ -104,7 +104,7 @@
       @include project__roles();
 
       div {
-        background-image: url('/images/icon-pm.svg');
+        background-image: url('/assets/images/icon-pm.svg');
       }
     }
   }

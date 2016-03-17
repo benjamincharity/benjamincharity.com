@@ -1,3 +1,5 @@
+import { BACKGROUNDS } from './background.constant';
+
 export function SetBackgroundDirective(
     $timeout, $rootScope
 ) {
@@ -14,64 +16,42 @@ export function SetBackgroundDirective(
     /**
      * Link
      */
-    function linkFunction(scope, element) {
+    function linkFunction($scope, $element) {
 
-        // array of the current images we want to choose from
-        const images = [
-            'beach',
-            'bikes',
-            'empire',
-            'espresso',
-            'espresso2',
+        // Array of the current images we want to choose from
+        const imageNames = BACKGROUNDS;
 
-            /*
-             *'heart',
-             */
-            'hotdog',
-            'lantern',
-            'lightstring',
-            'newspaper',
-            'paris',
-            'reading',
-            'roundabout',
-            'scad',
-            'seagulls',
-            'subway',
-            'subway2',
-            'theatre',
-            'windowwasher',
-        ];
+        // Get a random image from the array
+        const imageName = imageNames[Math.floor(Math.random()*imageNames.length)];
 
-        // get a random image number from our array
-        const imageName = images[Math.floor(Math.random()*images.length)];
-
-        // set the jpg as our background
-        element.css(
+        // Set the jpg as our background
+        $element.css(
             {
                 'background-image': 'url(assets/images/bg/' + imageName + '.jpg)',
             }
         );
 
-        // preload the gif
-        const bgImg = new Image();
-        bgImg.src = 'assets/images/bg/' + imageName + '.gif';
+        // Preload the gif
+        const gif = new Image();
+        gif.src = 'assets/images/bg/' + imageName + '.gif';
 
-        // preload the texture
+        // Preload the texture
         const texture = new Image();
         texture.src = 'assets/images/texture.png';
 
-        // once the texture is loaded, add the texture and gif to the body
+        // Once the texture is loaded
         texture.onload = () => {
-            element.css(
+            // Add the texture and gif to the element
+            $element.css(
                 {
                     'background-image': 'url(assets/images/texture.png), url(assets/images/bg/' +
                         imageName +'.gif),url(assets/images/bg/' + imageName + '.jpg)',
                 }
             );
 
-            element.addClass('is_active');
+            $element.addClass('is_active');
 
-            scope.$apply(() => {
+            $scope.$apply(() => {
                 $rootScope.loaderIsVisible = false;
             });
         };
