@@ -11,26 +11,29 @@
 //  http://codepen.io/fbrz/pen/uBjKn
 // @end
 
+$color_loader: #fbfbfb;
 
+// <div> primary wrapper
 .loader {
   animation: loader 4s infinite ease;
-  border: 4px solid #FBFBFB;
+  border: .25rem solid $color_loader;
   display: inline-block;
-  height: 30px;
-  margin-left: -15px;
-  margin-top: -15px;
+  height: 2rem;
+  margin-left: -1rem;
+  margin-top: -1rem;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 30px;
-}
+  width: 2rem;
 
-.loader-inner {
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #FBFBFB;
-  animation: loader-inner 4s infinite ease-in;
+  // <div> inner loading icon
+  &__inner {
+    animation: loader_inner 4s infinite ease-in;
+    background-color: $color_loader;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+  }
 }
 
 @keyframes loader {
@@ -55,7 +58,7 @@
   }
 }
 
-@keyframes loader-inner {
+@keyframes loader_inner {
   0% {
     height: 0%;
   }
