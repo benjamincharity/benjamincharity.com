@@ -15,7 +15,9 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  transition: all 500ms cubic-bezier(0.455, 0.030, 0.265, 0.940);
+  // scss-lint:disable NameFormat
+  transition: all 500ms cubic-bezier(.455, .030, .265, .940);
+  // scss-lint:enable NameFormat
 
   &.ng-enter {
     opacity: 0;

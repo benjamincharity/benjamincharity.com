@@ -13,10 +13,10 @@ export function runBlock(
     // TODO: Move to route data object
     const stateChangeStart = $rootScope.$on('$stateChangeStart', (event, toState) => {
 
-        if (toState.name === 'landing') {
-            $rootScope.headerIsCompact = false;
+        if (toState.name === 'home') {
+            $rootScope.compactHeader = false;
         } else {
-            $rootScope.headerIsCompact = true;
+            $rootScope.compactHeader = true;
         }
 
     });
