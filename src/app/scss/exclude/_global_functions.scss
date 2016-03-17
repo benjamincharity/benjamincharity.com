@@ -129,12 +129,15 @@
   &::-webkit-input-placeholder {
     @content
   }
+
   &:-moz-placeholder {
     @content
   }
+
   &::-moz-placeholder {
     @content
   }
+
   &:-ms-input-placeholder {
     @content
   }
@@ -273,54 +276,6 @@ $col_total_width: $col_width + $col_margin;
 
 
 
-///////////////////////////
-//
-// Flexbox
-// http://umaar.github.io/css-flexbox-demo/
-// https://github.com/doctyper/flexie
-//
-//
-// flex-container() direction is required.
-//
-// Possible values:
-//  - vertical
-//  - horizontal
-//
-///////////////////////////
-
-@mixin flex-container($direction) {
-  -webkit-box-orient     : $direction;
-  -moz-box-orient        : $direction;
-  box-orient             : $direction;
-
-  // we must translate the new syntax into the
-  // old syntax for IE
-  @if $direction == vertical {
-    -ms-flex-direction     : column;
-    -webkit-flex-direction : column;
-    flex-direction         : column;
-  } @else {
-    -ms-flex-direction     : row;
-    -webkit-flex-direction : row;
-    flex-direction         : row;
-  }
-
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flexbox;
-  display: box;
-  display: flex;
-}
-
-@mixin flex-component($number: 1) {
-  -webkit-box-flex : $number;
-  -webkit-flex     : $number;
-  -moz-box-flex    : $number;
-  -ms-flex         : $number;
-  flex             : $number;
-}
-
 @mixin transform( $command ) {
   -webkit-transform: $command;
   -moz-transform:    $command;
@@ -341,22 +296,29 @@ $col_total_width: $col_width + $col_margin;
 
 @mixin breakpoint($point) {
   @if $point == breakpoint-small {
+
     @media (max-width: 500px) { @content; }
-  }
-  @else if $point == breakpoint-medium {
+
+  } @else if $point == breakpoint-medium {
+
     @media (min-width: 500px) { @content; }
-  }
-  @else if $point == breakpoint-medium-large {
+
+  } @else if $point == breakpoint-medium-large {
+
     @media (min-width: 768px) { @content; }
-  }
-  @else if $point == breakpoint-large {
+
+  } @else if $point == breakpoint-large {
+
     @media (min-width: 1000px)  { @content; }
-  }
-  @else if $point == breakpoint-very-large {
+
+  } @else if $point == breakpoint-very-large {
+
     @media (min-width: 1200px)  { @content; }
-  }
-  @else if $point == breakpoint-huge {
+
+  } @else if $point == breakpoint-huge {
+
     @media (min-width: 1400px)  { @content; }
+
   }
 }
 

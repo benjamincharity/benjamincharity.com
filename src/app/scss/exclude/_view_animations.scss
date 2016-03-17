@@ -18,6 +18,7 @@
   // scss-lint:disable NameFormat
   transition: all 500ms cubic-bezier(.455, .030, .265, .940);
   // scss-lint:enable NameFormat
+  width: 100%;
 
   &.ng-enter {
     opacity: 0;

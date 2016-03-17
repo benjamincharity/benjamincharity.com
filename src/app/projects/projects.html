@@ -1,41 +1,73 @@
-<article class="project" data-ng-repeat="project in ::vm.PROJECTS track by $index">
+<div class="projects">
 
-  <h1 class="project__name">
-    {{ ::project.name }}
-  </h1>
+  <div class="projects__list">
 
-  <h2
-    class="project__organization"
-    data-ng-if="project.organization"
-  >
-    {{ ::project.organization }}
-  </h2>
+    <article class="project" data-ng-repeat="project in ::vm.PROJECTS.contract track by $index">
 
-  <ul class="project__roles">
-    <li
-      data-ng-repeat="role in ::project.roles track by $index"
-      class="project__role  project__role--{{ ::role }}"
-      data-ng-switch="role"
-    >
+      <h1 class="project__name">
+        {{ ::project.name }}
+      </h1>
 
-      <div data-ng-switch-when="dev">Front-End Development</div>
-      <div data-ng-switch-when="design">Design/User Interface</div>
-      <div data-ng-switch-when="ux">User Experience</div>
-      <div data-ng-switch-when="pm">Project Management</div>
+      <h2
+        class="project__organization"
+        data-ng-if="project.organization"
+      >
+        {{ ::project.organization }}
+      </h2>
 
-    </li>
-  </ul>
+      <ul class="project__roles">
+        <li
+          data-ng-repeat="role in ::project.roles track by $index"
+          class="project__role  project__role--{{ ::role }}"
+          data-ng-switch="role"
+        >
 
-  <a
-    href="{{ ::project.url }}"
-    class="project__url"
-    data-ng-if="project.url"
-  >{{ ::project.prettyUrl }}</a>
+          <div data-ng-switch-when="dev">Front-End Development</div>
+          <div data-ng-switch-when="design">Design/User Interface</div>
+          <div data-ng-switch-when="ux">User Experience</div>
+          <div data-ng-switch-when="pm">Project Management</div>
 
-  <div
-    class="project__openSource"
-    data-ng-if="project.openSource"
-  >Open source</div>
+        </li>
+      </ul>
 
-</article>
+      <a
+        href="{{ ::project.url }}"
+        class="project__url"
+        data-ng-if="project.url"
+      >{{ ::project.prettyUrl }}</a>
 
+    </article>
+
+  </div>
+
+
+
+
+  <div class="projects__list">
+
+    <article class="project" data-ng-repeat="project in ::vm.PROJECTS.openSource track by $index">
+
+      <h1 class="project__name">
+        {{ ::project.name }}
+      </h1>
+
+      <h2
+        class="project__organization"
+        data-ng-if="project.organization"
+      >
+        {{ ::project.organization }}
+      </h2>
+
+      <a
+        href="{{ ::project.url }}"
+        class="project__url"
+        data-ng-if="project.url"
+      >{{ ::project.prettyUrl }}</a>
+
+    </article>
+
+  </div>
+
+
+
+</div>

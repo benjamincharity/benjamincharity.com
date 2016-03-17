@@ -32,6 +32,22 @@
   }
 }
 
+// <div> primary container
+.projects {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  @include breakpoint(breakpoint-medium-large) {
+    flex-flow: row nowrap;
+    justify-content: space-around;
+  }
+
+  // <div>
+  &__list {
+  }
+}
+
 // <article> individual project
 .project {
   font-size: .875rem;
