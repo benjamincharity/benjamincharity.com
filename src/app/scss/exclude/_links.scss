@@ -14,6 +14,7 @@
 // basic link
 @mixin link() {
   color: $color_white;
+  cursor: pointer;
   display: inline-block;
   // set up for pseudo
   position: relative;

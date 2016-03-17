@@ -28,38 +28,38 @@
       width: 13.125rem;
     }
   }
-}
 
-// <a>
-.header__logo {
-  @extend %flicker-fix;
-  @include transition__custom(all, 600ms);
-  margin-left: -9.375rem;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateZ(0);
-  width: 18.75rem;
-  z-index: 1;
-
-  // thanks to @allans_brain for the great logo
-  svg {
-    @extend %flicker-fix;
-    max-width: 100%;
+  // <a> container for logo
+  &__logo {
+    @include flicker_fix();
+    @include transition__custom(all, 600ms);
+    margin-left: -9.375rem;
+    overflow: hidden;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: -1.875rem;
+    left: 50%;
+    top: 0;
     transform: translateZ(0);
-  }
+    width: 18.75rem;
+    z-index: 1;
 
-  // protect aspect ratio
-  &::before {
-    content: '';
-    display: block;
-    padding-top: 65%;
+    // thanks to @allans_brain for the great logo
+    svg {
+      @include flicker_fix();
+      max-width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: -1.875rem;
+      transform: translateZ(0);
+    }
+
+    // protect aspect ratio
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 65%;
+    }
   }
 
   // <nav> primary navigation container
@@ -72,7 +72,7 @@
 
     // <a> primary navigation link
     &-link {
-      @extend %link;
+      @include link();
       text-transform: lowercase;
       margin: 0 20px;
     }

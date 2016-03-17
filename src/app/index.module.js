@@ -5,15 +5,21 @@ import { runBlock } from './index.run';
 import './components/set-title/';
 import './components/set-background/';
 import './components/preload/';
+import './contact/';
 import { ApplicationController } from './application/application.controller';
 
 angular.module('bc', [
+    // core
     'ngAnimate',
     'ui.router',
 
+    // components
     'bc.SetTitle',
     'bc.SetBackground',
     'bc.Preload',
+
+    // modules
+    'bc.contact',
 ])
   .config(config)
   .config(routerConfig)

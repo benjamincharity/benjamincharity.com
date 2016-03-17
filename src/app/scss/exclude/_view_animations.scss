@@ -1,0 +1,44 @@
+//
+//
+//
+// $VIEW_ANIMATIONS
+//
+//
+// @author Benjamin Charity <ben@benjamincharity.com>
+//
+// @doc
+//  Define the app view animations
+// @end
+
+
+.a__from-bottom {
+
+  &.ng-enter,
+  &.ng-leave {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.ng-enter {
+    opacity: 0;
+    transform: translate3d(-50%, 12rem, 0);
+
+    &.ng-enter-active {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  &.ng-leave {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+
+    &.ng-leave-active {
+      opacity: 0;
+      transform: translate3d(-50%, 12rem, 0);
+    }
+  }
+
+}
+
