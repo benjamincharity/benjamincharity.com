@@ -131,5 +131,19 @@ gulp.task('deploy', [], function() {
         .pipe(publisher.cache())
         .pipe(awspublish.reporter());
 
+
+    //
+    // Deploy ICO
+    //
+    var ico_headers = {
+        'cache-control': 'max-age=' + CONFIG.max_age + ', no-transform, public',
+        'content-type': 'text/plain'
+    };
+
+    gulp.src('./dist/*.ico')
+        .pipe(awspublish.gzip())
+        .pipe(publisher.publish(ico_headers))
+        .pipe(publisher.cache())
+        .pipe(awspublish.reporter());
 });
 
