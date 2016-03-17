@@ -5,6 +5,7 @@ import { runBlock } from './index.run';
 import './components/set-title/';
 import './components/set-background/';
 import './components/preload/';
+import './projects/';
 import './contact/';
 import { ApplicationController } from './application/application.controller';
 
@@ -19,6 +20,7 @@ angular.module('bc', [
     'bc.Preload',
 
     // modules
+    'bc.projects',
     'bc.contact',
 ])
   .config(config)

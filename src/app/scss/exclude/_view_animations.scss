@@ -12,17 +12,14 @@
 
 
 .a__from-bottom {
-
-  &.ng-enter,
-  &.ng-leave {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 500ms cubic-bezier(0.455, 0.030, 0.265, 0.940);
 
   &.ng-enter {
     opacity: 0;
-    transform: translate3d(-50%, 12rem, 0);
+    transform: translate3d(-50%, 4rem, 0);
 
     &.ng-enter-active {
       opacity: 1;
@@ -36,7 +33,7 @@
 
     &.ng-leave-active {
       opacity: 0;
-      transform: translate3d(-50%, 12rem, 0);
+      transform: translate3d(-50%, 4rem, 0);
     }
   }
 

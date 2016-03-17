@@ -2,13 +2,12 @@ export class ProjectsController {
 
     constructor(
         $scope,
-        ContentService
+        PROJECTS
     ) {
         'ngInject';
 
-        ContentService.projects().then(function(result) {
-            $scope.projects = result;
-        });
+        this.PROJECTS = PROJECTS;
+
 
         this._activate();
 
