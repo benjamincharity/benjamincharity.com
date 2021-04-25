@@ -5,3 +5,6 @@
  from="/*"
   to="/index.html"
   status=200
+ from = "https://blog.zealous-galileo-668240.netlify.app/*"
+  to = "https://zealous-galileo-668240.netlify.app/blog/:splat"
+  status = 200

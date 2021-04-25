@@ -8,28 +8,22 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 import { AppComponent } from './app.component';
 import { BlogModule } from './blog/blog.module';
 import { CanvasComponent } from './canvas/canvas.component';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 
 export const ROUTES: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'blog',
-    loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule),
-  },
   {
     path: '**',
     redirectTo: 'home',
     // pathMatch: 'full',
   },
-  // { path: '**', component: HomeComponent },
 ];
 
 @NgModule({
   declarations: [AppComponent, CanvasComponent],
   imports: [
     BlogModule,
+    HomeModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     CommonModule,
     RouterModule.forRoot(ROUTES),

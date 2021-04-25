@@ -1,0 +1,71 @@
+---
+title: Serving gZipped Assets From Amazon S3
+description: A tutorial on how to correctly set up Amazon S3 to serve gZipped, static assets.
+published: true
+publishDate: 2014-01-21
+tags: [amazon, s3, hosting, gzip]
+---
+
+# Serving gZipped Assets From Amazon S3
+
+Back in 2011 I decided to try hosting my personal website on [Amazon S3][1]. The thought of never dealing with shared hosting (my personal site doesn't have enough going on to warrent spinning up a server) again while serving all my files from a giant <abbr title="Content Delivery Network">CDN</abbr> was extremely attractive.
+
+The process of moving a static website from a shared host (I believe I was on JustHost at the time) to a CDN is not even worth writing about. As long as your website is not reliant on a server, the switch is simple. However, as I was looking into fine tuning the performance of my site I quickly ran into a wall.
+
+
+## The gzip mystery
+
+![Fred Jones ready to unmask a villain](https://blog.benjamincharity.com/content/images/2014/Jan/unmasking.jpg)
+
+This was before many of the new tools like [Yeoman][3] or [GruntJS][2] ever crossed my path so my method was to gzip from the command line and FTP the files to my S3 bucket. However, no matter what I tried I simply saw this *super useful* error:
+
+``` bash
+Uncaught SyntaxError: Unexpected token ILLEGAL
+```
+
+After much Googling I still had no answers. No matter, I thought, I'll head over to one of my favorite error-resolving resources, [StackOverflow][4].
+
+Fail.
+
+No questions or answers seemed to be addressing my issue. No one else Really? Alright, I thought, I'll just post a question!
+
+\{crickets\}
+
+Over a year my question sat there, all alone, unanswered and frightened. Apparently, back then there was not one other person deploying their entire site to S3. Or maybe just no one that cared about optimization. <sup>\[1\]</sup>
+
+
+
+## The gzip answer
+
+![Fred Jones solves the case](https://blog.benjamincharity.com/content/images/2014/Jan/unmasked.jpg)
+
+Come to find out, it was all about the content-encoding. The tricky part is that while Amazon offers handy dropdowns with values for both `content-type` and `content-encoding`, they options we need are not in the lists by default. So it come across as though those options are not valid. But we are rebels and don't care. (Honestly I am amazed that these options have not been added after all this time.)
+
+Head to your bucket and highlight your gzipped file and click on the
+'Properties' tab. Then expand the metadata section.
+
+![Open the metadata section](https://blog.benjamincharity.com/content/images/2014/Jan/metadata.jpg)
+
+If you don't see these three options, just click the 'Add more metadata' button and select the missing ones. Now, for the value of `content-type` input `text/css`, `text/js` or `text/html` to match the type of gzipped file you have. Next we need the `content-encoding` key. Add the value `gzip`.
+
+And that's it. Your files should now load correctly and happiness will flow over the earth.
+
+
+##### references
+
+\[1\]: Yeah, I know this is probably not true. But I was frustrated, so let me be dramatic. [Original StackOverflow Question][5]
+
+
+
+<!-- Link Definitions -->
+
+[1]: http://aws.amazon.com/s3/
+"Amazon S3"
+[2]: http://gruntjs.com/
+"GruntJS"
+[3]: http://yeoman.io/
+"Yeoman"
+[4]: http://stackoverflow.com
+"StackOverflow"
+[5]: http://stackoverflow.com/questions/8080824/how-to-serve-gzipped-assets-from-amazon-s3/15117310#15117310
+"How to serve gzipped assets from Amazon S3"
