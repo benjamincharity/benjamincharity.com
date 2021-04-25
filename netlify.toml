@@ -1,0 +1,7 @@
+[build]
+  publish = "dist/apps/web"
+ command = "nx build web --prod"
+[[redirects]]
+ from="/*"
+  to="/index.html"
+  status=200
