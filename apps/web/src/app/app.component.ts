@@ -20,6 +20,8 @@ export enum ArrowDirection {
   ARROW_RIGHT = 'ArrowRight',
 }
 
+const DEFAULT_KEYBOARD_DELAY = 7000;
+
 @Component({
   selector: 'bc-root',
   templateUrl: './app.component.html',
@@ -30,7 +32,7 @@ export enum ArrowDirection {
 export class AppComponent {
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
-  showKeyboard$ = of(true).pipe(delay(7000));
+  showKeyboard$ = of(true).pipe(delay(DEFAULT_KEYBOARD_DELAY));
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;

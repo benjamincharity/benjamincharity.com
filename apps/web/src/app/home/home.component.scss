@@ -34,7 +34,8 @@ bc-home {
   }
 }
 
-h1 {
+h1,
+h3 {
   color: var(--title-color);
   display: block;
   font-size: var(--title-fontSize);
@@ -44,6 +45,10 @@ h1 {
   text-align: center;
   text-shadow: var(--title-shadow);
   text-transform: uppercase;
+}
+
+h3 {
+  font-size: calc(var(--title-fontSize) * .4);
 }
 
 // <nav>
