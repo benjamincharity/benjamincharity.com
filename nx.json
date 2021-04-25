@@ -1,0 +1,41 @@
+{
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    ".eslintrc.json": "*",
+    "angular.json": "*",
+    "nx.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*"
+  },
+  "npmScope": "bc",
+  "projects": {
+    "web": {
+      "tags": []
+    },
+    "web-e2e": {
+      "implicitDependencies": [
+        "web"
+      ],
+      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      },
+      "runner": "@nrwl/workspace/tasks-runners/default"
+    }
+  }
+}

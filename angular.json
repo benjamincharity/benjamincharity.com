@@ -1,0 +1,163 @@
+{
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "web",
+  "projects": {
+    "web": {
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "maximumError": "5mb",
+                  "maximumWarning": "2mb",
+                  "type": "initial"
+                },
+                {
+                  "maximumError": "10kb",
+                  "maximumWarning": "6kb",
+                  "type": "anyComponentStyle"
+                }
+              ],
+              "buildOptimizer": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/web/src/environments/environment.ts",
+                  "with": "apps/web/src/environments/environment.prod.ts"
+                }
+              ],
+              "namedChunks": false,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "vendorChunk": false
+            }
+          },
+          "options": {
+            "aot": true,
+            "assets": [
+              "apps/web/src/favicon.ico",
+              "apps/web/src/assets"
+            ],
+            "index": "apps/web/src/index.html",
+            "main": "apps/web/src/main.ts",
+            "outputPath": "dist/apps/web",
+            "polyfills": "apps/web/src/polyfills.ts",
+            "scripts": [],
+            "styles": [
+              "apps/web/src/styles.scss"
+            ],
+            "tsConfig": "apps/web/tsconfig.app.json"
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "web:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/web/src/**/*.ts",
+              "apps/web/src/**/*.html"
+            ]
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "web:build:production"
+            }
+          },
+          "options": {
+            "browserTarget": "web:build"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/web/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/apps/web"
+          ]
+        }
+      },
+      "prefix": "bc",
+      "projectType": "application",
+      "root": "apps/web",
+      "sourceRoot": "apps/web/src"
+    },
+    "web-e2e": {
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "configurations": {
+            "production": {
+              "devServerTarget": "web:serve:production"
+            }
+          },
+          "options": {
+            "cypressConfig": "apps/web-e2e/cypress.json",
+            "devServerTarget": "web:serve",
+            "tsConfig": "apps/web-e2e/tsconfig.e2e.json"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/web-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      },
+      "projectType": "application",
+      "root": "apps/web-e2e",
+      "sourceRoot": "apps/web-e2e/src"
+    }
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "e2eTestRunner": "cypress",
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "style": "scss",
+      "unitTestRunner": "jest"
+    }
+  },
+  "version": 1
+}

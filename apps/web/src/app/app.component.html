@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="container__inner">
+    <h1>Benjamin<br />Charity</h1>
+    <nav class="navigation">
+      <ul class="navigation__list">
+        <li class="navigation__list-item" *ngFor="let link of navigationLinks">
+          <a class="navigation__link" [href]="link.destination">
+            {{ link.display }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <bc-canvas
+    #canvas="bcCanvas"
+    [palettes]="palettes"
+    (paletteChange)="paletteChange($event)"
+  ></bc-canvas>
+</div>
