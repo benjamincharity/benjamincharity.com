@@ -8,10 +8,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { CanvasComponent } from './canvas/canvas.component';
-import { Palette, PALETTES } from './canvas/palettes.data';
-import { Link, NAVIGATION_LINKS } from './home/navigation.data';
-import { createSVG } from './squiggle';
+import { CanvasComponent, shuffle } from '../canvas/canvas.component';
+import { Palette, PALETTES } from '../canvas/palettes.data';
+import { createSVG } from '../squiggle';
+import { COMPANIES } from './companies.data';
+import { Link, NAVIGATION_LINKS } from './navigation.data';
 
 export enum ArrowDirection {
   ARROW_LEFT = 'ArrowLeft',
@@ -19,15 +20,16 @@ export enum ArrowDirection {
 }
 
 @Component({
-  selector: 'bc-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'bc-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
+export class HomeComponent {
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
+  companies: ReadonlyArray<string> = shuffle<string>([...COMPANIES]);
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;

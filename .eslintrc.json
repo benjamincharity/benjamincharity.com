@@ -16,6 +16,28 @@
             ],
             "enforceBuildableLibDependency": true
           }
+        ],
+        "import/order": [
+          "warn",
+          {
+            "groups": [
+              ["builtin", "external"],
+              ["internal", "parent", "sibling", "index"]
+            ],
+            "pathGroups": [
+              {
+                "pattern": "@bc/**/*",
+                "group": "external",
+                "position": "after"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["builtin"],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
         ]
       }
     },
@@ -30,6 +52,6 @@
       "rules": {}
     }
   ],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "import"],
   "root": true
 }
