@@ -3,7 +3,6 @@ bc-root {
 }
 
 .container {
-  //display: grid;
   height: 100vh;
   min-width: 15rem;
   position: relative;
@@ -12,16 +11,12 @@ bc-root {
   z-index: 1;
 
   &__inner {
-    //align-content: center;
     bottom: 0;
-    //display: flex;
-    //justify-content: center;
     left: 0;
     overflow-y: scroll;
     position: absolute;
     right: 0;
     top: 0;
-    // TODO: turn back on
-    //pointer-events: none;
+    pointer-events: none;
   }
 }
