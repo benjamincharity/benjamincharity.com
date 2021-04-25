@@ -52,7 +52,7 @@
             ],
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
-            "outputPath": "dist/apps/web",
+            "outputPath": "dist/web/browser",
             "polyfills": "apps/web/src/polyfills.ts",
             "scripts": [],
             "styles": [
@@ -96,6 +96,53 @@
           "outputs": [
             "coverage/apps/web"
           ]
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/web/server",
+            "main": "apps/web/server.ts",
+            "tsConfig": "apps/web/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/web/src/environments/environment.ts",
+                  "with": "apps/web/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "web:build",
+            "serverTarget": "web:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "web:build:production",
+              "serverTarget": "web:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "web:build:production",
+            "serverTarget": "web:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
         }
       },
       "prefix": "bc",

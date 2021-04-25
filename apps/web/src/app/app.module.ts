@@ -7,7 +7,7 @@ import { CanvasComponent } from './canvas/canvas.component';
 
 @NgModule({
   declarations: [AppComponent, CanvasComponent],
-  imports: [BrowserModule, CommonModule],
+  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })
