@@ -32,6 +32,7 @@
     "prerender": "ng run web:prerender",
     "scully": "npx scully --",
     "scully:serve": "npx scully serve --",
+    "scully:build": "nx build web --prod && npm run scully",
     "jam-it": "ng build && npm run scully -- --scanRoutes && npm run scully serve"
   },
   "private": true,

@@ -13,7 +13,7 @@ Credit for Squiggle idea and original code to @geoffgraham: https://codepen.io/g
 /* SITE */
 
 Last update: @@LastUpdated
-Components: Angular, SCSS, NX, NodeJS, Jest
+Components: Angular, SCSS, NX, NodeJS, Jest, Scully, Netlify
 Software: Webstorm, iTerm2, BraveBrowser
 
 
