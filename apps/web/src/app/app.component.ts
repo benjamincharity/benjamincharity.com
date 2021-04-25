@@ -7,6 +7,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { of, timer } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { CanvasComponent } from './canvas/canvas.component';
 import { Palette, PALETTES } from './canvas/palettes.data';
@@ -28,6 +30,7 @@ export enum ArrowDirection {
 export class AppComponent {
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
+  showKeyboard$ = of(true).pipe(delay(7000));
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
