@@ -1,0 +1,19 @@
+/* TEAM */
+
+Design/Development: Benjamin Charity (@benjamincharity)
+Location: Atlanta, USA.
+
+
+/* THANKS */
+
+Credit for wobble idea and original code to @neave: https://codepen.io/neave/details/yLNaLMw
+Credit for Squiggle idea and original code to @geoffgraham: https://codepen.io/geoffgraham/pen/bxEVEN
+
+
+/* SITE */
+
+Last update: @@LastUpdated
+Components: Angular, SCSS, NX, NodeJS, Jest
+Software: Webstorm, iTerm2, BraveBrowser
+
+
