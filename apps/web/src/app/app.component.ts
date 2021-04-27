@@ -50,10 +50,14 @@ export class AppComponent {
   }
 
   paletteChange(color: string): void {
+    console.log('app got palette change, setting doc: ', color);
     this.document.documentElement.style.setProperty(
       `--link-backgroundImage`,
       `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`
     );
-    this.document.documentElement.style.setProperty(`--underline`, `${color}`);
+    this.document.documentElement.style.setProperty(
+      `--highlight-color`,
+      `${color}`
+    );
   }
 }

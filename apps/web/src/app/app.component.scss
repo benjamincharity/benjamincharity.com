@@ -1,8 +1,15 @@
+:root {
+  // This needs to be here and also in home.component.scss
+  --highlight-color: #ff9800;
+}
+
 bc-root {
   display: block;
 }
 
 .container {
+  // TODO: highlight color not changing??
+  background-color: var(--highlight-color);
   height: 100vh;
   min-width: 15rem;
   position: relative;
@@ -11,13 +18,15 @@ bc-root {
   z-index: 1;
 
   &__inner {
-    bottom: 0;
-    left: 0;
+    //outline: 2px solid brown;
+    height: 100%;
+    width: 100%;
     overflow-y: scroll;
-    position: absolute;
-    right: 0;
-    top: 0;
     pointer-events: none;
+  }
+
+  bc-canvas {
+    z-index: -1;
   }
 
   .keys {

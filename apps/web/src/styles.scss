@@ -1,8 +1,13 @@
 html,
 body {
+  box-sizing: border-box;
   font-family: 'VT323', monospace;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 0;
   width: 100%;
+
+  > * {
+    box-sizing: inherit;
+  }
 }

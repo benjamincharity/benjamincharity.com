@@ -1,24 +1,26 @@
-<h1>Benjamin<br />Charity</h1>
-<h3><abbr title="User Experience">UX</abbr> Engineer</h3>
+<div class="page">
+  <h1 class="title">Benjamin<br />Charity</h1>
+  <h3 class="title title--secondary">UX, UI and design systems Engineer</h3>
 
-<nav class="navigation">
-  <ul class="navigation__list">
-    <li class="navigation__list-item" *ngFor="let link of navigationLinks">
-      <a class="navigation__link" [href]="link.destination">
-        {{ link.display }}
-      </a>
-    </li>
-  </ul>
-</nav>
+  <nav class="navigation">
+    <ul class="navigation__list">
+      <li class="navigation__list-item" *ngFor="let link of navigationLinks">
+        <a class="navigation__link" [href]="link.destination">
+          {{ link.display }}
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-<section class="companies">
-  <h4 class="companies__title">Previous clients</h4>
-  <ul class="companies__list">
-    <li
-      class="companies__company"
-      *ngFor="let company of companies; let last = last"
-    >
-      {{ company }}
-    </li>
-  </ul>
-</section>
+  <section class="companies">
+    <h4 class="companies__title">Trusted by</h4>
+    <ul class="companies__list">
+      <li
+        class="companies__company"
+        *ngFor="let company of companies; let last = last"
+      >
+        {{ company }}
+      </li>
+    </ul>
+  </section>
+</div>

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   HostListener,
   Inject,
@@ -34,7 +35,10 @@ export class HomeComponent {
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -51,6 +55,11 @@ export class HomeComponent {
       `--link-backgroundImage`,
       `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`
     );
-    this.document.documentElement.style.setProperty(`--underline`, `${color}`);
+    console.log('setting color: ', color);
+    this.document.documentElement.style.setProperty(
+      `--highlight-color`,
+      `${color}`
+    );
+    this.cdr.detectChanges();
   }
 }

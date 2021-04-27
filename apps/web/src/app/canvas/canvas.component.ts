@@ -14,6 +14,7 @@ import { ANIMATION_FRAME, WINDOW } from '@ng-web-apis/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
 import { Palette } from './palettes.data';
 import { Row } from './row';
 
@@ -145,6 +146,7 @@ export class CanvasComponent implements AfterViewInit {
 
   private setPalette() {
     const palette: Palette = this.currentPalettes[this.paletteNumber];
+    console.log('EMITTING');
     this.paletteChange.emit(palette[0]);
     this.canvas.style.backgroundColor = palette[0];
     for (let i = this.rows.length; i--; ) {
@@ -169,6 +171,7 @@ export class CanvasComponent implements AfterViewInit {
       this.paletteNumber = 0;
       this.currentPalettes = shuffle<Palette>(this.currentPalettes);
     }
+    console.log('nextPalette calling setPalette');
     this.setPalette();
   }
 
