@@ -1,7 +1,7 @@
 ---
 title: awesome-owls
 description: blog description
-published: false
+published: true
 ---
 
 # awesome-owls

@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { of, timer } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, startWith } from 'rxjs/operators';
 
 import { CanvasComponent } from './canvas/canvas.component';
 import { Palette, PALETTES } from './canvas/palettes.data';
@@ -32,7 +32,10 @@ const DEFAULT_KEYBOARD_DELAY = 7000;
 export class AppComponent {
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
-  showKeyboard$ = of(true).pipe(delay(DEFAULT_KEYBOARD_DELAY));
+  showKeyboard$ = of(true).pipe(
+    startWith(false),
+    delay(DEFAULT_KEYBOARD_DELAY)
+  );
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;

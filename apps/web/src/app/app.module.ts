@@ -1,34 +1,22 @@
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { Routes } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogModule } from './blog/blog.module';
 import { CanvasComponent } from './canvas/canvas.component';
 import { HomeComponent } from './home/home.component';
-import { HomeModule } from './home/home.module';
-
-export const ROUTES: Routes = [
-  {
-    path: '**',
-    redirectTo: 'home',
-    // pathMatch: 'full',
-  },
-];
+import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.component';
 
 @NgModule({
-  declarations: [AppComponent, CanvasComponent],
-  imports: [
-    BlogModule,
-    HomeModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    CommonModule,
-    RouterModule.forRoot(ROUTES),
-    ScullyLibModule,
+  declarations: [
+    AppComponent,
+    CanvasComponent,
+    HomeComponent,
+    KeyboardArrowsComponent,
   ],
+  imports: [AppRoutingModule, BrowserModule, CommonModule, ScullyLibModule],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
 })

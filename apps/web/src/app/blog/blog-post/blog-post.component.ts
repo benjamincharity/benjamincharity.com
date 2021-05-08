@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 
 @Component({
-  selector: 'bc-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  selector: 'bc-blog-post',
+  templateUrl: './blog-post.component.html',
+  styleUrls: ['./blog-post.component.scss'],
 })
-export class PostComponent {
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private scully: ScullyRoutesService
-  ) {}
-
-  $blogPostMetadata = combineLatest([
+export class BlogPostComponent implements OnInit {
+  articleMetadata$ = combineLatest([
     this.activatedRoute.params.pipe(pluck('postId')),
     this.scully.available$,
   ]).pipe(
@@ -23,4 +18,11 @@ export class PostComponent {
       routes.find((route) => route.route === `/blog/${postId}`)
     )
   );
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private scully: ScullyRoutesService
+  ) {}
+
+  ngOnInit(): void {}
 }

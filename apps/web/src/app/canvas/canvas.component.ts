@@ -42,7 +42,6 @@ export class CanvasComponent implements AfterViewInit {
   private context: CanvasRenderingContext2D | null = null;
   private currentPalettes: Palette[] = [];
   private dist = 0;
-  isPaused = false;
   private mouseOff = -1000;
   private mouseX = this.mouseOff;
   private mouseY = this.mouseOff;
@@ -54,6 +53,7 @@ export class CanvasComponent implements AfterViewInit {
     untilDestroyed(this),
     filter(() => !!this.canvas)
   );
+  isPaused = false;
 
   @ViewChild('canvasRef') canvasRef?: ElementRef;
   get canvas(): HTMLCanvasElement {
@@ -146,7 +146,6 @@ export class CanvasComponent implements AfterViewInit {
 
   private setPalette() {
     const palette: Palette = this.currentPalettes[this.paletteNumber];
-    console.log('EMITTING');
     this.paletteChange.emit(palette[0]);
     this.canvas.style.backgroundColor = palette[0];
     for (let i = this.rows.length; i--; ) {
@@ -165,6 +164,7 @@ export class CanvasComponent implements AfterViewInit {
     this.mouseX = this.mouseY = this.mouseOff;
   }
 
+  // TODO: It would be nice to support a linear palette change
   nextPalette() {
     this.paletteNumber++;
     if (this.paletteNumber >= this.currentPalettes.length) {
