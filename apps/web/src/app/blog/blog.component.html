@@ -1,7 +1,39 @@
-<p>blog works!</p>
+<p>blog works! {{ currentTag$ | async }}</p>
 
-<ul aria-label="Blog posts">
-  <li *ngFor="let blog of articles$ | async">
-    <a [routerLink]="blog.route"> {{ blog.title }} by {{ blog.authorName }} </a>
-  </li>
-</ul>
+<section class="panel blog__list-container">
+  <ul class="blog__list" aria-label="Blog posts">
+    <li class="blog__listing" *ngFor="let blog of allArticles$ | async">
+      <a class="blog__listing-link o-animated-link" [routerLink]="blog.route">
+        {{ blog.title }}
+      </a>
+      <div class="blog__listing-tags" *ngIf="blog.tags">
+        <ng-container *ngFor="let tag of blog.tags; let last = last"
+          >{{ tag }}{{ last ? '' : ', ' }}</ng-container
+        >
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!--<section class="panel blog__list-container">-->
+<!--  <ul class="blog__list" aria-label="Blog posts">-->
+<!--    <li class="blog__listing" *ngFor="let blog of amazonArticles$ | async">-->
+<!--      <a class="blog__listing-link o-animated-link" [routerLink]="blog.route">-->
+<!--        {{ blog.title }}-->
+<!--        <div class="blog__listing-tags" *ngIf="blog.tags">-->
+<!--          <ng-container *ngFor="let tag of blog.tags; let last = last"-->
+<!--            >{{ tag }}{{ last ? '' : ', ' }}</ng-container-->
+<!--          >-->
+<!--        </div>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</section>-->
+
+<section class="tag-filters panel">
+  <ul>
+    <li *ngFor="let tag of allTags$ | async; let last = last">
+      <a [routerLink]="['/blog']" [queryParams]="{ tag: tag }">{{ tag }}</a>
+    </li>
+  </ul>
+</section>

@@ -4,7 +4,6 @@
   --title-shadow: 2px 2px 2px var(--title-shadow-color);
   --title-fontSize: clamp(3rem, 23vw, 10rem);
   //--highlight-color: #ff9800;
-  --link-backgroundImage: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23ff9800' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
   --link-fontSize: 1.6rem;
   --nav-column-count: 2;
   --nav-column-count-desktop: 4;
@@ -22,6 +21,7 @@
 
 bc-home {
   display: block;
+  font-family: var(--fontFamily-unicode);
   //min-height: 100%;
   //padding-top: .5rem;
 
@@ -90,28 +90,9 @@ bc-home {
   }
 
   &__link {
-    background: linear-gradient(to bottom, var(--highlight-color) 0%, var(--highlight-color) 100%) repeat-x 0 100%;
-    background-size: 3px 3px;
-    color: var(--highlight-color);
     font-size: var(--link-fontSize);
-    padding: 0 0 .5rem 0;
     pointer-events: auto;
-    text-decoration: none;
     text-shadow: var(--title-shadow);
-
-    &:focus,
-    &:hover {
-      background-image: var(--link-backgroundImage);
-      background-position: 0 100%;
-      background-size: auto 6px;
-      background-repeat: repeat-x;
-      text-decoration: none;
-    }
-
-    &:focus {
-      outline: 2px dashed;
-      outline-offset: 8px;
-    }
   }
 }
 

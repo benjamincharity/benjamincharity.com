@@ -9,7 +9,7 @@
     (paletteChange)="paletteChange($event)"
   ></bc-canvas>
 
-  <!--  <bc-keyboard-arrows-->
-  <!--    [showKeyboard]="showKeyboard$ | async"-->
-  <!--  ></bc-keyboard-arrows>-->
+  <bc-keyboard-arrows
+    [showKeyboard]="(showKeyboard$ | async) === true"
+  ></bc-keyboard-arrows>
 </main>

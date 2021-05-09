@@ -1,0 +1,30 @@
+
+.blog__list {
+
+}
+
+.blog__listing {
+  font-family: var(--fontFamily-serif);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  margin-bottom: 2em;
+
+  &-link {
+    //text-underline-position: under;
+    //text-decoration-thickness: 2px;
+  }
+
+  &-tags {
+    opacity: .8;
+    padding: .5em 0;
+    //font-family: var(--fontFamily);
+    font-size: .6rem;
+    font-weight: bold;
+  }
+}
+
+.tag-filters {
+  pointer-events: auto;
+}

@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 import { ANIMATION_FRAME, WINDOW } from '@ng-web-apis/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { fromEvent, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, fromEvent, Observable } from 'rxjs';
+import { combineAll, filter, takeUntil, tap } from 'rxjs/operators';
 
 import { Palette } from './palettes.data';
 import { Row } from './row';
@@ -47,12 +47,16 @@ export class CanvasComponent implements AfterViewInit {
   private mouseY = this.mouseOff;
   private paletteNumber = 0;
   private scale: number = this.windowRef.devicePixelRatio || 1;
+  private scale$ = new BehaviorSubject<number>(
+    this.windowRef.devicePixelRatio ?? 1
+  );
   private rows: Row[] = [];
   private totalPoints = 0;
   private windowResizeEvent$ = fromEvent(this.windowRef, 'resize').pipe(
     untilDestroyed(this),
     filter(() => !!this.canvas)
   );
+  private destroy$ = new BehaviorSubject<void>(undefined);
   isPaused = false;
 
   @ViewChild('canvasRef') canvasRef?: ElementRef;
@@ -61,6 +65,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   @Input() palettes: ReadonlyArray<Palette> = [];
+  @Input() isDisabled = false;
 
   @Output() readonly paletteChange = new EventEmitter<string>();
 
@@ -73,12 +78,75 @@ export class CanvasComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initialize(this.scale);
     this.windowResizeEvent$.subscribe(() => this.resizeRows());
+    console.log('my log: ', this.palettes);
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  // TODO: add resize listener
+  //   this.ngZone.runOutsideAngular(() => {
+  //   this._resizeSubscription = fromEvent(window, 'resize')
+  //     .pipe(
+  //       debounceTime(200),
+  //       distinctUntilChanged()
+  //     )
+  //     .subscribe(() => {
+  //       this.ngZone.run(() => {
+  //         this._redrawCanvasOnResize();
+  //       });
+  //     });
+  // });
+
+  // TODO: need a disable / clean up method
+  private disable(): void {
+    this.destroy$.next();
+  }
+
+  // TODO: If going this route I'll need type coercion for event stuff
+  handleCanvasUserEvent(event: Event): void {
+    switch (event.type) {
+      case 'mousedown':
+      case 'touchstart':
+        break;
+      case 'mousemove':
+      case 'touchmove':
+        // this.mouseX = event.targetTouches[0].pageX * scale;
+        // this.mouseY = event.targetTouches[0].pageY * scale;
+        break;
+      case 'touchcancel':
+      case 'mouseup':
+      case 'touchend':
+      case 'mouseout':
+        break;
+    }
+  }
+
+  // TODO: move some of this outside of zone?
   private initialize(scale: number): void {
     this.context = this.canvas.getContext('2d');
+    fromEvent<TouchEvent>(this.canvas, 'ontouchmove').subscribe((e) =>
+      console.log('new sub: ', e)
+    );
+
+    const onTouchMove$ = combineLatest([
+      fromEvent<TouchEvent>(this.canvas, 'ontouchmove'),
+      this.scale$,
+    ])
+      .pipe(
+        // takeUntil(this.destroy$),
+        tap(([event, scale]) => {
+          console.log('INSIDE: ', event, scale);
+          this.mouseX = event.targetTouches[0].pageX * scale;
+          this.mouseY = event.targetTouches[0].pageY * scale;
+        })
+      )
+      .subscribe((d) => console.log('DDDDDDDDDDDDDD', d));
 
     this.canvas.ontouchmove = (event: TouchEvent) => {
+      console.log('INSIDE OLDDDDDD');
       this.mouseX = event.targetTouches[0].pageX * scale;
       this.mouseY = event.targetTouches[0].pageY * scale;
     };
@@ -87,7 +155,22 @@ export class CanvasComponent implements AfterViewInit {
       this.wobbleRows();
       this.resetMousePositions();
     };
+
+    const onMouseMove$ = combineLatest([
+      fromEvent<MouseEvent>(this.canvas, 'onmousemove'),
+      this.scale$,
+    ])
+      .pipe(
+        // takeUntil(this.destroy$),
+        tap(([event, scale]) => {
+          console.log('INSIDE new onMouseMove$: ', event, scale);
+          // this.mouseX = event.pageX * scale;
+          // this.mouseY = event.pageY * scale;
+        })
+      )
+      .subscribe((d) => console.log('in sub of onMouseMove$', d));
     this.canvas.onmousemove = (event: MouseEvent) => {
+      console.log('in existing mouse move');
       this.mouseX = event.pageX * scale;
       this.mouseY = event.pageY * scale;
     };

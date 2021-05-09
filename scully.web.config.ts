@@ -7,7 +7,7 @@ export const config: ScullyConfig = {
     '/blog/:postId': {
       type: 'contentFolder',
       postId: {
-        folder: './blog',
+        folder: './articles',
       },
     },
   },

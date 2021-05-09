@@ -1,0 +1,14 @@
+<ul class="tags" *ngIf="tags?.length">
+  <li
+    class="tag"
+    [class.tag--last]="last"
+    *ngFor="let tag of tags; let last = last"
+  >
+    <a
+      class="tag__link tag__link--{{ tag }}"
+      [routerLink]="routeBase"
+      [queryParams]="{ tag: tag }"
+      >{{ tag }}</a
+    >
+  </li>
+</ul>
