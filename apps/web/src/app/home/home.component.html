@@ -1,22 +1,27 @@
-<div class="page">
-  <h1 class="title">Benjamin<br />Charity</h1>
-  <h3 class="title title--secondary">UX, UI and design systems Engineer</h3>
+<div class="page u-pointer-off" @pageAnimations>
+  <!--  <h1 class="title">Benjamin<br />Charity</h1>-->
+  <h3 class="title title--secondary home-animation-item u-pointer">
+    UX, UI and design systems Engineer
+  </h3>
 
-  <nav class="navigation">
+  <nav class="navigation home-animation-item">
     <ul class="navigation__list">
       <li class="navigation__list-item" *ngFor="let link of navigationLinks">
-        <a class="navigation__link o-animated-link" [href]="link.destination">
+        <a
+          class="navigation__link o-animated-link u-pointer"
+          [href]="link.destination"
+        >
           {{ link.display }}
         </a>
       </li>
     </ul>
   </nav>
 
-  <section class="companies">
+  <section class="companies home-animation-item">
     <h4 class="companies__title">Trusted by</h4>
     <ul class="companies__list">
       <li
-        class="companies__company"
+        class="companies__company u-pointer"
         *ngFor="let company of companies; let last = last"
       >
         {{ company }}

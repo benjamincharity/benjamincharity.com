@@ -1,15 +1,36 @@
-<main class="container">
-  <div class="container__inner">
-    <router-outlet></router-outlet>
-  </div>
+<div class="container" @pageAnimations>
+  <header class="global-header">
+    <h1
+      class="global-header__title u-pointer"
+      [class.global-header__title--small]="currentRouteLength > 2"
+    >
+      <ng-container *ngIf="(currentRoute?.length || 0) > 2; else noLink">
+        <a routerLink="/">Benjamin<br />Charity</a>
+      </ng-container>
+      <ng-template #noLink> Benjamin<br />Charity </ng-template>
+    </h1>
+  </header>
+
+  <main class="container__inner">
+    <router-outlet #routerOutlet="outlet"></router-outlet>
+  </main>
 
   <bc-canvas
     #canvas="bcCanvas"
     [palettes]="palettes"
+    [hasOpacity]="shouldFadeBackground"
     (paletteChange)="paletteChange($event)"
   ></bc-canvas>
 
+  <div
+    class="canvas-fallback"
+    [class.canvas-fallback--faded]="shouldFadeBackground"
+  ></div>
+
+  <!-- TODO: animations not working -->
   <bc-keyboard-arrows
-    [showKeyboard]="(showKeyboard$ | async) === true"
+    *ngIf="showKeyboard$ | async"
+    [@bounceInLeftOnEnter]
+    [@rotateOutDownRightOnLeave]
   ></bc-keyboard-arrows>
-</main>
+</div>

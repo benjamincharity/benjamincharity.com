@@ -1,9 +1,4 @@
 :root {
-  --title-color: #fff;
-  --title-shadow-color: rgba(0, 0, 0, .4);
-  --title-shadow: 2px 2px 2px var(--title-shadow-color);
-  --title-fontSize: clamp(3rem, 23vw, 10rem);
-  //--highlight-color: #ff9800;
   --link-fontSize: 1.6rem;
   --nav-column-count: 2;
   --nav-column-count-desktop: 4;
@@ -19,7 +14,7 @@
   }
 }
 
-bc-home {
+.bc-home {
   display: block;
   font-family: var(--fontFamily-unicode);
   //min-height: 100%;
@@ -36,29 +31,21 @@ bc-home {
     //display: flex;
     //flex-direction: column;
     //justify-content: space-around;
-    outline: 2px solid red;
+    //outline: 2px solid red;
     padding: 1rem;
   }
 }
 
-.title {
+.title--secondary {
   color: var(--title-color);
   display: block;
-  font-size: var(--title-fontSize);
-  //grid-column: 1 / span 2;
-  //grid-row: 2 / span 2;
-  margin: 0;
   //pointer-events: auto;
   text-align: center;
   text-shadow: var(--title-shadow);
   text-transform: uppercase;
-
-  &.title--secondary {
-    font-size: calc(var(--title-fontSize) * .2);
-    font-weight: normal;
-    margin: 1rem;
-    //transform: translateY(-2.6rem);
-  }
+  font-size: calc(var(--title-fontSize) * .2);
+  font-weight: normal;
+  margin: 1rem;
 }
 
 // <nav>
@@ -112,8 +99,8 @@ bc-home {
 
   &__title {
     font-size: calc(var(--scale) * 1.2rem);
-    opacity: .5;
-    margin: 0;
+    opacity: .6;
+    margin: 0 0 .4em 0;
     text-align: center;
     text-decoration-color: inherit;
     text-decoration-thickness: 2px;
@@ -137,12 +124,16 @@ bc-home {
 
   &__company {
     display: inline-block;
-    line-height: 1.4em;
+    line-height: 1em;
     margin-right: calc(var(--scale) * .6em);
     padding: .2em calc(var(--scale) * .6em) .2em .2em;
     pointer-events: auto;
     position: relative;
     white-space: nowrap;
+
+    @media only screen and (min-width: 800px) {
+      line-height: 1.4em;
+    }
 
     &:not(:last-of-type) {
       &::after {

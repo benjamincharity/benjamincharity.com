@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'bc-keyboard-arrows',
   templateUrl: './keyboard-arrows.component.svg',
-  styleUrls: ['./keyboard-arrows.component.css'],
+  styleUrls: ['./keyboard-arrows.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KeyboardArrowsComponent {
-  @Input() showKeyboard = false;
-}
+export class KeyboardArrowsComponent {}

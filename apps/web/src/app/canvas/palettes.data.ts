@@ -46,9 +46,10 @@ export type Palette = [Color, Color, Color, Color, Color];
 // ];
 
 export const PALETTES: ReadonlyArray<Palette> = [
-  ['#0cf', '#0fc', '#ff0', '#f0c', '#c0f'],
+  // ['#0cf', '#0fc', '#ff0', '#f0c', '#c0f'],
+  ['#0cf', '#0fc', '#ff0', '#c0f', '#f0c'],
   ['#000', '#ff0', '#f0f', '#0ff', '#fff'],
-  ['#000', '#fff', '#000', '#fff', '#000'],
+  // ['#000', '#fff', '#000', '#fff', '#000'],
   ['#333', '#666', '#999', '#ccc', '#fff'],
   ['#300', '#600', '#f00', '#600', '#300'],
   ['#305', '#606', '#907', '#c08', '#f09'],

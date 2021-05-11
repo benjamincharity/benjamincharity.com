@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  HostBinding,
   HostListener,
   Inject,
   ViewChild,
@@ -11,6 +12,7 @@ import {
 
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
+import { homeTransitions } from '../router.transitions';
 import { createSVG } from '../squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
@@ -24,6 +26,7 @@ export enum ArrowDirection {
   selector: 'bc-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [homeTransitions],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -32,6 +35,7 @@ export class HomeComponent {
   palettes: ReadonlyArray<Palette> = [...PALETTES];
   companies: ReadonlyArray<string> = shuffle<string>([...COMPANIES]);
 
+  @HostBinding('class.bc-home') baseClass = true;
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
 

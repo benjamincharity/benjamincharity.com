@@ -1,22 +1,23 @@
-bc-canvas {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+.bc-canvas {
+  display: block;
+  opacity: var(--canvas-opacity);
+
+  &--faded {
+    --canvas-opacity: var(--canvas-opacity-faded);
+  }
 }
 
 canvas {
   -webkit-user-select: none;
   bottom: 0;
   cursor: pointer;
-  left: 0;
   height: 100%;
+  left: 0;
   position: absolute;
   right: 0;
   tap-highlight-color: transparent;
   top: 0;
-  width: 100%;
   user-select: none;
+  width: 100%;
   z-index: -1;
 }
