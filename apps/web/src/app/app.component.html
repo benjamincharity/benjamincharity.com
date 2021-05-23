@@ -1,11 +1,15 @@
-<div class="container" @pageAnimations>
+<div
+  class="container"
+  [class.container--sub-page]="shouldFadeBackground"
+  @pageAnimations
+>
   <header class="global-header">
     <h1
       class="global-header__title"
       [class.global-header__title--small]="shouldMinimizeSiteTitle"
     >
       <ng-container *ngIf="shouldMinimizeSiteTitle; else noLink">
-        <a routerLink="/">Benjamin<br />Charity</a>
+        <a class="o-sliding-link" routerLink="/">Benjamin<br />Charity</a>
       </ng-container>
       <ng-template #noLink> Benjamin<br />Charity </ng-template>
     </h1>
@@ -16,6 +20,7 @@
   </main>
 
   <bc-canvas
+    *ngIf="!shouldMinimizeSiteTitle"
     #canvas="bcCanvas"
     [palettes]="palettes"
     [hasOpacity]="shouldFadeBackground"

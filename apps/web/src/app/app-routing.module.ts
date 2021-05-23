@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
+import { BlogPostComponent } from './blog/blog-post/blog-post.component';
+import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {
-    path: 'blog',
-    loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule),
-  },
+  { path: 'blog/:postId', component: BlogPostComponent },
+  { path: 'blog', component: BlogComponent },
   {
     path: '',
     component: HomeComponent,
@@ -15,9 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

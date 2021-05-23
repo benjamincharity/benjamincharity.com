@@ -7,23 +7,30 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BlogPostComponent } from './blog/blog-post/blog-post.component';
+import { BlogComponent } from './blog/blog.component';
+import { TagLinksComponent } from './blog/tag-links/tag-links.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { HomeComponent } from './home/home.component';
 import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CanvasComponent,
-    HomeComponent,
-    KeyboardArrowsComponent,
-  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    ScullyLibModule,
+    CommonModule,
     RouterModule,
+    ScullyLibModule,
+  ],
+  declarations: [
+    AppComponent,
+    BlogComponent,
+    BlogPostComponent,
+    CanvasComponent,
+    HomeComponent,
+    KeyboardArrowsComponent,
+    TagLinksComponent,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

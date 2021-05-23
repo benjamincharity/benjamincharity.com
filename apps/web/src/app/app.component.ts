@@ -46,7 +46,7 @@ const DEFAULT_KEYBOARD_DELAY = 7000;
     // TODO: this is working - need to figure out best animations
     // Initial load: page fades in, title down and in
     // To next page: title scales down and moves up, next page slides/fades in
-    // homeTransitions,
+    homeTransitions,
     rotateOutDownRightOnLeaveAnimation(),
     bounceInLeftOnEnterAnimation(),
   ],

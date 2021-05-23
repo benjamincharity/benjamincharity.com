@@ -1,4 +1,4 @@
-<section class="articles o-padded-panel u-angled-corners">
+<section class="articles">
   <div *ngIf="currentTag$ | async as tag">
     Showing articles about <strong>{{ tag }}</strong>
   </div>
@@ -33,7 +33,7 @@
   </ul>
 </section>
 
-<section class="tag-filters o-padded-panel u-angled-corners">
+<section class="tag-filters">
   <h4 class="tag-filters__title">Browse articles by subject:</h4>
   <ul class="tag-filters__list">
     <li *ngFor="let tag of allTags$ | async; let last = last">
