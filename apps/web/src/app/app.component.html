@@ -1,10 +1,10 @@
 <div class="container" @pageAnimations>
   <header class="global-header">
     <h1
-      class="global-header__title u-pointer"
-      [class.global-header__title--small]="currentRouteLength > 2"
+      class="global-header__title"
+      [class.global-header__title--small]="shouldMinimizeSiteTitle"
     >
-      <ng-container *ngIf="(currentRoute?.length || 0) > 2; else noLink">
+      <ng-container *ngIf="shouldMinimizeSiteTitle; else noLink">
         <a routerLink="/">Benjamin<br />Charity</a>
       </ng-container>
       <ng-template #noLink> Benjamin<br />Charity </ng-template>
@@ -28,9 +28,9 @@
   ></div>
 
   <!-- TODO: animations not working -->
-  <bc-keyboard-arrows
-    *ngIf="showKeyboard$ | async"
-    [@bounceInLeftOnEnter]
-    [@rotateOutDownRightOnLeave]
-  ></bc-keyboard-arrows>
+  <!--  <bc-keyboard-arrows-->
+  <!--    *ngIf="showKeyboard$ | async"-->
+  <!--    [@bounceInLeftOnEnter]-->
+  <!--    [@rotateOutDownRightOnLeave]-->
+  <!--  ></bc-keyboard-arrows>-->
 </div>

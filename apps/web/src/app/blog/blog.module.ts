@@ -10,6 +10,6 @@ import { TagLinksComponent } from './tag-links/tag-links.component';
 
 @NgModule({
   declarations: [BlogComponent, BlogPostComponent, TagLinksComponent],
-  imports: [BlogRoutingModule, CommonModule, ScullyLibModule, RouterModule],
+  imports: [BlogRoutingModule, CommonModule, ScullyLibModule],
 })
 export class BlogModule {}

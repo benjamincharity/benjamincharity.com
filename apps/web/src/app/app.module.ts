@@ -2,6 +2,7 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,8 +22,8 @@ import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    CommonModule,
     ScullyLibModule,
+    RouterModule,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

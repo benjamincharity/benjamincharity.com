@@ -15,6 +15,7 @@ ul {
 }
 :root {
   --highlight-color: #ff9800;
+  --highlight-color-2: #ff9800;
   --bg-light: #fafafa;
   --bg-border: #808080;
   --animatedLink-backgroundImage: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23ff9800' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
@@ -27,6 +28,8 @@ ul {
   --title-shadow: 2px 2px 2px var(--title-shadow-color);
   --title-fontSize: clamp(3rem, 23vw, 6rem);
   --title-fontSize-small: clamp(2rem, 23vw, 2rem);
+  --title-lineHeight: 1.4em;
+  --title-lineHeight-small: 1.2em;
 
   --opacity-transition: opacity 200ms ease-out;
 
@@ -34,6 +37,8 @@ ul {
   --canvas-opacity-faded: .3;
   --canvas-zindex: -1;
   --canvas-fallback-zindex: calc(var(--canvas-zindex) - 1);
+
+  --custom-easing: cubic-bezier(.51,.84,.84,1.03);
 }
 
 .bc-root {
@@ -96,6 +101,7 @@ ul {
 }
 
 .global-header {
+  pointer-events: none;
   text-align: center;
 
   &__title {
@@ -104,14 +110,17 @@ ul {
     font-family: var(--fontFamily-unicode);
     font-size: var(--title-fontSize);
     margin: 0;
-    //pointer-events: auto;
+    pointer-events: none;
     text-align: center;
     text-shadow: var(--title-shadow);
     text-transform: uppercase;
-    transition: font-size 200ms ease-out;
+    transition: all 200ms ease-out;
 
     &--small {
       //--title-fontSize: var(--title-fontSize-small);
+      --title-fontSize: 2rem;
+      padding-top: .5em;
+      pointer-events: auto;
     }
 
     a {
@@ -155,6 +164,65 @@ ul {
   }
 }
 
+.o-sliding-link {
+  --underline-gap-width: 20px;
+  --underline-height: 18px;
+  --underline-animation-duration: 320ms;
+  --underline-animation-delay: 100ms;
+  --underline-y-offset: 100%;
+  background-image: linear-gradient(
+      var(--blog-link-underline-colorGap),
+      var(--blog-link-underline-colorGap)
+  ),
+  linear-gradient(
+      var(--blog-link-underline-color),
+      var(--blog-link-underline-color)
+  ),
+  linear-gradient(
+      var(--blog-link-underline-color-hover),
+      var(--blog-link-underline-color-hover)
+  );
+  background-position:
+    calc(var(--underline-gap-width) * -1) 100%,
+    100% var(--underline-y-offset),
+    0 100%;
+  background-repeat: no-repeat;
+  background-size: var(--underline-gap-width) var(--underline-height), 100% var(--underline-height), 0 var(--underline-height);
+  color: var(--blog-link-color);
+  display: inline;
+  padding: 0 .2em;
+  position: relative;
+  text-decoration: none;
+  //text-shadow: 0 1px 0 rgb(0 0 0 / 30%);
+  transition: all var(--underline-animation-duration) var(--underline-animation-delay) ease-out;
+
+  &:focus,
+  &:hover {
+    background-size:
+      var(--underline-gap-width) var(--underline-height),
+      0 var(--underline-height),
+      100% var(--underline-height);
+    background-position:
+      calc(100% + var(--underline-gap-width)) 100%,
+      100% var(--underline-y-offset),
+      0 100%;
+  }
+}
+
+.o-padded-panel {
+  background-color: var(--bg-light);
+  padding: 1em;
+}
+
+.u-angled-corners {
+  mask-image: linear-gradient(135deg, transparent 1.15rem, gold 0),
+  linear-gradient(-135deg, transparent 1.15rem, gold 0),
+  linear-gradient(45deg, transparent 1.15rem, gold 0),
+  linear-gradient(-45deg, transparent 1.15rem, gold 0);
+  mask-position: 0 0, 100% 0, 0 100%, 100% 100%;
+  mask-repeat: no-repeat;
+  mask-size: 51% 51%;
+}
 
 .u-pointer {
   pointer-events: auto;
@@ -162,4 +230,14 @@ ul {
 
 .u-pointer-off {
   pointer-events: none;
+}
+
+.u-sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

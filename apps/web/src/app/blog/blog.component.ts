@@ -58,20 +58,20 @@ const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
         ),
 
         // Cards will disappear sequentially with the delay of 300ms
-        query(
-          ':leave',
-          stagger('300ms', [
-            animate(
-              `500ms ${EASING}`,
-              keyframes([
-                style({ opacity: 1, transform: 'scale(1.1)', offset: 0 }),
-                style({ opacity: 0.5, transform: 'scale(.5)', offset: 0.3 }),
-                style({ opacity: 0, transform: 'scale(0)', offset: 1 }),
-              ])
-            ),
-          ]),
-          { optional: true }
-        ),
+        // query(
+        //   ':leave',
+        //   stagger('300ms', [
+        //     animate(
+        //       `500ms ${EASING}`,
+        //       keyframes([
+        //         style({ opacity: 1, transform: 'scale(1.1)', offset: 0 }),
+        //         style({ opacity: 0.5, transform: 'scale(.5)', offset: 0.3 }),
+        //         style({ opacity: 0, transform: 'scale(0)', offset: 1 }),
+        //       ])
+        //     ),
+        //   ]),
+        //   { optional: true }
+        // ),
       ]),
     ]),
   ],

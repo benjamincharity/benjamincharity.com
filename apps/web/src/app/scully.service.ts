@@ -9,6 +9,11 @@ export enum ArticleTags {
   HOSTING = 'hosting',
 }
 
+export interface BlogRoute extends ScullyRoute {
+  titleTrimmed: string;
+  titleTail: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ScullyService {
   articles$ = this.srs.available$.pipe(
@@ -16,6 +21,17 @@ export class ScullyService {
       return scullyRoutes.filter(
         (r) => r.route.startsWith('/blog/') && r.sourceFile?.endsWith('.md')
       );
+    }),
+    map((scullyRoutes: ScullyRoute[]) => {
+      return scullyRoutes.map((r) => {
+        return {
+          ...r,
+          titleTrimmed: r?.title?.substring(0, r.title.lastIndexOf(' ')).trim(),
+          titleTail: r?.title
+            ?.substring(r.title.lastIndexOf(' '), r.title?.length)
+            .trim(),
+        } as BlogRoute;
+      });
     }),
     tap((b) => console.log(b))
   );

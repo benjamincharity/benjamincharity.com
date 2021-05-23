@@ -93,7 +93,7 @@ export class CanvasComponent implements AfterViewInit {
   @Input() palettes: ReadonlyArray<Palette> = [];
   @Input() isDisabled = false;
 
-  @Output() readonly paletteChange = new EventEmitter<string>();
+  @Output() readonly paletteChange = new EventEmitter<Palette>();
 
   constructor(
     @Inject(WINDOW) readonly windowRef: Window,
@@ -271,7 +271,7 @@ export class CanvasComponent implements AfterViewInit {
     // console.log('in setPalette: palettes: ', palettes);
     if (this.canvas) {
       const palette: Palette = palettes[paletteNumber];
-      this.paletteChange.emit(palette[0]);
+      this.paletteChange.emit(palette);
       this.canvas.style.backgroundColor = palette[0];
       for (let i = this.rows.length; i--; ) {
         this.rows[this.rows.length - i - 1].color = palette[i + 1];

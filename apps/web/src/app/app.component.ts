@@ -16,7 +16,12 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import {
   bounceInLeftOnEnterAnimation,
   rotateOutDownRightOnLeaveAnimation,
@@ -41,7 +46,7 @@ const DEFAULT_KEYBOARD_DELAY = 7000;
     // TODO: this is working - need to figure out best animations
     // Initial load: page fades in, title down and in
     // To next page: title scales down and moves up, next page slides/fades in
-    homeTransitions,
+    // homeTransitions,
     rotateOutDownRightOnLeaveAnimation(),
     bounceInLeftOnEnterAnimation(),
   ],
@@ -55,11 +60,14 @@ export class AppComponent implements OnInit {
   mediaQuery = this.window.matchMedia('(prefers-reduced-motion: reduce)');
   backgroundIsActive$ = new BehaviorSubject<boolean>(true);
   shouldFadeBackground = false;
+  shouldMinimizeSiteTitle = false;
   currentRouteLength = 0;
   set currentRoute(value: string) {
     this._currentRoute = value ?? '';
+    // TODO: clean up
     this.currentRouteLength = this._currentRoute.length;
     this.shouldFadeBackground = this._currentRoute.length > 2;
+    this.shouldMinimizeSiteTitle = this._currentRoute.length > 2;
   }
   get currentRoute(): string {
     return this._currentRoute;
@@ -100,8 +108,11 @@ export class AppComponent implements OnInit {
 
     this.router.events
       .pipe(
+        // filter(
+        //   (event): event is NavigationEnd => event instanceof NavigationEnd
+        // ),
         filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
+          (event): event is NavigationStart => event instanceof NavigationStart
         )
       )
       .subscribe((event) => {
@@ -110,15 +121,19 @@ export class AppComponent implements OnInit {
       });
   }
 
-  paletteChange(color: string): void {
-    // console.log('app got palette change, setting doc: ', color);
+  paletteChange(palette: Palette): void {
+    console.log('app got palette change, setting doc: ', palette);
     this.document.documentElement.style.setProperty(
       `--animatedLink-backgroundImage`,
-      `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`
+      `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`
     );
     this.document.documentElement.style.setProperty(
       `--highlight-color`,
-      `${color}`
+      `${palette[0]}`
+    );
+    this.document.documentElement.style.setProperty(
+      `--highlight-color-2`,
+      `${palette[1]}`
     );
   }
 

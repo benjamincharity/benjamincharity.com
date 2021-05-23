@@ -1,4 +1,4 @@
-<section class="panel articles">
+<section class="articles o-padded-panel u-angled-corners">
   <div *ngIf="currentTag$ | async as tag">
     Showing articles about <strong>{{ tag }}</strong>
   </div>
@@ -12,39 +12,33 @@
       class="articles__listing"
       *ngFor="let blog of allArticles$ | async; let i = index"
     >
-      <a class="articles__listing-link g{{ i + 1 }}" [routerLink]="blog.route">
-        {{ blog.title }}
+      <a
+        class="articles__listing-link o-sliding-link g{{ i + 1 }}"
+        [routerLink]="blog.route"
+      >
+        {{ blog.titleTrimmed }}
+        <span class="articles__listing-link-tail"
+          >{{ blog.titleTail }}
+          <span class="articles__listing-link-arrow" aria-hidden="true"
+            >&#10149;</span
+          >
+        </span>
       </a>
-      <!--      <div class="blog__listing-tags" *ngIf="blog.tags">-->
-      <!--        <ng-container *ngFor="let tag of blog.tags; let last = last"-->
-      <!--          >{{ tag }}{{ last ? '' : ', ' }}</ng-container-->
-      <!--        >-->
-      <!--      </div>-->
+      <div class="articles__listing-tags" *ngIf="blog.tags">
+        <ng-container *ngFor="let tag of blog.tags; let last = last"
+          >{{ tag }}{{ last ? '' : ', ' }}</ng-container
+        >
+      </div>
     </li>
   </ul>
 </section>
 
-<!--<section class="panel blog__list-container">-->
-<!--  <ul class="blog__list" aria-label="Blog posts">-->
-<!--    <li class="blog__listing" *ngFor="let blog of amazonArticles$ | async">-->
-<!--      <a class="blog__listing-link o-animated-link" [routerLink]="blog.route">-->
-<!--        {{ blog.title }}-->
-<!--        <div class="blog__listing-tags" *ngIf="blog.tags">-->
-<!--          <ng-container *ngFor="let tag of blog.tags; let last = last"-->
-<!--            >{{ tag }}{{ last ? '' : ', ' }}</ng-container-->
-<!--          >-->
-<!--        </div>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</section>-->
-
-<section class="tag-filters panel">
-  <h4 class="tag-filters__title">Browse articles by subject</h4>
+<section class="tag-filters o-padded-panel u-angled-corners">
+  <h4 class="tag-filters__title">Browse articles by subject:</h4>
   <ul class="tag-filters__list">
     <li *ngFor="let tag of allTags$ | async; let last = last">
       <a
-        class="tag-filters__link"
+        class="tag-filters__link o-sliding-link"
         [routerLink]="['/blog']"
         [queryParams]="{ tag: tag }"
         >{{ tag }}</a
