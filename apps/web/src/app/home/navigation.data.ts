@@ -15,7 +15,7 @@ export const NAVIGATION_LINKS = [
   },
   {
     display: 'LinkedIn',
-    destination: 'http://www.linkedin.com/in/benjamincharity',
+    destination: 'https://www.linkedin.com/in/benjamincharity',
   },
   {
     display: 'GitHub',

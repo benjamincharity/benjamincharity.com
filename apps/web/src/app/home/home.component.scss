@@ -79,7 +79,25 @@
   &__link {
     font-size: var(--link-fontSize);
     pointer-events: auto;
+    position: relative;
     text-shadow: var(--title-shadow);
+
+    svg {
+      position: absolute;
+      left: 100%;
+      opacity: 0;
+      top: 0;
+      transform: scale(.4) translate(-4px, 4px);
+      transition: all 200ms var(--custom-easing);
+    }
+
+    &:focus,
+    &:hover {
+      svg {
+        opacity: 1;
+        transform: scale(.4) translate(0);
+      }
+    }
   }
 }
 

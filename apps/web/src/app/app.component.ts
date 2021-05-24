@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
       const shouldBeActive = !(
         this.mediaQuery.media.includes('reduce') && this.mediaQuery.matches
       );
-      console.log('reduce: animation should be active: ', shouldBeActive);
+      // console.log('reduce: animation should be active: ', shouldBeActive);
       this.backgroundIsActive$.next(shouldBeActive);
     });
 
@@ -116,13 +116,13 @@ export class AppComponent implements OnInit {
         )
       )
       .subscribe((event) => {
-        console.log(event);
+        // console.log(event);
         this.currentRoute = event.url ?? '';
       });
   }
 
   paletteChange(palette: Palette): void {
-    console.log('app got palette change, setting doc: ', palette);
+    // console.log('app got palette change, setting doc: ', palette);
     this.document.documentElement.style.setProperty(
       `--animatedLink-backgroundImage`,
       `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`
@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
     ) {
       let transitionName: TransitionNames = TransitionNames.SECTION;
       const path = this.router.routerState.snapshot.url;
-      console.warn('getPageTransition: path: ', path);
+      // console.warn('getPageTransition: path: ', path);
       // console.warn('getPageTransition: previousPath: ', this.previousPath);
 
       const isSame = this.previousPath === path;
@@ -165,7 +165,7 @@ export class AppComponent implements OnInit {
       }
 
       this.previousPath = path;
-      console.log('getPageTransition: ', transitionName);
+      // console.log('getPageTransition: ', transitionName);
       return transitionName;
     }
   }

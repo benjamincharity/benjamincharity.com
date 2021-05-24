@@ -58,11 +58,20 @@
       }
     }
 
+    &-description {
+      color: var(--blog-link-color);
+      font-family: var(--fontFamily-serif);
+      font-size: 12px;
+      letter-spacing: initial;
+      opacity: .8;
+      padding-top: .2em;
+    }
+
     &-tags {
       font-family: var(--fontFamily-unicode);
       font-size: 0.7rem;
       letter-spacing: initial;
-      opacity: 0.7;
+      opacity: 0.4;
     }
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: Twelve steps to freedom
-description: blog description
+description: Maiores itaque minima corrupti magnam hic culpa. Error saepe repudiandae modi vero animi architecto voluptatum. Dignissimos nesciunt voluptates sapiente aliquid neque.
 published: true
 tags: [numbers, tag2]
 ---

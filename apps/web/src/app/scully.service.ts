@@ -33,7 +33,7 @@ export class ScullyService {
         } as BlogRoute;
       });
     }),
-    tap((b) => console.log(b))
+    tap((b) => console.log('articles$: ', b))
   );
 
   amazonPosts$ = this.srs.available$.pipe(

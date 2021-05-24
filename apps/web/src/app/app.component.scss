@@ -13,6 +13,7 @@ ul {
   top: 0;
   width: 100%;
 }
+
 :root {
   --highlight-color: #ff9800;
   --highlight-color-2: #ff9800;
@@ -24,7 +25,7 @@ ul {
   --fontFamily-serif: 'Source Serif Pro', serif;
 
   --title-color: #fff;
-  --title-shadow-color: rgba(0, 0, 0, .4);
+  --title-shadow-color: rgba(0, 0, 0, 0.4);
   --title-shadow: 2px 2px 2px var(--title-shadow-color);
   --title-fontSize: clamp(3rem, 23vw, 6rem);
   --title-fontSize-small: clamp(2rem, 23vw, 2rem);
@@ -34,11 +35,14 @@ ul {
   --opacity-transition: opacity 200ms ease-out;
 
   --canvas-opacity: 1;
-  --canvas-opacity-faded: .3;
+  --canvas-opacity-faded: 0.3;
   --canvas-zindex: -1;
   --canvas-fallback-zindex: calc(var(--canvas-zindex) - 1);
+  --canvas-transition-duration-in: 200ms;
+  --canvas-transition-duration-out: 400ms;
 
-  --custom-easing: cubic-bezier(.51,.84,.84,1.03);
+  //--custom-easing: cubic-bezier(0.51, 0.84, 0.84, 1.03);
+  --custom-easing: cubic-bezier(0.26, 0.86, 0.44, 0.985);
 }
 
 .bc-root {
@@ -77,7 +81,7 @@ ul {
 
   .bc-canvas {
     @include take-space(fixed);
-    transition: var(--opacity-transition);
+    //transition: var(--opacity-transition);
     z-index: var(--canvas-zindex);
   }
 
@@ -87,17 +91,18 @@ ul {
     // TODO: highlight color not changing??
     background-color: var(--highlight-color);
     opacity: var(--canvas-opacity);
-    transition: var(--opacity-transition);
+    transition: all var(--canvas-transition-duration-in) cubic-bezier(0.26, 0.86, 0.44, 0.985);
     z-index: var(--canvas-fallback-zindex);
 
     &--faded {
+      transition-duration: var(--canvas-transition-duration-out);
       //--canvas-opacity: var(--canvas-opacity-faded);
       opacity: 0;
     }
   }
 
   .keys {
-    bottom: .6rem;
+    bottom: 0.6rem;
     height: auto;
     max-width: 4rem;
     //opacity: 0;
@@ -105,7 +110,7 @@ ul {
     right: 1rem;
     stroke: #fff;
     transition: opacity 800ms ease-in-out;
-    transform: scale(.7);
+    transform: scale(0.7);
 
     //&--visible {
     //  opacity: .7;
@@ -118,6 +123,8 @@ ul {
   text-align: center;
 
   &__title {
+    --title-transition-duration: 200ms;
+    --title-transition-duration-fast: 50ms;
     color: var(--title-color);
     display: block;
     font-family: var(--fontFamily-unicode);
@@ -127,13 +134,19 @@ ul {
     text-align: center;
     text-shadow: var(--title-shadow);
     text-transform: uppercase;
-    transition: all 200ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    //transition: all var(--title-transition-duration)
+    //    cubic-bezier(0.26, 0.86, 0.44, 0.985),
+    //  font-size var(--title-transition-duration-fast)
+    //    cubic-bezier(0.26, 0.86, 0.44, 0.985);
 
     &--small {
-      //--title-fontSize: var(--title-fontSize-small);
-      --title-fontSize: 2rem;
+      --title-transition-duration-fast: 200ms;
+      //transition-delay: 0;
+      --title-fontSize: var(--title-fontSize-small);
+      //--title-fontSize: 2rem;
       color: #444;
-      padding-top: .5em;
+      padding-top: 0.5em;
       pointer-events: auto;
     }
 
@@ -143,6 +156,7 @@ ul {
       --underline-height: 4px;
       padding: 0;
       text-decoration: none;
+      transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
 
       &:any-link {
         color: inherit;
@@ -161,10 +175,15 @@ ul {
 }
 
 .o-animated-link {
-  background: linear-gradient(to bottom, var(--highlight-color) 0%, var(--highlight-color) 100%) repeat-x 0 100%;
+  background: linear-gradient(
+      to bottom,
+      var(--highlight-color) 0%,
+      var(--highlight-color) 100%
+    )
+    repeat-x 0 100%;
   background-size: 3px 3px;
   color: var(--highlight-color);
-  padding: 0 0 .5rem 0;
+  padding: 0 0 0.5rem 0;
   text-decoration: none;
 
   &:focus,
@@ -191,39 +210,35 @@ ul {
   background-image: linear-gradient(
       var(--blog-link-underline-colorGap),
       var(--blog-link-underline-colorGap)
-  ),
-  linear-gradient(
+    ),
+    linear-gradient(
       var(--blog-link-underline-color),
       var(--blog-link-underline-color)
-  ),
-  linear-gradient(
+    ),
+    linear-gradient(
       var(--blog-link-underline-color-hover),
       var(--blog-link-underline-color-hover)
-  );
-  background-position:
-    calc(var(--underline-gap-width) * -1) 100%,
-    100% var(--underline-y-offset),
-    0 100%;
+    );
+  background-position: calc(var(--underline-gap-width) * -1) 100%,
+    100% var(--underline-y-offset), 0 100%;
   background-repeat: no-repeat;
-  background-size: var(--underline-gap-width) var(--underline-height), 100% var(--underline-height), 0 var(--underline-height);
+  background-size: var(--underline-gap-width) var(--underline-height),
+    100% var(--underline-height), 0 var(--underline-height);
   color: var(--blog-link-color);
   display: inline;
-  padding: 0 .2em;
+  padding: 0 0.2em;
   position: relative;
   text-decoration: none;
   //text-shadow: 0 1px 0 rgb(0 0 0 / 30%);
-  transition: all var(--underline-animation-duration) var(--underline-animation-delay) ease-out;
+  transition: all var(--underline-animation-duration)
+    var(--underline-animation-delay) ease-out;
 
   &:focus,
   &:hover {
-    background-size:
-      var(--underline-gap-width) var(--underline-height),
-      0 var(--underline-height),
-      100% var(--underline-height);
-    background-position:
-      calc(100% + var(--underline-gap-width)) 100%,
-      100% var(--underline-y-offset),
-      0 100%;
+    background-size: var(--underline-gap-width) var(--underline-height),
+      0 var(--underline-height), 100% var(--underline-height);
+    background-position: calc(100% + var(--underline-gap-width)) 100%,
+      100% var(--underline-y-offset), 0 100%;
   }
 }
 
@@ -234,9 +249,9 @@ ul {
 
 .u-angled-corners {
   mask-image: linear-gradient(135deg, transparent 1.15rem, gold 0),
-  linear-gradient(-135deg, transparent 1.15rem, gold 0),
-  linear-gradient(45deg, transparent 1.15rem, gold 0),
-  linear-gradient(-45deg, transparent 1.15rem, gold 0);
+    linear-gradient(-135deg, transparent 1.15rem, gold 0),
+    linear-gradient(45deg, transparent 1.15rem, gold 0),
+    linear-gradient(-45deg, transparent 1.15rem, gold 0);
   mask-position: 0 0, 100% 0, 0 100%, 100% 100%;
   mask-repeat: no-repeat;
   mask-size: 51% 51%;

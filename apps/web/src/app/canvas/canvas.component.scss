@@ -1,9 +1,13 @@
 .bc-canvas {
   display: block;
   opacity: var(--canvas-opacity);
+  transition: opacity var(--canvas-transition-duration-in) var(--custom-easing);
 
   &--faded {
     --canvas-opacity: var(--canvas-opacity-faded);
+    opacity: 0;
+    pointer-events: none;
+    transition-duration: var(--canvas-transition-duration-out);
   }
 }
 

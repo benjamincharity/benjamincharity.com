@@ -25,7 +25,7 @@ import { ArticleTags, ScullyService } from '../scully.service';
 //   publishDate?: string;
 // }
 
-const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
+const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
 @Component({
   selector: 'bc-blog',
   templateUrl: './blog.component.html',
@@ -43,13 +43,9 @@ const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
           ':enter',
           stagger('200ms', [
             animate(
-              `.4s ${EASING}`,
+              `300ms ${EASING}`,
               keyframes([
-                style({
-                  opacity: 0,
-                  transform: 'translateY(50px)',
-                  offset: 0,
-                }),
+                style({ opacity: 0, transform: 'translateY(50px)', offset: 0 }),
                 style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
               ])
             ),
@@ -60,16 +56,15 @@ const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
         // Cards will disappear sequentially with the delay of 300ms
         // query(
         //   ':leave',
-        //   stagger('300ms', [
-        //     animate(
-        //       `500ms ${EASING}`,
-        //       keyframes([
-        //         style({ opacity: 1, transform: 'scale(1.1)', offset: 0 }),
-        //         style({ opacity: 0.5, transform: 'scale(.5)', offset: 0.3 }),
-        //         style({ opacity: 0, transform: 'scale(0)', offset: 1 }),
-        //       ])
-        //     ),
-        //   ]),
+        //   // stagger('-60ms', [
+        //   animate(
+        //     `100ms ${EASING}`,
+        //     keyframes([
+        //       style({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
+        //       style({ opacity: 0, transform: 'translateY(50px)', offset: 1 }),
+        //     ])
+        //   ),
+        //   // ]),
         //   { optional: true }
         // ),
       ]),
