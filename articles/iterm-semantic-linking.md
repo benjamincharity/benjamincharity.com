@@ -1,5 +1,5 @@
 ---
-title: iterm-semantic-linking
+title: iTerm Semantic Linking
 description: iTerm can open files and links directly from the command line.
 tags: [tool, cli]
 published: true

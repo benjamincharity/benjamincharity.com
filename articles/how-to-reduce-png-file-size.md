@@ -1,5 +1,5 @@
 ---
-title: how-to-reduce-png-file-size
+title: How To Reduce PNG File Size
 description: Drastically reduce PNG size by replacing transparent colors.
 tags: [png, design, optimization]
 published: true

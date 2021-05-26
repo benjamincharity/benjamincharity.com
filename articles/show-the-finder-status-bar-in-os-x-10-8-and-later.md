@@ -1,6 +1,6 @@
 ---
-title: show-the-finder-status-bar-in-os-x-10-8-and-later
-description: How to update Finder to show the status bar.
+title: Show the Finder Status Bar in OSX 10.8 and Later
+description: How to quickly toggle the status bar on or off inside Finder.
 tags: [osx]
 published: true
 publishDate: 2015-01-19

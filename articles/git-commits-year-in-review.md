@@ -1,6 +1,6 @@
 ---
-title: git-commits-year-in-review
-description: Create a picture after each commit to create a timeline of your year.
+title: Git Commits Year In Review
+description: Create a visual timeline of your year with automatic pictures taken after each commit.
 tags: [git]
 published: true
 publishDate: 2014-12-30

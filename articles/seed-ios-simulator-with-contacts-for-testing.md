@@ -1,6 +1,6 @@
 ---
-title: seed-ios-simulator-with-contacts-for-testing
-description: How to seed the iOS simulator with thousands of contacts to stress-test your code.
+title: Seed iOS Simulator with Contacts for Testing
+description: How to seed the iOS simulator with thousands of contacts to stress-test your hybrid app.
 tags: [ios, simulator]
 published: true
 publishDate: 2015-05-08

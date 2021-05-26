@@ -1,6 +1,6 @@
 ---
-title: generate-safe-text-colors-with-sass
-description: Generate a safe text color based on the background color with Sass.
+title: Generate Safe Text Colors with Sass
+description: Learn how to dynamically generate a safe text color based on the background color with Sass.
 tags: [sass, css]
 published: true
 publishDate: 2014-01-21
@@ -62,7 +62,7 @@ darken our text color depending on that value.
 $lightness-bound: 70 !global;
 
 @function checkLightness($color) {
-  @if ( lightness($color) > $lightness-bound ) {
+  @if (lightness($color) > $lightness-bound) {
     @return darken($color, 60);
   }
   
@@ -93,7 +93,7 @@ $hue-bound-bottom: 40 !global;
 $hue-bound-top: 200 !global;
 
 @function checkDangerZone($color) {
-  @if ( (lightness($color) > $lightness-bound) or (hue($color) > $hue-bound-bottom and hue($color) < $hue-bound-top )) {
+  @if ((lightness($color) > $lightness-bound) or (hue($color) > $hue-bound-bottom and hue($color) < $hue-bound-top)) {
     @return darken(desaturate($color, 70), 60);
   }
   

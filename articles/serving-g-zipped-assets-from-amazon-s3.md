@@ -1,5 +1,5 @@
 ---
-title: Serving gZipped Assets From Amazon S3
+title: Serving gZipped Assets from Amazon S3
 description: A tutorial on how to correctly set up Amazon S3 to serve gZipped, static assets.
 tags: [amazon, s3, hosting, gzip]
 published: true

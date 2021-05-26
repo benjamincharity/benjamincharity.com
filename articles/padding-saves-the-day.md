@@ -1,6 +1,6 @@
 ---
-title: padding-saves-the-day
-description: TODO
+title: Padding Saves the Day
+description: Small design tweaks can positively affect how users feel on your site.
 tags: [css]
 published: true
 publishDate: 2014-01-21
