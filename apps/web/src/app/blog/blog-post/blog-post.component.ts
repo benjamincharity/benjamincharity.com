@@ -4,6 +4,7 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
 
+// TODO: Rename to article
 @Component({
   selector: 'bc-blog-post',
   templateUrl: './blog-post.component.html',

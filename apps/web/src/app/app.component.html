@@ -15,7 +15,10 @@
     </h1>
   </header>
 
-  <main class="container__inner">
+  <main
+    class="container__inner"
+    [@routeAnimations]="determineOutletAnimation(routerOutlet)"
+  >
     <router-outlet #routerOutlet="outlet"></router-outlet>
   </main>
 

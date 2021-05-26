@@ -1,6 +1,7 @@
 <section class="articles">
-  <div *ngIf="currentTag$ | async as tag">
-    Showing articles about <strong>{{ tag }}</strong>
+  <div class="articles__current-tag" *ngIf="currentTag$ | async as tag">
+    Showing articles about <strong>{{ tag }}</strong
+    >:
   </div>
 
   <ul

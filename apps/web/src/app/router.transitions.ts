@@ -26,7 +26,7 @@ const query = (
 ) => q(style, animate, optional);
 
 // const DURATION = 0.3;
-const DURATION = 400;
+const DURATION = 4000;
 const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
 const DISTANCE = 30;
 
@@ -127,3 +127,22 @@ export const homeTransitions = trigger('pageAnimations', [
     ]),
   ]),
 ]);
+
+export const fader =
+  // trigger name for attaching this animation to an element using the [@triggerName] syntax
+  trigger('routeAnimations', [
+    // route transition specifically for aPage to bPage
+    transition('home => blog', [
+      // css styles at start of transition
+      style({ opacity: 0 }),
+      // animation and styles at end of transition
+      animate('400ms ease', style({ opacity: 1 })),
+    ]),
+    // route transition for * (any) to and from * (any)
+    transition('* <=> *', [
+      // css styles at start of transition
+      style({ opacity: 0 }),
+      // animation and styles at end of transition
+      animate('600ms ease', style({ opacity: 1 })),
+    ]),
+  ]);

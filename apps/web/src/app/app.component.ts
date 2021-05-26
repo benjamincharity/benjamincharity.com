@@ -1,12 +1,3 @@
-import {
-  animate,
-  group,
-  query,
-  stagger,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -16,22 +7,18 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  NavigationEnd,
-  NavigationStart,
-  Router,
-  RouterOutlet,
-} from '@angular/router';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import {
   bounceInLeftOnEnterAnimation,
   rotateOutDownRightOnLeaveAnimation,
 } from 'angular-animations';
 import { BehaviorSubject, timer } from 'rxjs';
-import { delay, filter, map, tap } from 'rxjs/operators';
+import { delay, filter, tap } from 'rxjs/operators';
 
+import { coerceRouteData, BcPageNames } from './app-routing.module';
 import { CanvasComponent } from './canvas/canvas.component';
 import { Palette, PALETTES } from './canvas/palettes.data';
-import { homeTransitions, TransitionNames } from './router.transitions';
+import { fader, homeTransitions, TransitionNames } from './router.transitions';
 import { createSVG } from './squiggle';
 import { BC_WINDOW } from './window.service';
 
@@ -47,6 +34,7 @@ const DEFAULT_KEYBOARD_DELAY = 7000;
     // Initial load: page fades in, title down and in
     // To next page: title scales down and moves up, next page slides/fades in
     homeTransitions,
+    fader,
     rotateOutDownRightOnLeaveAnimation(),
     bounceInLeftOnEnterAnimation(),
   ],
@@ -168,5 +156,12 @@ export class AppComponent implements OnInit {
       // console.log('getPageTransition: ', transitionName);
       return transitionName;
     }
+  }
+
+  determineOutletAnimation(outlet: RouterOutlet): BcPageNames {
+    if (coerceRouteData(outlet.activatedRouteData)) {
+      return outlet.activatedRouteData.animation;
+    }
+    return BcPageNames.HOME;
   }
 }

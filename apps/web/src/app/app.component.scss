@@ -76,6 +76,8 @@ ul {
   &__inner {
     //outline: 2px solid brown;
     pointer-events: none;
+    // Set up for route transition styles
+    position: relative;
     //display: none;
   }
 
@@ -162,6 +164,13 @@ ul {
         color: inherit;
       }
     }
+  }
+}
+
+router-outlet {
+  + .ng-animating {
+    outline: 3px solid red;
+    position: absolute;
   }
 }
 
