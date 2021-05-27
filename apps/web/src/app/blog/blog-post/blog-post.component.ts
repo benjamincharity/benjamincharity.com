@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
+
+import { HighlightService } from '../../highlight.service';
 
 // TODO: Rename to article
 @Component({
@@ -10,7 +12,7 @@ import { map, pluck, tap } from 'rxjs/operators';
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.scss'],
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent implements AfterViewChecked {
   articleMetadata$ = combineLatest([
     this.activatedRoute.params.pipe(pluck('postId')),
     this.scully.available$,
@@ -23,8 +25,11 @@ export class BlogPostComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private scully: ScullyRoutesService
+    private scully: ScullyRoutesService,
+    private highlightService: HighlightService
   ) {}
 
-  ngOnInit(): void {}
+  ngAfterViewChecked() {
+    this.highlightService.highlightAll();
+  }
 }

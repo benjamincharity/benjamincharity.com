@@ -12,8 +12,8 @@
             "production": {
               "budgets": [
                 {
-                  "maximumError": "5mb",
-                  "maximumWarning": "2mb",
+                  "maximumError": "3mb",
+                  "maximumWarning": "1mb",
                   "type": "initial"
                 },
                 {
@@ -96,6 +96,16 @@
           "outputs": [
             "coverage/apps/web"
           ]
+        },
+        "scully": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "npm run scully --scanRoutes",
+              "npm run scully serve"
+            ],
+            "parallel": false
+          }
         }
       },
       "prefix": "bc",
