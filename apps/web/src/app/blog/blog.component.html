@@ -1,7 +1,10 @@
 <section class="articles">
   <div class="articles__current-tag" *ngIf="currentTag$ | async as tag">
-    Showing articles about <strong>{{ tag }}</strong
-    >:
+    <div>
+      Showing articles about <strong>{{ tag }}</strong
+      >:
+    </div>
+    <div><button (click)="clearFilter()">Clear filter</button></div>
   </div>
 
   <ul

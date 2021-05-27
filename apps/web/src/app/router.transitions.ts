@@ -26,7 +26,7 @@ const query = (
 ) => q(style, animate, optional);
 
 // const DURATION = 0.3;
-const DURATION = 4000;
+const DURATION = 400;
 const EASING = 'cubic-bezier(.51,.84,.84,1.03)';
 const DISTANCE = 30;
 
@@ -77,7 +77,7 @@ export const homeTransitions = trigger('pageAnimations', [
       query('h1', [
         style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` }),
         animate(
-          `${DURATION * 1}ms ${EASING}`,
+          `${DURATION}ms ${EASING}`,
           style({ opacity: 1, transform: 'none' })
         ),
       ]),
@@ -85,7 +85,7 @@ export const homeTransitions = trigger('pageAnimations', [
         style({ opacity: 0, transform: `translateY(${DISTANCE}px)` }),
         stagger(100, [
           animate(
-            `${DURATION * 1}ms ${EASING}`,
+            `${DURATION}ms ${EASING}`,
             style({ opacity: 1, transform: 'none' })
           ),
         ]),
@@ -104,7 +104,7 @@ export const homeTransitions = trigger('pageAnimations', [
       query('h1', [
         style({ opacity: 1, transform: 'none' }),
         animate(
-          `${DURATION * 1}ms ${EASING}`,
+          `${DURATION}ms ${EASING}`,
           style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` })
         ),
       ]),
@@ -112,7 +112,7 @@ export const homeTransitions = trigger('pageAnimations', [
         style({ opacity: 1, transform: 'none' }),
         stagger(60, [
           animate(
-            `${DURATION * 1}ms ${EASING}`,
+            `${DURATION}ms ${EASING}`,
             style({ opacity: 0, transform: `translateY(${DISTANCE}px)` })
           ),
         ]),

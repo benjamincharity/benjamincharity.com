@@ -45,7 +45,6 @@
             }
           },
           "options": {
-            "aot": true,
             "assets": [
               "apps/web/src/favicon.ico",
               "apps/web/src/assets"
@@ -58,7 +57,13 @@
             "styles": [
               "apps/web/src/styles.scss"
             ],
-            "tsConfig": "apps/web/tsconfig.app.json"
+            "tsConfig": "apps/web/tsconfig.app.json",
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           }
         },
         "extract-i18n": {

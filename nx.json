@@ -19,21 +19,14 @@
       "tags": []
     },
     "web-e2e": {
-      "implicitDependencies": [
-        "web"
-      ],
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["web"]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       },
       "runner": "@nrwl/workspace/tasks-runners/default"
     }

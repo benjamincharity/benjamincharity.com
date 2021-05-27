@@ -13,6 +13,7 @@ import {
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
 import { homeTransitions } from '../router.transitions';
+import { ScullyService } from '../scully.service';
 import { createSVG } from '../squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
@@ -41,7 +42,9 @@ export class HomeComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private cdr: ChangeDetectorRef
+    // NOTE: ScullyService is injected here so articles get prefetched
+    private scullyService: ScullyService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   @HostListener('window:keyup', ['$event'])
@@ -57,12 +60,12 @@ export class HomeComponent {
   paletteChange(color: string): void {
     this.document.documentElement.style.setProperty(
       `--link-backgroundImage`,
-      `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`
+      `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`,
     );
     console.log('setting color: ', color);
     this.document.documentElement.style.setProperty(
       `--highlight-color`,
-      `${color}`
+      `${color}`,
     );
     this.cdr.detectChanges();
   }

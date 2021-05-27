@@ -11,12 +11,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostBinding,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { ArticleTags, ScullyService } from '../scully.service';
 
@@ -26,6 +28,8 @@ import { ArticleTags, ScullyService } from '../scully.service';
 // }
 
 const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
+
+@UntilDestroy()
 @Component({
   selector: 'bc-blog',
   templateUrl: './blog.component.html',
@@ -47,10 +51,10 @@ const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
               keyframes([
                 style({ opacity: 0, transform: 'translateY(50px)', offset: 0 }),
                 style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
-              ])
+              ]),
             ),
           ]),
-          { optional: true }
+          { optional: true },
         ),
 
         // Cards will disappear sequentially with the delay of 300ms
@@ -73,13 +77,13 @@ const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BlogComponent {
-  allArticles$ = this.scullyService.articles$;
-  // amazonArticles$ = this.scullyService.amazonPosts$;
+export class BlogComponent implements OnInit {
+  allArticles$ = this.scullyService.visibleArticles$;
   allTags$ = this.scullyService.allTags$;
   currentTag$: Observable<ArticleTags> = this.route.queryParams.pipe(
+    untilDestroyed(this),
     filter((qps) => qps.tag),
-    map((qp) => qp.tag)
+    map((qp) => qp.tag),
   );
 
   @HostBinding('class.bc-blog') baseClass = true;
@@ -87,12 +91,48 @@ export class BlogComponent {
   constructor(
     private scully: ScullyRoutesService,
     private scullyService: ScullyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
-  ngOnInit() {
-    // this.route.queryParams.pipe(filter((qp) => qp.tag)).subscribe((params) => {
-    //   console.log(params); // { order: "popular" }
+  ngOnInit(): void {
+    const navEnd$ = this.router.events.pipe(
+      untilDestroyed(this),
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+    );
+
+    combineLatest([navEnd$, this.route.queryParams])
+      .pipe(
+        untilDestroyed(this),
+        tap(([a, b]) => console.log(a, b)),
+        switchMap(([_, b]) => of(b)),
+      )
+      .subscribe((v) => {
+        console.log('Navigation ended, tag: ', v?.tag);
+        if (v?.tag) {
+          this.scullyService.getArticlesByTag(v.tag);
+        } else {
+          this.scullyService.clearTagFilter();
+        }
+      });
+
+    // this.currentTag$.pipe(untilDestroyed(this)).subscribe((tag) => {
+    //   console.log('IN CURRENT TAG pipe');
+    //   if (tag) {
+    //     this.scullyService.getArticlesByTag(tag);
+    //   } else {
+    //     this.clearFilter();
+    //   }
     // });
+  }
+
+  clearFilter(): void {
+    console.log('IN CLEAR');
+    this.router.navigate([], {
+      queryParams: {
+        tag: null,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }
