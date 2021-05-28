@@ -11,12 +11,12 @@ export const bounceIn = animation(
     keyframes([
       style({
         opacity: 0,
-        transform: 'scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0)',
+        transform: 'scale3d(0.6, 0.6, 0.1) translate3d(0, 1000px, 0)',
         offset: 0,
       }),
       style({
         opacity: 1,
-        transform: 'scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)',
+        transform: 'scale3d(0.475, 0.475, 0.475) translate3d(0, -40px, 0)',
         offset: 0.6,
       }),
       style({
