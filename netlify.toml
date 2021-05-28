@@ -1,6 +1,6 @@
 [build]
-  publish = "dist/web/browser"
- command = "nx build web --prod"
+  command = "nx build web --prod && npm run scully -- --scanRoutes"
+  publish = "dist/static"
 [[redirects]]
  from="/*"
   to="/index.html"

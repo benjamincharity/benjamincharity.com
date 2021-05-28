@@ -22,7 +22,7 @@ const query = (
   style: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   animate: any,
-  optional = { optional: true }
+  optional = { optional: true },
 ) => q(style, animate, optional);
 
 // const DURATION = 0.3;
@@ -74,19 +74,19 @@ const DISTANCE = 30;
 export const homeTransitions = trigger('pageAnimations', [
   transition(':enter', [
     group([
-      query('h1', [
-        style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` }),
-        animate(
-          `${DURATION}ms ${EASING}`,
-          style({ opacity: 1, transform: 'none' })
-        ),
-      ]),
+      // query('h1', [
+      //   style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` }),
+      //   animate(
+      //     `${DURATION}ms ${EASING}`,
+      //     style({ opacity: 1, transform: 'none' })
+      //   ),
+      // ]),
       query('.home-animation-item', [
         style({ opacity: 0, transform: `translateY(${DISTANCE}px)` }),
         stagger(100, [
           animate(
             `${DURATION}ms ${EASING}`,
-            style({ opacity: 1, transform: 'none' })
+            style({ opacity: 1, transform: 'none' }),
           ),
         ]),
       ]),
@@ -101,19 +101,19 @@ export const homeTransitions = trigger('pageAnimations', [
   ]),
   transition(':leave', [
     group([
-      query('h1', [
-        style({ opacity: 1, transform: 'none' }),
-        animate(
-          `${DURATION}ms ${EASING}`,
-          style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` })
-        ),
-      ]),
+      // query('h1', [
+      //   style({ opacity: 1, transform: 'none' }),
+      //   animate(
+      //     `${DURATION}ms ${EASING}`,
+      //     style({ opacity: 0, transform: `translateY(-${DISTANCE}px)` }),
+      //   ),
+      // ]),
       query('.home-animation-item', [
         style({ opacity: 1, transform: 'none' }),
         stagger(60, [
           animate(
             `${DURATION}ms ${EASING}`,
-            style({ opacity: 0, transform: `translateY(${DISTANCE}px)` })
+            style({ opacity: 0, transform: `translateY(${DISTANCE}px)` }),
           ),
         ]),
       ]),
@@ -132,7 +132,7 @@ export const fader =
   // trigger name for attaching this animation to an element using the [@triggerName] syntax
   trigger('routeAnimations', [
     // route transition specifically for aPage to bPage
-    transition('home => blog', [
+    transition('home => articles', [
       // css styles at start of transition
       style({ opacity: 0 }),
       // animation and styles at end of transition

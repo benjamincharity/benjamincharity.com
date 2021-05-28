@@ -7,8 +7,8 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogPostComponent } from './blog/blog-post/blog-post.component';
-import { BlogComponent } from './blog/blog.component';
+import { ArticleComponent } from './blog/article/article.component';
+import { ArticlesComponent } from './blog/articles/articles.component';
 import { TagLinksComponent } from './blog/tag-links/tag-links.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { HomeComponent } from './home/home.component';
@@ -25,8 +25,8 @@ import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.compo
   ],
   declarations: [
     AppComponent,
-    BlogComponent,
-    BlogPostComponent,
+    ArticlesComponent,
+    ArticleComponent,
     CanvasComponent,
     HomeComponent,
     KeyboardArrowsComponent,

@@ -5,8 +5,8 @@ export interface Link {
 
 export const NAVIGATION_LINKS = [
   {
-    display: 'Blog',
-    destination: 'blog',
+    display: 'Articles',
+    destination: 'articles',
   },
   {
     display: 'Resume',

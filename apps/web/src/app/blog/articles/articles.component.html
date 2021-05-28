@@ -9,30 +9,36 @@
 
   <ul
     class="articles__list"
-    aria-label="Blog posts"
+    aria-label="Articles"
     [@cardAnimation]="(allArticles$ | async)?.length"
   >
     <li
       class="articles__listing"
-      *ngFor="let blog of allArticles$ | async; let i = index"
+      *ngFor="let article of allArticles$ | async; let i = index"
     >
       <a
         class="articles__listing-link o-sliding-link g{{ i + 1 }}"
-        [routerLink]="blog.route"
+        [routerLink]="article.route"
       >
-        {{ blog.titleTrimmed }}
+        {{ article.titleTrimmed }}
         <span class="articles__listing-link-tail"
-          >{{ blog.titleTail }}
+          >{{ article.titleTail }}
           <span class="articles__listing-link-arrow" aria-hidden="true"
             >&#10149;</span
           >
         </span>
       </a>
-      <div *ngIf="blog?.description" class="articles__listing-description">
-        {{ blog.description }}
+      <div *ngIf="article?.description" class="articles__listing-description">
+        {{ article.description }}
+        <!--        <small-->
+        <!--          *ngIf="article.readingTime"-->
+        <!--          class="articles__listing-reading-time"-->
+        <!--          >Reading time: {{ article.readingTime | number: '1.0-0' }}min</small-->
+        <!--        >-->
       </div>
-      <div class="articles__listing-tags" *ngIf="blog.tags">
-        <ng-container *ngFor="let tag of blog.tags; let last = last"
+
+      <div class="articles__listing-tags" *ngIf="article.tags">
+        <ng-container *ngFor="let tag of article.tags; let last = last"
           >{{ tag }}{{ last ? '' : ', ' }}</ng-container
         >
       </div>
@@ -46,7 +52,7 @@
     <li *ngFor="let tag of allTags$ | async; let last = last">
       <a
         class="tag-filters__link o-sliding-link"
-        [routerLink]="['/blog']"
+        [routerLink]="['/articles']"
         [queryParams]="{ tag: tag }"
         >{{ tag }}</a
       >

@@ -35,8 +35,8 @@ const DEFAULT_KEYBOARD_DELAY = 7000;
     // To next page: title scales down and moves up, next page slides/fades in
     homeTransitions,
     fader,
-    rotateOutDownRightOnLeaveAnimation(),
-    bounceInLeftOnEnterAnimation(),
+    // rotateOutDownRightOnLeaveAnimation(),
+    // bounceInLeftOnEnterAnimation(),
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,19 +69,19 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(BC_WINDOW) private window: Window,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     timer(DEFAULT_KEYBOARD_DELAY)
       .pipe(
         tap(() => {
-          if (!this.currentRoute.includes('blog')) {
+          if (!this.currentRoute.includes('articles')) {
             this.showKeyboard$.next(true);
           }
         }),
         delay(4000),
-        tap(() => this.showKeyboard$.next(false))
+        tap(() => this.showKeyboard$.next(false)),
       )
       .subscribe();
 
@@ -100,8 +100,8 @@ export class AppComponent implements OnInit {
         //   (event): event is NavigationEnd => event instanceof NavigationEnd
         // ),
         filter(
-          (event): event is NavigationStart => event instanceof NavigationStart
-        )
+          (event): event is NavigationStart => event instanceof NavigationStart,
+        ),
       )
       .subscribe((event) => {
         // console.log(event);
@@ -113,15 +113,15 @@ export class AppComponent implements OnInit {
     // console.log('app got palette change, setting doc: ', palette);
     this.document.documentElement.style.setProperty(
       `--animatedLink-backgroundImage`,
-      `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`
+      `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`,
     );
     this.document.documentElement.style.setProperty(
       `--highlight-color`,
-      `${palette[0]}`
+      `${palette[0]}`,
     );
     this.document.documentElement.style.setProperty(
       `--highlight-color-2`,
-      `${palette[1]}`
+      `${palette[1]}`,
     );
   }
 

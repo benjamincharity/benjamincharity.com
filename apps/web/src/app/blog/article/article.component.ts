@@ -6,27 +6,26 @@ import { map, pluck, tap } from 'rxjs/operators';
 
 import { HighlightService } from '../../highlight.service';
 
-// TODO: Rename to article
 @Component({
-  selector: 'bc-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.scss'],
+  selector: 'bc-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.scss'],
 })
-export class BlogPostComponent implements AfterViewChecked {
+export class ArticleComponent implements AfterViewChecked {
   articleMetadata$ = combineLatest([
     this.activatedRoute.params.pipe(pluck('postId')),
     this.scully.available$,
   ]).pipe(
     tap((r) => console.log('meta post:', r)),
     map(([postId, routes]) =>
-      routes.find((route) => route.route === `/blog/${postId}`)
-    )
+      routes.find((route) => route.route === `/articles/${postId}`),
+    ),
   );
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private scully: ScullyRoutesService,
-    private highlightService: HighlightService
+    private highlightService: HighlightService,
   ) {}
 
   ngAfterViewChecked() {

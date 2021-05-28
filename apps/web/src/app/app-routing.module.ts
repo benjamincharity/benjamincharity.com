@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Route, Data } from '@angular/router';
 
-import { BlogPostComponent } from './blog/blog-post/blog-post.component';
-import { BlogComponent } from './blog/blog.component';
+import { ArticleComponent } from './blog/article/article.component';
+import { ArticlesComponent } from './blog/articles/articles.component';
 import { HomeComponent } from './home/home.component';
 
 export enum BcPageNames {
   HOME = 'home',
-  BLOG = 'blog',
-  BLOG_ARTICLE = 'blogArticle',
+  ARTICLES = 'articles',
+  ARTICLE = 'article',
 }
 
 export interface BcRouteData {
@@ -24,14 +24,14 @@ export const coerceRouteData = (data: Data): data is BcRouteData =>
 
 const routes: BcRoute[] = [
   {
-    path: 'blog/:postId',
-    component: BlogPostComponent,
-    data: { animation: BcPageNames.BLOG_ARTICLE },
+    path: 'articles/:postId',
+    component: ArticleComponent,
+    data: { animation: BcPageNames.ARTICLE },
   },
   {
-    path: 'blog',
-    component: BlogComponent,
-    data: { animation: BcPageNames.BLOG },
+    path: 'articles',
+    component: ArticlesComponent,
+    data: { animation: BcPageNames.ARTICLES },
   },
   { path: '', component: HomeComponent, data: { animation: BcPageNames.HOME } },
 ];

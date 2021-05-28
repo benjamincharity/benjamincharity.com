@@ -11,6 +11,7 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markdown';
+import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-vim';
@@ -21,7 +22,9 @@ declare let Prism: any;
 
 @Injectable({ providedIn: 'root' })
 export class HighlightService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Record<string, unknown>,
+  ) {}
 
   highlightAll() {
     if (isPlatformBrowser(this.platformId)) {

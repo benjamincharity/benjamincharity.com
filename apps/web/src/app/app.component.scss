@@ -136,7 +136,7 @@ ul {
     text-align: center;
     text-shadow: var(--title-shadow);
     text-transform: uppercase;
-    transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
+    //transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
     //transition: all var(--title-transition-duration)
     //    cubic-bezier(0.26, 0.86, 0.44, 0.985),
     //  font-size var(--title-transition-duration-fast)
@@ -153,12 +153,12 @@ ul {
     }
 
     a {
-      --blog-link-underline-color: transparent;
-      --blog-link-underline-color-hover: #71cbc4;
+      --article-link-underline-color: transparent;
+      --article-link-underline-color-hover: #71cbc4;
       --underline-height: 4px;
       padding: 0;
       text-decoration: none;
-      transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
+      //transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
 
       &:any-link {
         color: inherit;
@@ -217,23 +217,23 @@ router-outlet {
   --underline-animation-delay: 100ms;
   --underline-y-offset: 100%;
   background-image: linear-gradient(
-      var(--blog-link-underline-colorGap),
-      var(--blog-link-underline-colorGap)
+      var(--article-link-underline-colorGap),
+      var(--article-link-underline-colorGap)
     ),
     linear-gradient(
-      var(--blog-link-underline-color),
-      var(--blog-link-underline-color)
+      var(--article-link-underline-color),
+      var(--article-link-underline-color)
     ),
     linear-gradient(
-      var(--blog-link-underline-color-hover),
-      var(--blog-link-underline-color-hover)
+      var(--article-link-underline-color-hover),
+      var(--article-link-underline-color-hover)
     );
   background-position: calc(var(--underline-gap-width) * -1) 100%,
     100% var(--underline-y-offset), 0 100%;
   background-repeat: no-repeat;
   background-size: var(--underline-gap-width) var(--underline-height),
     100% var(--underline-height), 0 var(--underline-height);
-  color: var(--blog-link-color);
+  color: var(--article-link-color);
   display: inline;
   padding: 0 0.2em;
   position: relative;

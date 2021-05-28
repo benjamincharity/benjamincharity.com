@@ -1,17 +1,15 @@
-.bc-blog {
-  display: block;
-}
-
 // TODO: move link colors to main scss with util class
 :root {
-  --blog-link-color: #444;
-  --blog-link-underline-color: #71cbc4;
-  --blog-link-underline-color-hover: #e8608c;
-  //--blog-link-underline-color: var(--highlight-color-2);
-  //--blog-link-underline-color-hover: var(--highlight-color);
-  --blog-link-backgroundColor: var(--bg-light);
-  --blog-link-underline-colorGap: var(--blog-link-backgroundColor);
+  --article-link-color: #444;
+  --article-link-underline-color: #71cbc4;
+  --article-link-underline-color-hover: #e8608c;
+  --article-link-backgroundColor: var(--bg-light);
+  --article-link-underline-colorGap: var(--article-link-backgroundColor);
   --article-panel-margin: 1.4rem;
+}
+
+.bc-articles {
+  display: block;
 }
 
 .articles {
@@ -68,12 +66,19 @@
     }
 
     &-description {
-      color: var(--blog-link-color);
+      color: var(--article-link-color);
       font-family: var(--fontFamily-serif);
       font-size: 12px;
       letter-spacing: initial;
       opacity: .8;
       padding-top: .2em;
+    }
+
+    &-reading-time {
+      display: inline-block;
+      margin-left: 1em;
+      line-height: 12px;
+      vertical-align: baseline;
     }
 
     &-tags {
@@ -113,7 +118,7 @@
     &:any-link {
       --underline-animation-duration: 180ms;
       --underline-height: 7px;
-      color: var(--blog-link-color);
+      color: var(--article-link-color);
     }
   }
 }

@@ -29,19 +29,20 @@ export enum ArticleTags {
   WRITING = 'writing',
 }
 
-export interface BlogRoute extends ScullyRoute {
+export interface ArticleRoute extends ScullyRoute {
   titleTrimmed: string;
   titleTail: string;
 }
 
-export function onlyBlogRoutes(): (
+export function onlyArticleRoutes(): (
   source: Observable<ScullyRoute[]>,
 ) => Observable<ScullyRoute[]> {
   return function (source: Observable<ScullyRoute[]>) {
     return source.pipe(
       map((routes) =>
         routes.filter(
-          (r) => r.route.startsWith('/blog/') && r.sourceFile?.endsWith('.md'),
+          (r) =>
+            r.route.startsWith('/articles/') && r.sourceFile?.endsWith('.md'),
         ),
       ),
     );
@@ -50,19 +51,20 @@ export function onlyBlogRoutes(): (
 
 export function filterByTag(
   tag: ArticleTags,
-): (source: Observable<BlogRoute[]>) => Observable<BlogRoute[]> {
-  return function (source: Observable<BlogRoute[]>) {
+): (source: Observable<ArticleRoute[]>) => Observable<ArticleRoute[]> {
+  return function (source: Observable<ArticleRoute[]>) {
     return source.pipe(
       map((routes) => routes.filter((r) => r?.tags?.includes(tag))),
     );
   };
 }
 
-export function convertToBlogRoutes(): (
+export function convertToArticleRoutes(): (
   source: Observable<ScullyRoute[]>,
-) => Observable<BlogRoute[]> {
+) => Observable<ArticleRoute[]> {
   return function (source: Observable<ScullyRoute[]>) {
     return source.pipe(
+      tap((r) => console.log(r)),
       map((routes) =>
         routes.map((r) => {
           return {
@@ -73,14 +75,12 @@ export function convertToBlogRoutes(): (
             titleTail: r?.title
               ?.substring(r.title.lastIndexOf(' '), r.title?.length)
               .trim(),
-          } as BlogRoute;
+          } as ArticleRoute;
         }),
       ),
     );
   };
 }
-
-// const isBlogRoutesArray = (arr: any[]): arr is Array<BlogRoute> => !!(arr[0].titleTrimmed);
 
 @UntilDestroy()
 @Injectable({ providedIn: 'root' })
@@ -90,12 +90,12 @@ export class ScullyService {
   );
   articles$ = this.srs.available$.pipe(
     untilDestroyed(this),
-    onlyBlogRoutes(),
-    convertToBlogRoutes(),
+    onlyArticleRoutes(),
+    convertToArticleRoutes(),
     // tap((b) => console.log('articles$: ', b))
   );
 
-  visibleArticlesSource$ = new BehaviorSubject<BlogRoute[]>([]);
+  visibleArticlesSource$ = new BehaviorSubject<ArticleRoute[]>([]);
   visibleArticles$ = this.visibleArticlesSource$.asObservable();
 
   // articlesByTag$ = this.articles$.pipe(filterByTag())

@@ -20,20 +20,15 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest, Observable, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { ArticleTags, ScullyService } from '../scully.service';
-
-// export interface BcBlogRoute extends ScullyRoute {
-//   tags?: string[];
-//   publishDate?: string;
-// }
+import { ArticleTags, ScullyService } from '../../scully.service';
 
 const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
 
 @UntilDestroy()
 @Component({
-  selector: 'bc-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss'],
+  selector: 'bc-articles',
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.scss'],
   animations: [
     // Trigger animation cards array
     trigger('cardAnimation', [
@@ -77,7 +72,7 @@ const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BlogComponent implements OnInit {
+export class ArticlesComponent implements OnInit {
   allArticles$ = this.scullyService.visibleArticles$;
   allTags$ = this.scullyService.allTags$;
   currentTag$: Observable<ArticleTags> = this.route.queryParams.pipe(
@@ -86,7 +81,7 @@ export class BlogComponent implements OnInit {
     map((qp) => qp.tag),
   );
 
-  @HostBinding('class.bc-blog') baseClass = true;
+  @HostBinding('class.bc-articles') baseClass = true;
 
   constructor(
     private scully: ScullyRoutesService,
@@ -98,6 +93,7 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     const navEnd$ = this.router.events.pipe(
       untilDestroyed(this),
+      tap((n) => console.log('nav end: ', n)),
       filter((e): e is NavigationEnd => e instanceof NavigationEnd),
     );
 
