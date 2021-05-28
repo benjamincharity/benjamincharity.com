@@ -1,5 +1,5 @@
 [build]
-  command = "nx build web --prod && npm run scully -- --scanRoutes"
+  command = "npm run scully:prep-deploy"
   publish = "dist/static"
 [[redirects]]
  from="/*"

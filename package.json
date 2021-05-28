@@ -28,7 +28,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "scully": "npx scully --",
-    "scully:serve": "npx scully serve --"
+    "scully:serve": "npx scully serve --",
+    "scully:prep-deploy": "nx build web --prod && npm run scully -- --scanRoutes"
   },
   "private": true,
   "dependencies": {
