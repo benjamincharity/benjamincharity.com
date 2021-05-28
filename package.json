@@ -13,7 +13,7 @@
     "nx": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "scully": "npx scully --",
-    "scully:prep-deploy": "nx build web --prod && npx scully --scanRoutes",
+    "scully:prep-deploy": "nx build web --prod && ls dist && ls dist/static && ls dist/web && ls dist/web/browser && npx scully --scanRoutes",
     "scully:serve": "npx scully serve --",
     "start": "ng serve",
     "test": "ng test",

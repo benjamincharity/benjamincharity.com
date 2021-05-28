@@ -7,6 +7,7 @@
     <h1
       class="global-header__title"
       [class.global-header__title--small]="shouldMinimizeSiteTitle"
+      @bounce
     >
       <ng-container *ngIf="shouldMinimizeSiteTitle; else noLink">
         <a class="o-sliding-link" routerLink="/">Benjamin<br />Charity</a>

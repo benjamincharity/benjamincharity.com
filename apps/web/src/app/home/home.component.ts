@@ -1,3 +1,5 @@
+import { transition, useAnimation } from '@angular/animations';
+import { trigger } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,6 +16,7 @@ import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
 import { homeTransitions } from '../router.transitions';
 import { ScullyService } from '../scully.service';
+import { bounceIn, bounceOut } from '../shared/animations';
 import { createSVG } from '../squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
@@ -27,7 +30,23 @@ export enum ArrowDirection {
   selector: 'bc-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [homeTransitions],
+  animations: [
+    homeTransitions,
+    trigger('bounce', [
+      transition(
+        'void => *',
+        useAnimation(bounceIn, {
+          params: { timing: 0.7 },
+        }),
+      ),
+      transition(
+        '* => void',
+        useAnimation(bounceOut, {
+          params: { timing: 0.6 },
+        }),
+      ),
+    ]),
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
