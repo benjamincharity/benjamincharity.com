@@ -29,7 +29,7 @@
     "workspace-generator": "nx workspace-generator",
     "scully": "npx scully --",
     "scully:serve": "npx scully serve --",
-    "scully:prep-deploy": "nx build web --prod --skip-nx-cache && npm run scully -- --scanRoutes"
+    "scully:prep-deploy": "ng build web --prod && npm run scully -- --scanRoutes"
   },
   "private": true,
   "dependencies": {
