@@ -11,7 +11,7 @@ export const config: ScullyConfig = {
   projectRoot: './apps/web/src',
   projectName: 'web',
   outDir: './dist/static',
-  distFolder: './dist/web',
+  distFolder: './dist/web/browser',
   routes: {
     '/articles/:postId': {
       type: 'contentFolder',
