@@ -18,7 +18,7 @@
     "start": "ng serve",
     "test": "ng test",
     "update": "nx migrate latest",
-    "log": "ls && ls dist",
+    "log": "ls && ls dist && ls dist/web && ls dist/static",
     "workspace-generator": "nx workspace-generator"
   },
   "private": false,
