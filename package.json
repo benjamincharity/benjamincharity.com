@@ -13,11 +13,12 @@
     "nx": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "scully": "npx scully --",
-    "scully:prep-deploy": "nx build web --prod && npx scully --scanRoutes",
+    "scully:prep-deploy": "nx build web --prod && yarn run log && npx scully --scanRoutes",
     "scully:serve": "npx scully serve --",
     "start": "ng serve",
     "test": "ng test",
     "update": "nx migrate latest",
+    "log": "ls && ls dist",
     "workspace-generator": "nx workspace-generator"
   },
   "private": false,

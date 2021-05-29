@@ -15,8 +15,8 @@ import {
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
 import { homeTransitions } from '../router.transitions';
-import { ScullyService } from '../scully.service';
 import { bounceIn, bounceOut } from '../shared/animations';
+import { ScullyService } from '../shared/scully.service';
 import { createSVG } from '../squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';

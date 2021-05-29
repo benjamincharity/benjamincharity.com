@@ -20,7 +20,7 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest, Observable, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
-import { ArticleTags, ScullyService } from '../../scully.service';
+import { ArticleTags, ScullyService } from '../../shared/scully.service';
 
 const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
 

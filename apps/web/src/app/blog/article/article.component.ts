@@ -4,7 +4,7 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { combineLatest } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
 
-import { HighlightService } from '../../highlight.service';
+import { HighlightService } from '../../shared/highlight.service';
 
 @Component({
   selector: 'bc-article',
