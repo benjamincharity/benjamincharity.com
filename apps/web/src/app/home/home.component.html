@@ -1,10 +1,11 @@
 <div class="page u-pointer-off">
-  <!--  <h1 class="title">Benjamin<br />Charity</h1>-->
-  <h3 class="title title--secondary home-animation-item u-pointer">
-    UX, UI and design systems Engineer
+  <h3 class="title title--secondary u-pointer" @AnimationIn1>
+    UX, UI and design systems
+    <br />
+    Engineer
   </h3>
 
-  <nav class="navigation home-animation-item" @bounce>
+  <nav class="navigation" @AnimationIn2>
     <ul class="navigation__list">
       <li class="navigation__list-item" *ngFor="let link of navigationLinks">
         <ng-container
@@ -39,7 +40,7 @@
     </ul>
   </nav>
 
-  <section class="companies home-animation-item">
+  <section class="companies" @AnimationIn3>
     <h4 class="companies__title">Trusted by</h4>
     <ul class="companies__list">
       <li

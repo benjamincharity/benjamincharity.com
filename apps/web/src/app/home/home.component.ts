@@ -1,5 +1,3 @@
-import { transition, useAnimation } from '@angular/animations';
-import { trigger } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -11,11 +9,15 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { fadeInUpOnEnterAnimation } from 'angular-animations';
 
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
-import { homeTransitions } from '../router.transitions';
-import { bounceIn, bounceOut } from '../shared/animations';
+import {
+  fadeUpDelay,
+  fadeUpDistance,
+  fadeUpDuration,
+} from '../shared/animation.constants';
 import { ScullyService } from '../shared/scully.service';
 import { createSVG } from '../squiggle';
 import { COMPANIES } from './companies.data';
@@ -31,21 +33,23 @@ export enum ArrowDirection {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    homeTransitions,
-    trigger('bounce', [
-      transition(
-        'void => *',
-        useAnimation(bounceIn, {
-          params: { timing: 0.7 },
-        }),
-      ),
-      transition(
-        '* => void',
-        useAnimation(bounceOut, {
-          params: { timing: 0.6 },
-        }),
-      ),
-    ]),
+    fadeInUpOnEnterAnimation({
+      anchor: 'AnimationIn1',
+      duration: fadeUpDuration,
+      translate: fadeUpDistance,
+    }),
+    fadeInUpOnEnterAnimation({
+      anchor: 'AnimationIn2',
+      duration: fadeUpDuration,
+      delay: fadeUpDelay,
+      translate: fadeUpDistance,
+    }),
+    fadeInUpOnEnterAnimation({
+      anchor: 'AnimationIn3',
+      duration: fadeUpDuration * 1.2,
+      delay: fadeUpDelay * 3,
+      translate: fadeUpDistance,
+    }),
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

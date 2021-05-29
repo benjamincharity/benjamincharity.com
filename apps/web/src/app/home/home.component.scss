@@ -17,8 +17,6 @@
 .bc-home {
   display: block;
   font-family: var(--fontFamily-unicode);
-  //min-height: 100%;
-  //padding-top: .5rem;
 
   ::selection {
     background-color: var(--highlight-color);
@@ -27,15 +25,11 @@
   }
 
   .page {
-    //align-content: center;
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: space-around;
-    //outline: 2px solid red;
     padding: 1rem;
   }
 }
 
+// TODO: separate this from primary title - not enough overlap
 .title--secondary {
   color: var(--title-color);
   display: block;
@@ -43,25 +37,21 @@
   text-align: center;
   text-shadow: var(--title-shadow);
   text-transform: uppercase;
-  font-size: calc(var(--title-fontSize) * .2);
+  //font-size: 20px;
+  font-size: clamp(20px, 8vw, 30px);
+  //font-size: clamp(20px, 28px, 32px);
   font-weight: normal;
   margin: 1rem;
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
 }
 
 // <nav>
 .navigation {
-  //align-content: center;
-  //display: grid;
-  //grid-column: 1 / span 2;
-  //grid-row: 4 / span 1;
-  //min-height: var(--section-height);
   padding: 1rem 0;
 
-  // <ul>
   &__list {
-    //display: grid;
-    //grid-template-columns: repeat(var(--nav-column-count), 1fr);
-    //grid-gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0;

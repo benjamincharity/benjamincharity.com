@@ -1,6 +1,6 @@
 [build]
   command = "yarn run scully:prep-deploy"
-  publish = "dist/static/"
+  publish = "/dist/static/"
 [[redirects]]
  from="/*"
   to="/index.html"

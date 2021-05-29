@@ -18,6 +18,10 @@
   min-height: 6rem;
   pointer-events: auto;
 
+  @media (max-width: 600px) {
+    margin-top: 0;
+  }
+
   &__current-tag {
     font-family: var(--fontFamily);
     font-size: 13px;

@@ -7,14 +7,11 @@
     <div><button (click)="clearFilter()">Clear filter</button></div>
   </div>
 
-  <ul
-    class="articles__list"
-    aria-label="Articles"
-    [@cardAnimation]="(allArticles$ | async)?.length"
-  >
+  <ul class="articles__list" aria-label="Articles">
     <li
       class="articles__listing"
       *ngFor="let article of allArticles$ | async; let i = index"
+      [@enter]="{ value: '', params: { delay: i * 100, translate: '26px' } }"
     >
       <a
         class="articles__listing-link o-sliding-link g{{ i + 1 }}"

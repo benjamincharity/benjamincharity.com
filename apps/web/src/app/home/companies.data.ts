@@ -1,5 +1,6 @@
 export const COMPANIES: ReadonlyArray<string> = [
   'Alternative Apparel',
+  'Apiture',
   'Baker Hughes',
   'Case-Mate',
   'InComm',

@@ -1,6 +1,14 @@
-import { AfterViewChecked, Component } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
+import {
+  fadeInUpOnEnterAnimation,
+  fadeOutDownOnLeaveAnimation,
+} from 'angular-animations';
 import { combineLatest } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
 
@@ -10,6 +18,8 @@ import { HighlightService } from '../../shared/highlight.service';
   selector: 'bc-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
+  animations: [fadeInUpOnEnterAnimation(), fadeOutDownOnLeaveAnimation()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements AfterViewChecked {
   articleMetadata$ = combineLatest([
