@@ -1,5 +1,5 @@
 @import '~prismjs/plugins/toolbar/prism-toolbar.css';
-@import '~prismjs/themes/prism-tomorrow';
+@import '~prismjs/themes/prism-solarizedlight.css';
 
 :host {
   display: block;
@@ -7,5 +7,115 @@
 }
 
 .article {
+  // TODO: Abstract higher
+  --article-link-color: #2262a1;
   padding: clamp(6px, 1rem, 2rem);
+  pointer-events: auto;
+
+  &::ng-deep {
+    pre {
+      background: #f7f7f7 !important;
+      box-shadow: 0 0 0 1px #dfdfdf !important;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid var(--article-link-color);
+    padding-left: 6px;
+  }
+
+  //hr {
+  //  border: 0;
+  //  height: 1px;
+  //  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  //}
+  hr {
+    background: var(--article-link-color);
+    border: 0;
+    height: 1px;
+    margin: 30px auto;
+    overflow: visible;
+    position: relative;
+    width: 16vw;
+
+    &:before {
+      background: var(--article-link-color);
+      border: 2px solid var(--article-link-color);
+      content: '';
+      display: inline-block;
+      height: 6px;
+      left: 50%;
+      margin: 0 0 0 -3px;
+      position: absolute;
+      top: -5px;
+      transform: rotate(45deg);
+      width: 6px;
+    }
+  }
+  :not(pre) > code {
+    background-color: #e4e4e4;
+    border-radius: 4px;
+    color: #444;
+    font-size: 80%;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.1em 0.4em 0.2em;
+    position: relative;
+    top: -1px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    color: var(--article-link-color);
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    transition: all 150ms ease-out;
+
+    &:before {
+      background: var(--article-link-color);
+      bottom: 0;
+      content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      transform: scaleX(0);
+      transition: all 200ms ease-out 0s;
+      visibility: hidden;
+      width: 100%;
+    }
+
+    &:hover {
+      transition: all 150ms ease-out;
+
+      &:before {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
+
+    //a {
+    //  &:any-link {
+    //    //color: var(--highlight-color, #2262a1);
+    //    color: #32408e;
+    //  }
+    //  text-underline-offset: 2px;
+    //}
+  }
+
+  &__content {
+    margin-bottom: 1rem;
+  }
+
+  &__tags {
+    padding: 1rem;
+    text-align: center;
+
+    h6 {
+      margin-bottom: 1em;
+    }
+  }
 }

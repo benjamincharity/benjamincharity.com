@@ -34,25 +34,15 @@
         <!--        >-->
       </div>
 
-      <div class="articles__listing-tags" *ngIf="article.tags">
-        <ng-container *ngFor="let tag of article.tags; let last = last"
-          >{{ tag }}{{ last ? '' : ', ' }}</ng-container
-        >
-      </div>
+      <!--      <div class="articles__listing-tags" *ngIf="article.tags">-->
+      <!--        <ng-container *ngFor="let tag of article.tags; let last = last"-->
+      <!--          >{{ tag }}{{ last ? '' : ', ' }}</ng-container-->
+      <!--        >-->
+      <!--      </div>-->
     </li>
   </ul>
 </section>
 
-<section class="tag-filters">
-  <h4 class="tag-filters__title">Browse articles by subject:</h4>
-  <ul class="tag-filters__list">
-    <li *ngFor="let tag of allTags$ | async; let last = last">
-      <a
-        class="tag-filters__link o-sliding-link"
-        [routerLink]="['/articles']"
-        [queryParams]="{ tag: tag }"
-        >{{ tag }}</a
-      >
-    </li>
-  </ul>
-</section>
+<!--<bc-article-tags [allTags]="allTags$ | async"></bc-article-tags>-->
+
+<bc-tag-links [tags]="allTags$ | async"></bc-tag-links>

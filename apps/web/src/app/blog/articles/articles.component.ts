@@ -12,7 +12,7 @@ import {
   fadeInUpOnEnterAnimation,
   fadeOutDownOnLeaveAnimation,
 } from 'angular-animations';
-import { combineLatest, Observable, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { ArticleTags, ScullyService } from '../../shared/scully.service';
@@ -33,7 +33,8 @@ const EASING = `cubic-bezier(0.26, 0.86, 0.44, 0.985)`;
 })
 export class ArticlesComponent implements OnInit {
   allArticles$ = this.scullyService.visibleArticles$;
-  allTags$ = this.scullyService.allTags$;
+  allTags$: BehaviorSubject<readonly ArticleTags[]> =
+    this.scullyService.allTags$;
   currentTag$: Observable<ArticleTags> = this.route.queryParams.pipe(
     untilDestroyed(this),
     filter((qps) => qps.tag),

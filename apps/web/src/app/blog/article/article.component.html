@@ -1,3 +1,18 @@
-<article @fadeInUpOnEnter @fadeOutDownOnLeave>
-  <scully-content></scully-content>
+<article
+  class="article line-numbers"
+  @fadeInUpOnEnter
+  @fadeOutDownOnLeave
+  *ngIf="articleMetadata$ | async as metadata"
+>
+  <!--  <pre>{{ metadata | json }}</pre>-->
+  <!--  <div>Reading time: {{ metadata.readingTime | number: '1.0-0' }}min</div>-->
+  <div class="article__content">
+    <scully-content></scully-content>
+  </div>
+  <!--  <bc-fake-post></bc-fake-post>-->
+
+  <footer class="article__tags">
+    <h6>Tags:</h6>
+    <bc-tag-links [tags]="metadata.tags"></bc-tag-links>
+  </footer>
 </article>

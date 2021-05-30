@@ -4,11 +4,8 @@
     [class.tag--last]="last"
     *ngFor="let tag of tags; let last = last"
   >
-    <a
-      class="tag__link tag__link--{{ tag }}"
-      [routerLink]="routeBase"
-      [queryParams]="{ tag: tag }"
-      >{{ tag }}</a
-    >
+    <bc-circled-link [routerLink]="routeBase" [queryParams]="{ tag: tag }">{{
+      tag
+    }}</bc-circled-link>
   </li>
 </ul>

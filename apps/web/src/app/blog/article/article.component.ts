@@ -18,7 +18,10 @@ import { HighlightService } from '../../shared/highlight.service';
   selector: 'bc-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  animations: [fadeInUpOnEnterAnimation(), fadeOutDownOnLeaveAnimation()],
+  animations: [
+    fadeInUpOnEnterAnimation({ duration: 300, translate: '32px' }),
+    fadeOutDownOnLeaveAnimation({ duration: 300, translate: '32px' }),
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleComponent implements AfterViewChecked {

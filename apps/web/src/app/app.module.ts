@@ -13,6 +13,8 @@ import { TagLinksComponent } from './blog/tag-links/tag-links.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { HomeComponent } from './home/home.component';
 import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.component';
+import { CircledLinkComponent } from './shared/circled-link/circled-link.component';
+// import { FakePostComponent } from './shared/fake-post/fake-post.component';
 
 @NgModule({
   imports: [
@@ -31,6 +33,8 @@ import { KeyboardArrowsComponent } from './keyboard-arrows/keyboard-arrows.compo
     HomeComponent,
     KeyboardArrowsComponent,
     TagLinksComponent,
+    CircledLinkComponent,
+    // FakePostComponent,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

@@ -116,24 +116,6 @@ export class ScullyService {
     });
   }
 
-  // amazonPosts$ = this.articles$.pipe(
-  //   map((routeList: ScullyRoute[]) =>
-  //     routeList.filter((route: ScullyRoute) => {
-  //       return route?.tags?.includes(ArticleTags.AMAZON);
-  //     })
-  //   ),
-  //   map((articles) => articles.sort((a, b) => (a.date < b.date ? 1 : -1)))
-  // );
-  //
-  // s3Posts$ = this.srs.available$.pipe(
-  //   map((routeList: ScullyRoute[]) =>
-  //     routeList.filter((route: ScullyRoute) => {
-  //       return route?.tags?.includes(ArticleTags.S3);
-  //     })
-  //   ),
-  //   map((articles) => articles.sort((a, b) => (a.date < b.date ? 1 : -1)))
-  // );
-
   constructor(private srs: ScullyRoutesService) {
     this.init();
   }

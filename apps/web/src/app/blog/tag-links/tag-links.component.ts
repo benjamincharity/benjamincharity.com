@@ -1,9 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+
+import { ArticleTags } from '../../shared/scully.service';
 
 @Component({
   selector: 'bc-tag-links',
@@ -11,11 +8,7 @@ import {
   styleUrls: ['./tag-links.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TagLinksComponent implements OnInit {
-  @Input() tags: ReadonlyArray<string> = [];
+export class TagLinksComponent {
+  @Input() tags: ReadonlyArray<ArticleTags> | null = [];
   @Input() routeBase = '';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
