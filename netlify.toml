@@ -1,6 +1,6 @@
 [build]
-  command = "yarn run scully:prep-deploy"
-  publish = "/dist/static/"
+  command = "npx nx build web --prod"
+  publish = "/dist/web/browser"
 [[redirects]]
  from="/*"
   to="/index.html"
