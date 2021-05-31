@@ -2,11 +2,12 @@ a {
   --text: #2b3044;
   --line: #bbc1e1;
   --line-active: #2262a1;
+
   display: inline-block;
   position: relative;
   text-decoration: none;
   color: inherit;
-  margin: 0 var(--spacing, 0px);
+  margin: 0 var(--spacing, 0);
   transition: margin 0.25s;
 
   svg {
@@ -22,12 +23,12 @@ a {
     stroke-width: 2px;
     stroke-dasharray: var(--offset, 69px) 278px;
     stroke-dashoffset: 361px;
-    transition: stroke 0.16s ease var(--stroke-delay, 0s),
+    transition:
+      stroke 0.16s ease var(--stroke-delay, 0s),
       stroke-dasharray 0.16s;
   }
 
   &:hover {
-    //--spacing: 4px;
     --stroke: var(--line-active);
     --stroke-delay: 0.1s;
     --offset: 180px;

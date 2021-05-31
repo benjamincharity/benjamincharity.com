@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -13,6 +15,24 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class InfoComponent {
-  showPopover = false;
+  userHasInteracted = false;
+  set showPopover(value: boolean) {
+    if (value) {
+      this.userHasInteracted = value;
+    }
+    this._showPopover = value;
+  }
+  get showPopover(): boolean {
+    return this._showPopover;
+  }
+  private _showPopover = false;
+
   @Input() showInfo = false;
+  @Input() animationsArePaused = false;
+
+  @Output() readonly togglePauseRequest = new EventEmitter<void>();
+
+  stopEvent(event: MouseEvent): void {
+    event.preventDefault();
+  }
 }

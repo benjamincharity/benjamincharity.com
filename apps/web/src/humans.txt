@@ -6,9 +6,10 @@ Location: Atlanta, USA.
 
 /* THANKS */
 
-Credit for Wobble idea and original code to @neave: https://codepen.io/neave/details/yLNaLMw
+Credit for the Wobble idea and original code to @neave: https://codepen.io/neave/details/yLNaLMw
 Credit for Squiggle idea and original code to @geoffgraham: https://codepen.io/geoffgraham/pen/bxEVEN
 Credit for several box shadows: https://getcssscan.com/css-box-shadow-examples
+Credit for many of the color palettes: https://coolors.co/
 
 
 /* SITE */

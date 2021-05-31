@@ -1,6 +1,6 @@
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { CanvasComponent } from './canvas/canvas.component';
 import { HomeComponent } from './home/home.component';
 import { CircledLinkComponent } from './shared/circled-link/circled-link.component';
 import { InfoComponent } from './shared/info/info.component';
-// import { FakePostComponent } from './shared/fake-post/fake-post.component';
+import { KonamiDirective } from './shared/konami/konami.directive';
 
 @NgModule({
   imports: [
@@ -23,9 +23,9 @@ import { InfoComponent } from './shared/info/info.component';
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
+    FormsModule,
     RouterModule,
     ScullyLibModule,
-    FormsModule,
   ],
   declarations: [
     AppComponent,
@@ -33,10 +33,10 @@ import { InfoComponent } from './shared/info/info.component';
     ArticlesComponent,
     CanvasComponent,
     CircledLinkComponent,
-    // FakePostComponent,
     HomeComponent,
-    TagLinksComponent,
     InfoComponent,
+    KonamiDirective,
+    TagLinksComponent,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

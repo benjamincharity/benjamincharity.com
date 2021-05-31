@@ -1,18 +1,16 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
-import { BehaviorSubject, Observable, pipe } from 'rxjs';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 
 export enum ArticleTags {
-  AMAZON = 'amazon',
   ANGULAR = 'angular',
   ANGULARJS = 'angularjs',
   CLI = 'cli',
   CSS = 'css',
   DESIGN = 'design',
   GIT = 'git',
-  GZIP = 'gzip',
   HOSTING = 'hosting',
   IOS = 'ios',
   MUSIC = 'music',
@@ -20,13 +18,11 @@ export enum ArticleTags {
   OSX = 'osx',
   S3 = 's3',
   SASS = 'sass',
-  SIMULATOR = 'simulator',
   SPOTIFY = 'spotify',
   TOOL = 'tool',
   UI = 'ui',
   UX = 'ux',
   VIM = 'vim',
-  WRITING = 'writing',
 }
 
 export interface ArticleRoute extends ScullyRoute {
@@ -34,6 +30,9 @@ export interface ArticleRoute extends ScullyRoute {
   titleTail: string;
 }
 
+/**
+ * Filter ScullyRoute's to only return article pages
+ */
 export function onlyArticleRoutes(): (
   source: Observable<ScullyRoute[]>,
 ) => Observable<ScullyRoute[]> {
@@ -49,6 +48,9 @@ export function onlyArticleRoutes(): (
   };
 }
 
+/**
+ * Filter ArticleRoute's by tag
+ */
 export function filterByTag(
   tag: ArticleTags,
 ): (source: Observable<ArticleRoute[]>) => Observable<ArticleRoute[]> {
@@ -59,24 +61,27 @@ export function filterByTag(
   };
 }
 
+/**
+ * Convert a standard ScullyRoute to an ArticleRoute
+ */
 export function convertToArticleRoutes(): (
   source: Observable<ScullyRoute[]>,
 ) => Observable<ArticleRoute[]> {
   return function (source: Observable<ScullyRoute[]>) {
     return source.pipe(
-      tap((r) => console.log(r)),
       map((routes) =>
-        routes.map((r) => {
-          return {
-            ...r,
-            titleTrimmed: r?.title
-              ?.substring(0, r.title.lastIndexOf(' '))
-              .trim(),
-            titleTail: r?.title
-              ?.substring(r.title.lastIndexOf(' '), r.title?.length)
-              .trim(),
-          } as ArticleRoute;
-        }),
+        routes.map(
+          (r) =>
+            ({
+              ...r,
+              titleTrimmed: r?.title
+                ?.substring(0, r.title.lastIndexOf(' '))
+                .trim(),
+              titleTail: r?.title
+                ?.substring(r.title.lastIndexOf(' '), r.title?.length)
+                .trim(),
+            } as ArticleRoute),
+        ),
       ),
     );
   };
@@ -92,16 +97,20 @@ export class ScullyService {
     untilDestroyed(this),
     onlyArticleRoutes(),
     convertToArticleRoutes(),
-    // tap((b) => console.log('articles$: ', b))
   );
-
   visibleArticlesSource$ = new BehaviorSubject<ArticleRoute[]>([]);
   visibleArticles$ = this.visibleArticlesSource$.asObservable();
 
-  // articlesByTag$ = this.articles$.pipe(filterByTag())
+  constructor(private srs: ScullyRoutesService) {
+    this.init();
+  }
 
+  /**
+   * Fetch articles by tag
+   *
+   * @param tag - The article tag to filter by
+   */
   getArticlesByTag(tag: ArticleTags) {
-    // console.log('getting by tag: ', tag);
     this.articles$
       .pipe(filterByTag(tag))
       .pipe(take(1))
@@ -110,18 +119,19 @@ export class ScullyService {
       });
   }
 
+  /**
+   * Clear any existing tag filter
+   */
   clearTagFilter(): void {
     this.articles$.pipe(take(1)).subscribe((v) => {
       this.visibleArticlesSource$.next(v);
     });
   }
 
-  constructor(private srs: ScullyRoutesService) {
-    this.init();
-  }
-
+  /**
+   * Fetch initial articles
+   */
   init(): void {
-    console.log('fetching original articles');
     this.articles$
       .pipe(take(1))
       .subscribe((v) => this.visibleArticlesSource$.next(v));

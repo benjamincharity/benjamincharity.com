@@ -13,14 +13,14 @@ import {
   fadeInDownOnEnterAnimation,
   rotateOutDownRightOnLeaveAnimation,
 } from 'angular-animations';
-import { BehaviorSubject, timer } from 'rxjs';
-import { delay, filter, tap } from 'rxjs/operators';
+import { BehaviorSubject, interval, Subscription, timer } from 'rxjs';
+import { delay, filter, startWith, tap } from 'rxjs/operators';
 
 import { CanvasComponent } from './canvas/canvas.component';
 import { Palette, PALETTES } from './canvas/palettes.data';
 import { shrinkHeaderAnimation } from './shared/animation.constants';
-import { createSVG } from './squiggle';
-import { BC_WINDOW } from './window.service';
+import { createSVG } from './shared/squiggle';
+import { BC_WINDOW } from './shared/window.service';
 
 const DEFAULT_INFO_INTRO_DELAY = 7000;
 const DEFAULT_INFO_EXIT_DELAY = DEFAULT_INFO_INTRO_DELAY * 2;
@@ -30,8 +30,6 @@ export enum LogoStates {
   DEFAULT = 'default',
   SHRUNK = 'shrunk',
 }
-
-export type LogoState = keyof typeof LogoStates;
 
 @Component({
   selector: 'bc-root',
@@ -50,28 +48,23 @@ export type LogoState = keyof typeof LogoStates;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  palettes: ReadonlyArray<Palette> = [...PALETTES];
-  logoState$ = new BehaviorSubject<LogoStates>(LogoStates.VOID);
-  showKeyboard = true;
-  showKeyboard$ = new BehaviorSubject<boolean>(false);
-  showInfo$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  showCanvas$ = new BehaviorSubject<boolean>(false);
-  mediaQuery = this.window.matchMedia('(prefers-reduced-motion: reduce)');
-  backgroundIsActive$ = new BehaviorSubject<boolean>(true);
-  shouldFadeBackground = false;
-  shouldMinimizeSiteTitle = false;
-  currentRouteLength = 0;
   set currentRoute(value: string) {
     this._currentRoute = value ?? '';
-    // TODO: clean up
-    this.currentRouteLength = this._currentRoute.length;
-    this.shouldFadeBackground = this._currentRoute.length > 2;
-    this.shouldMinimizeSiteTitle = this._currentRoute.length > 2;
+    const urlWithoutQuery = this._currentRoute.split('?')[0] ?? '';
+    this.isSubPage = urlWithoutQuery.length > 1;
   }
   get currentRoute(): string {
     return this._currentRoute;
   }
   private _currentRoute = '';
+  // NOTE: We initialize as `true` so that the canvas is hidden by default
+  isSubPage = true;
+  logoState$ = new BehaviorSubject<LogoStates>(LogoStates.VOID);
+  mediaQuery = this.window.matchMedia('(prefers-reduced-motion: reduce)');
+  palettes: ReadonlyArray<Palette> = [...PALETTES];
+  partyModeEnabled = false;
+  partyModeSubscription: Subscription | undefined;
+  showInfo$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
@@ -82,48 +75,54 @@ export class AppComponent implements OnInit {
     private router: Router,
   ) {}
 
+  get shouldBeReducedMotion(): boolean {
+    return this.mediaQuery.media.includes('reduce') && this.mediaQuery.matches;
+  }
+
   ngOnInit(): void {
-    timer(240)
-      .pipe(filter(() => this.router.url.length < 2))
-      .subscribe(() => this.showCanvas$.next(true));
+    this.showThenHideInfo();
+    this.updateRouteAndLogoState();
+  }
+
+  /**
+   * Show the info trigger after a delay, then hide if no user interaction has occurred
+   */
+  showThenHideInfo(): void {
     timer(DEFAULT_INFO_INTRO_DELAY)
       .pipe(
-        filter(() => !(this.currentRoute.length > 2)),
+        filter(() => !this.isSubPage),
         tap(() => this.showInfo$.next(true)),
         delay(DEFAULT_INFO_EXIT_DELAY),
         tap(() => this.showInfo$.next(false)),
       )
       .subscribe();
+  }
 
-    // TODO: verify this is wired up correctly
-    this.mediaQuery.addEventListener('change', () => {
-      const shouldBeActive = !(
-        this.mediaQuery.media.includes('reduce') && this.mediaQuery.matches
-      );
-      // console.log('reduce: animation should be active: ', shouldBeActive);
-      this.backgroundIsActive$.next(shouldBeActive);
-    });
-
+  /**
+   * Set the current URL and logo state based on router events
+   */
+  updateRouteAndLogoState(): void {
     this.router.events
       .pipe(
         filter(
           (event): event is NavigationStart => event instanceof NavigationStart,
         ),
         tap((event) => {
-          // console.log('route event: ', event);
           this.currentRoute = event.url ?? '';
-          const isHomePage = event.url.length < 2;
           this.logoState$.next(
-            isHomePage ? LogoStates.DEFAULT : LogoStates.SHRUNK,
+            this.isSubPage ? LogoStates.SHRUNK : LogoStates.DEFAULT,
           );
-          this.showCanvas$.next(isHomePage);
         }),
       )
       .subscribe();
   }
 
-  paletteChange(palette: Palette): void {
-    // console.log('app got palette change, setting doc: ', palette);
+  /**
+   * Set CSS properties when the palette is changed
+   *
+   * @param palette - The new palette
+   */
+  setNewPaletteColors(palette: Palette): void {
     this.document.documentElement.style.setProperty(
       `--o-squiggle-link-backgroundImage`,
       `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`,
@@ -132,6 +131,25 @@ export class AppComponent implements OnInit {
     for (let i = 0; i < palette.length; i += 1) {
       const cssVar = `--highlight-color-${i + 1}`;
       this.document.documentElement.style.setProperty(cssVar, `${palette[i]}`);
+    }
+  }
+
+  /**
+   * Toggle 🎉party mode🎉
+   *
+   * @param isOn - If party mode is being enabled or disabled
+   */
+  togglePartyMode(isOn: boolean): void {
+    this.partyModeEnabled = isOn;
+
+    if (isOn && this.canvas) {
+      const canvas = this.canvas;
+      this.partyModeSubscription = interval(500)
+        .pipe(startWith(true))
+        .subscribe(() => canvas.wobbleRows());
+    } else if (this.partyModeSubscription) {
+      this.partyModeSubscription.unsubscribe();
+      this.partyModeSubscription = undefined;
     }
   }
 }

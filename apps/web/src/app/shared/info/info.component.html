@@ -7,7 +7,7 @@
 <label
   class="info"
   for="popoverTrigger"
-  [class.info--visible]="showInfo || showPopover"
+  [class.info--visible]="userHasInteracted || showInfo || showPopover"
 >
   <span aria-hidden="true">?</span>
   <span class="u-sr-only-always">Site info</span>
@@ -15,12 +15,19 @@
 </label>
 
 <ng-template #popover>
-  <div class="info__popover">
+  <div class="info__popover" (click)="stopEvent($event)">
     <div class="info__popover-content">
       <p>
         Change the color palette by clicking the background or using the left &
         right arrow keys.
       </p>
+      <p>If you prefer, you can pause the background animations:</p>
+      <div class="info__pause">
+        <button class="info__pause-button" (click)="togglePauseRequest.emit()">
+          {{ animationsArePaused ? 'Resume' : 'Pause' }} Animations
+        </button>
+      </div>
+      <div class="info__not-so-subtle-hint">↑↑↓↓←→←→BA</div>
     </div>
   </div>
 </ng-template>

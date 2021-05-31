@@ -1,17 +1,17 @@
-<div class="container" [class.container--sub-page]="shouldFadeBackground">
-  <!--  <h2 style="position: absolute">-->
-  <!--    {{ logoState$ | async }}, show: {{ showCanvas$ | async }}-->
-  <!--  </h2>-->
-  <header
-    class="global-header"
-    [class.global-header--small]="shouldMinimizeSiteTitle"
-  >
+<div
+  class="container"
+  [class.container--sub-page]="isSubPage"
+  [class.container--reduced-motion]="shouldBeReducedMotion"
+  bcKonami
+  (konami)="togglePartyMode($event)"
+>
+  <header class="global-header" [class.global-header--small]="isSubPage">
     <h1
       class="global-header__title"
-      [class.global-header__title--small]="shouldMinimizeSiteTitle"
+      [class.global-header__title--small]="isSubPage"
       [@shrink]="logoState$ | async"
     >
-      <ng-container *ngIf="shouldMinimizeSiteTitle; else noLink">
+      <ng-container *ngIf="isSubPage; else noLink">
         <a class="o-sliding-background-link" routerLink="/"
           >Benjamin<br />Charity</a
         >
@@ -24,19 +24,24 @@
     <router-outlet #routerOutlet="outlet"></router-outlet>
   </main>
 
-  <div class="background">
-    <div
-      class="canvas-fallback"
-      [class.canvas-fallback--faded]="shouldFadeBackground"
-    ></div>
+  <div
+    class="background"
+    [class.background--hidden]="isSubPage"
+    [class.background--party-mode]="partyModeEnabled"
+  >
+    <div class="canvas-fallback"></div>
 
     <bc-canvas
       #canvas="bcCanvas"
+      [isDisabled]="shouldBeReducedMotion"
       [palettes]="palettes"
-      [hasOpacity]="(showCanvas$ | async) === false"
-      (paletteChange)="paletteChange($event)"
+      (paletteChange)="setNewPaletteColors($event)"
     ></bc-canvas>
   </div>
 </div>
 
-<bc-info [showInfo]="(showInfo$ | async) === true"></bc-info>
+<bc-info
+  [showInfo]="(showInfo$ | async) === true"
+  [animationsArePaused]="canvas.isPaused"
+  (togglePauseRequest)="canvas.togglePause()"
+></bc-info>

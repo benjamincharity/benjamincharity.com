@@ -1,7 +1,7 @@
 ---
 title: Log In vs Login vs Sign In
 description: A short look at the terminology around sign-ups and logging in and the basic arguments for each.
-tags: [ux, ui, writing]
+tags: [ux, ui]
 published: true
 publishDate: 2016-02-13
 previousUrl: https://blog.benjamincharity.com/log-in-vs-login-vs-sign-in/

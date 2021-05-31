@@ -29,7 +29,6 @@ export class ArticleComponent implements AfterViewChecked {
     this.activatedRoute.params.pipe(pluck('postId')),
     this.scully.available$,
   ]).pipe(
-    tap((r) => console.log('meta post:', r)),
     map(([postId, routes]) =>
       routes.find((route) => route.route === `/articles/${postId}`),
     ),

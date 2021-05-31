@@ -19,7 +19,7 @@ import {
   fadeUpDuration,
 } from '../shared/animation.constants';
 import { ScullyService } from '../shared/scully.service';
-import { createSVG } from '../squiggle';
+import { createSVG } from '../shared/squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
 
@@ -55,13 +55,12 @@ export enum ArrowDirection {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
+  companies: ReadonlyArray<string> = shuffle<string>([...COMPANIES]);
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
-  companies: ReadonlyArray<string> = shuffle<string>([...COMPANIES]);
 
   @HostBinding('class.bc-home') baseClass = true;
-  @ViewChild(CanvasComponent)
-  canvas?: CanvasComponent;
+  @ViewChild(CanvasComponent) canvas?: CanvasComponent;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -78,18 +77,5 @@ export class HomeComponent {
     ) {
       this.canvas?.nextPalette();
     }
-  }
-
-  paletteChange(color: string): void {
-    this.document.documentElement.style.setProperty(
-      `--link-backgroundImage`,
-      `url(data:image/svg+xml;base64,${window.btoa(createSVG(color))})`,
-    );
-    console.log('setting color: ', color);
-    this.document.documentElement.style.setProperty(
-      `--highlight-color`,
-      `${color}`,
-    );
-    this.cdr.detectChanges();
   }
 }

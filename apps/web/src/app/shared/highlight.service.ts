@@ -7,11 +7,12 @@ import 'clipboard';
 import 'prismjs';
 
 // Plugins
+// Note: Toolbar must be above copy to clipboard
+import 'prismjs/plugins/toolbar/prism-toolbar';
 import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 import 'prismjs/plugins/diff-highlight/prism-diff-highlight';
 import 'prismjs/plugins/diff-highlight/prism-diff-highlight';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/toolbar/prism-toolbar';
 
 // Styles
 import 'prismjs/components/prism-bash';

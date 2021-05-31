@@ -8,8 +8,8 @@ import {
   Inject,
   Input,
   NgZone,
+  OnDestroy,
   Output,
-  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,14 +22,7 @@ import {
   Observable,
   Subject,
 } from 'rxjs';
-import {
-  combineAll,
-  distinctUntilChanged,
-  filter,
-  skip,
-  takeUntil,
-  tap,
-} from 'rxjs/operators';
+import { distinctUntilChanged, skip, takeUntil } from 'rxjs/operators';
 
 import { Palette } from './palettes.data';
 import { Row } from './row';
@@ -39,55 +32,60 @@ export enum ArrowDirection {
   ARROW_RIGHT = 'ArrowRight',
 }
 
+/**
+ * Shuffle an array
+ *
+ * @param arr - The array of items to shuffle
+ * @returns The shuffled array
+ */
 export function shuffle<T = unknown>(arr: T[]): T[] {
   return arr.sort(() => Math.random() - 0.5);
 }
 
+/**
+ * Clamp a number
+ *
+ * @param n - The number to clamp
+ * @param min - The bottom of the clamp range
+ * @param max - The top of the clamp range
+ * @returns The clamped number
+ */
 export function clamp(n: number, min: number, max: number): number {
   return Math.max(min, Math.min(n, max));
 }
 
-/**
- * Credit for wobble idea and original code to @neave: https://codepen.io/neave/details/yLNaLMw
- */
 @UntilDestroy()
 @Component({
   selector: 'bc-canvas',
-  templateUrl: './canvas.component.html',
+  template: `<canvas #canvasRef></canvas>`,
   styleUrls: ['./canvas.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'bcCanvas',
 })
-export class CanvasComponent implements AfterViewInit {
+export class CanvasComponent implements AfterViewInit, OnDestroy {
   private context: CanvasRenderingContext2D | null = null;
-  private currentPalettes: Palette[] = [];
   private currentPalettes$ = new BehaviorSubject<ReadonlyArray<Palette>>([]);
+  private destroy$ = new Subject();
   private dist = 0;
   private mouseOff = -1000;
   private mouseX = this.mouseOff;
   private mouseY = this.mouseOff;
-  private paletteNumber = 0;
   private paletteNumber$ = new BehaviorSubject<number>(-1);
-  private scale: number = this.windowRef.devicePixelRatio || 1;
-  private scale$ = new BehaviorSubject<number>(
-    this.windowRef.devicePixelRatio ?? 1
-  );
   private rows: Row[] = [];
+  private scale: number = this.windowRef.devicePixelRatio || 1;
   private totalPoints = 0;
   private windowResizeEvent$ = fromEvent(this.windowRef, 'resize').pipe(
     distinctUntilChanged(),
-    untilDestroyed(this)
+    untilDestroyed(this),
   );
-  private destroy$ = new Subject();
   isPaused = false;
 
   @HostBinding('class.bc-canvas') baseClass = true;
-  @HostBinding('class.bc-canvas--faded') @Input() hasOpacity = false;
-  @ViewChild('canvasRef') canvasRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('canvasRef') canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  get canvas(): HTMLCanvasElement | undefined {
-    return this.canvasRef?.nativeElement;
+  get canvas(): HTMLCanvasElement {
+    return this.canvasRef.nativeElement;
   }
 
   @Input() palettes: ReadonlyArray<Palette> = [];
@@ -99,114 +97,90 @@ export class CanvasComponent implements AfterViewInit {
     @Inject(WINDOW) readonly windowRef: Window,
     @Inject(ANIMATION_FRAME)
     private readonly animationFrame$: Observable<number>,
-    private ngZone: NgZone
+    private ngZone: NgZone,
   ) {}
-
-  // mouseMoveListener$!: Observable<MouseEvent>;
 
   ngAfterViewInit(): void {
     if (this.canvas) {
       this.initialize(this.canvas, this.scale);
     }
     this.windowResizeEvent$.subscribe(() => {
-      console.log('window resizing');
       if (this.canvas) {
         this.resizeRows(this.canvas);
       }
     });
-    // console.log('my log: ', this.palettes);
   }
 
   ngOnDestroy(): void {
-    // this.destroy$.next();
-    // this.destroy$.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  // TODO: need a disable / clean up method
-  private disable(): void {
-    console.warn('in disable');
-    // this.destroy$.next();
-  }
-
-  private cleanUp(): void {}
-
-  // TODO: If going this route I'll need type coercion for event stuff
-  handleCanvasUserEvent(event: Event): void {
-    switch (event.type) {
-      case 'mousedown':
-      case 'touchstart':
-        break;
-      case 'mousemove':
-      case 'touchmove':
-        // this.mouseX = event.targetTouches[0].pageX * scale;
-        // this.mouseY = event.targetTouches[0].pageY * scale;
-        break;
-      case 'touchcancel':
-      case 'mouseup':
-      case 'touchend':
-      case 'mouseout':
-        break;
-    }
-  }
-
-  // TODO: move some of this outside of zone? Currently it's triggering change detection on every mouse move
+  /**
+   * Initialize canvas and event listeners
+   *
+   * @param canvas - The canvas element
+   * @param scale - The scale to use as a multiplier
+   */
   private initialize(canvas: HTMLCanvasElement, scale: number): void {
     this.context = canvas.getContext('2d');
-    this.currentPalettes$.next(
-      shuffle<Palette>([...this.palettes])
-    );
+    this.currentPalettes$.next(shuffle<Palette>([...this.palettes]));
 
-    this.ngZone.runOutsideAngular(() => {
-      fromEvent<MouseEvent>(canvas, 'mousemove')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((event) => this.handleMove(event.pageX, event.pageY, scale));
+    if (!this.isDisabled) {
+      this.ngZone.runOutsideAngular(() => {
+        fromEvent<MouseEvent>(canvas, 'mousemove')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((event) =>
+            this.handleMove(event.pageX, event.pageY, scale),
+          );
 
-      fromEvent<MouseEvent>(canvas, 'mousedown')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => this.wobbleRows(canvas));
+        fromEvent<MouseEvent>(canvas, 'mousedown')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(() => this.wobbleRows());
 
-      fromEvent<MouseEvent>(canvas, 'mouseleave')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => this.resetMousePositions());
+        fromEvent<MouseEvent>(canvas, 'mouseleave')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(() => this.resetMousePositions());
 
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((event) =>
-          this.handleMove(
-            event.targetTouches[0].pageX,
-            event.targetTouches[0].pageY,
-            scale
-          )
-        );
+        fromEvent<TouchEvent>(canvas, 'touchmove')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((event) =>
+            this.handleMove(
+              event.targetTouches[0].pageX,
+              event.targetTouches[0].pageY,
+              scale,
+            ),
+          );
 
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((event) => event.preventDefault());
+        fromEvent<TouchEvent>(canvas, 'touchstart')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((event) => event.preventDefault());
 
-      fromEvent<TouchEvent>(canvas, 'touchend')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => {
-          this.wobbleRows(canvas);
-          this.resetMousePositions();
-        });
+        fromEvent<TouchEvent>(canvas, 'touchend')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(() => {
+            this.wobbleRows();
+            this.resetMousePositions();
+          });
 
-      fromEvent<KeyboardEvent>(window, 'keyup')
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((event) => {
-          if (event.code === ArrowDirection.ARROW_LEFT) {
-            this.previousPalette();
-          }
-          if (event.code === ArrowDirection.ARROW_RIGHT) {
-            this.nextPalette();
-          }
-        });
+        fromEvent<KeyboardEvent>(window, 'keyup')
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((event) => {
+            if (event.code === ArrowDirection.ARROW_LEFT) {
+              this.previousPalette();
+            }
+            if (event.code === ArrowDirection.ARROW_RIGHT) {
+              this.nextPalette();
+            }
+          });
+      });
+    }
 
-      combineLatest([this.paletteNumber$, this.currentPalettes$])
-        .pipe(skip(1), takeUntil(this.destroy$))
-        .subscribe(([newNumber, palettes]) =>
-          this.setPalette(palettes, newNumber)
-        );
-    });
+    combineLatest([this.paletteNumber$, this.currentPalettes$])
+      .pipe(skip(1), takeUntil(this.destroy$))
+      .subscribe(([newNumber, palettes]) =>
+        this.setPalette(palettes, newNumber),
+      );
 
     this.rows = [
       new Row(4 / 5, this.scale, this.totalPoints),
@@ -233,7 +207,7 @@ export class CanvasComponent implements AfterViewInit {
     canvas.style.width = `${currentWidth}px`;
     canvas.style.height = `${currentHeight}px`;
     this.totalPoints = Math.round(
-      clamp(Math.pow(Math.random() * 8, 2), 16, currentWidth / 35)
+      clamp(Math.pow(Math.random() * 8, 2), 16, currentWidth / 35),
     );
     this.dist = clamp(currentWidth / 4, 150, 200);
 
@@ -243,15 +217,17 @@ export class CanvasComponent implements AfterViewInit {
     this.drawRows(canvas);
   }
 
-  private wobbleRows(canvas: HTMLCanvasElement) {
-    this.resizeRows(canvas);
+  wobbleRows(goToNextPalette = true): void {
+    this.resizeRows(this.canvas);
     for (let i = this.rows.length; i--; ) {
       this.rows[i].wobble(this.dist, this.totalPoints);
     }
-    this.nextPalette();
+    if (goToNextPalette) {
+      this.nextPalette();
+    }
   }
 
-  private drawRows(canvas: HTMLCanvasElement) {
+  private drawRows(canvas: HTMLCanvasElement): void {
     this.context?.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = this.rows.length; i--; ) {
       this.rows[i].draw(
@@ -259,18 +235,17 @@ export class CanvasComponent implements AfterViewInit {
         this.dist,
         this.mouseX,
         this.mouseY,
-        this.totalPoints
+        this.totalPoints,
       );
     }
   }
 
   private setPalette(
     palettes: ReadonlyArray<Palette>,
-    paletteNumber = 0
+    paletteNumber = 0,
   ): void {
-    // console.log('in setPalette: palettes: ', palettes);
     if (this.canvas) {
-      const palette: Palette = palettes[paletteNumber];
+      const palette: Palette = palettes[paletteNumber] ?? palettes[0];
       this.paletteChange.emit(palette);
       this.canvas.style.backgroundColor = palette[0];
       for (let i = this.rows.length; i--; ) {

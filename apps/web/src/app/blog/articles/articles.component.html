@@ -33,16 +33,8 @@
         <!--          >Reading time: {{ article.readingTime | number: '1.0-0' }}min</small-->
         <!--        >-->
       </div>
-
-      <!--      <div class="articles__listing-tags" *ngIf="article.tags">-->
-      <!--        <ng-container *ngFor="let tag of article.tags; let last = last"-->
-      <!--          >{{ tag }}{{ last ? '' : ', ' }}</ng-container-->
-      <!--        >-->
-      <!--      </div>-->
     </li>
   </ul>
 </section>
 
-<!--<bc-article-tags [allTags]="allTags$ | async"></bc-article-tags>-->
-
-<bc-tag-links [tags]="allTags$ | async"></bc-tag-links>
+<bc-tag-links [tags]="allTags$ | async" routeBase="/articles"></bc-tag-links>
