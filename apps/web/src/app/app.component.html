@@ -12,7 +12,9 @@
       [@shrink]="logoState$ | async"
     >
       <ng-container *ngIf="shouldMinimizeSiteTitle; else noLink">
-        <a class="o-sliding-link" routerLink="/">Benjamin<br />Charity</a>
+        <a class="o-sliding-background-link" routerLink="/"
+          >Benjamin<br />Charity</a
+        >
       </ng-container>
       <ng-template #noLink> Benjamin<br />Charity </ng-template>
     </h1>
@@ -22,22 +24,19 @@
     <router-outlet #routerOutlet="outlet"></router-outlet>
   </main>
 
-  <bc-canvas
-    #canvas="bcCanvas"
-    [palettes]="palettes"
-    [hasOpacity]="(showCanvas$ | async) === false"
-    (paletteChange)="paletteChange($event)"
-  ></bc-canvas>
+  <div class="background">
+    <div
+      class="canvas-fallback"
+      [class.canvas-fallback--faded]="shouldFadeBackground"
+    ></div>
 
-  <div
-    class="canvas-fallback"
-    [class.canvas-fallback--faded]="shouldFadeBackground"
-  ></div>
-
-  <!-- TODO: animations not working -->
-  <!--  <bc-keyboard-arrows-->
-  <!--    *ngIf="showKeyboard$ | async"-->
-  <!--    [@bounceInLeftOnEnter]-->
-  <!--    [@rotateOutDownRightOnLeave]-->
-  <!--  ></bc-keyboard-arrows>-->
+    <bc-canvas
+      #canvas="bcCanvas"
+      [palettes]="palettes"
+      [hasOpacity]="(showCanvas$ | async) === false"
+      (paletteChange)="paletteChange($event)"
+    ></bc-canvas>
+  </div>
 </div>
+
+<bc-info [showInfo]="(showInfo$ | async) === true"></bc-info>

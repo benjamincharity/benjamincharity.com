@@ -1,9 +1,8 @@
-// TODO: move link colors to main scss with util class
 :root {
-  --article-link-color: #444;
-  --article-link-underline-color: #71cbc4;
-  --article-link-underline-color-hover: #e8608c;
-  --article-link-backgroundColor: var(--bg-light);
+  --article-link-color: var(--app-color-dark);
+  --article-link-underline-color: var(--app-color-accent-2);
+  --article-link-underline-color-hover: var(--app-color-accent-3);
+  --article-link-backgroundColor: var(--app-light-backgroundColor);
   --article-link-underline-colorGap: var(--article-link-backgroundColor);
   --article-panel-margin: 1.4rem;
 }
@@ -13,7 +12,7 @@
 }
 
 .articles {
-  font-family: var(--fontFamily-serif);
+  font-family: var(--font-stack-serif);
   margin: var(--article-panel-margin);
   min-height: 6rem;
   pointer-events: auto;
@@ -23,11 +22,10 @@
   }
 
   &__current-tag {
-    font-family: var(--fontFamily);
     font-size: 13px;
     font-style: italic;
     margin-bottom: 1rem;
-    opacity: .7;
+    opacity: 0.7;
     padding: 0 1.7em;
   }
 
@@ -53,15 +51,17 @@
         --article-arrow-transition-duration: 200ms;
         --article-arrow-transition-delay: 80ms;
         --article-arrow-transition-easing: ease-out;
+
         display: inline-block;
         opacity: 0;
         transform: translateX(-6px) translateY(4px);
-        transition: opacity var(--article-arrow-transition-duration)
-            var(--article-arrow-transition-delay)
-            var(--article-arrow-transition-easing),
+        transition:
+          opacity var(--article-arrow-transition-duration)
+          var(--article-arrow-transition-delay)
+          var(--article-arrow-transition-easing),
           transform var(--article-arrow-transition-duration)
-            var(--article-arrow-transition-delay)
-            var(--article-arrow-transition-easing);
+          var(--article-arrow-transition-delay)
+          var(--article-arrow-transition-easing);
       }
 
       &-tail {
@@ -71,11 +71,11 @@
 
     &-description {
       color: var(--article-link-color);
-      font-family: var(--fontFamily-serif);
+      font-family: var(--font-stack-serif);
       font-size: 12px;
       letter-spacing: initial;
-      opacity: .8;
-      padding-top: .2em;
+      opacity: 0.8;
+      padding-top: 0.2em;
     }
 
     &-reading-time {
@@ -86,7 +86,7 @@
     }
 
     &-tags {
-      font-family: var(--fontFamily-unicode);
+      font-family: var(--font-stack-unicode);
       font-size: 0.7rem;
       letter-spacing: initial;
       opacity: 0.4;
@@ -102,7 +102,7 @@
 
   &__title {
     font-size: 1rem;
-    margin: .2em;
+    margin: 0.2em;
     text-transform: uppercase;
   }
 
@@ -122,50 +122,8 @@
     &:any-link {
       --underline-animation-duration: 180ms;
       --underline-height: 7px;
+
       color: var(--article-link-color);
     }
   }
 }
-
-a.link {
-}
-
-/* Gradient 1 */
-//.g1 {
-//  background: linear-gradient(90deg, #69b7eb, #b3dbd3, #f4d6db);
-//}
-//
-///* Gradient 2 */
-//.g2 {
-//  background: linear-gradient(90deg, #cfecd0, #ffc5ca);
-//}
-//
-///* Gradient 3 */
-//.g3 {
-//  background: linear-gradient(90deg, #f598a8, #f6edb2);
-//}
-//
-///* Gradient 4 */
-//.g4 {
-//  background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
-//}
-//
-///* Gradient 5 */
-//.g5 {
-//  background: linear-gradient(90deg, #b9deed, #efefef);
-//}
-//
-///* Gradient 6 */
-//.g6 {
-//  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
-//}
-//
-///* Gradient 7 */
-//.g7 {
-//  background: linear-gradient(90deg, #faf0cd, #fab397);
-//}
-//
-///* Gradient 8 */
-//.g8 {
-//  background: linear-gradient(90deg, #cfecd0, #a0cea7, #9ec0db);
-//}

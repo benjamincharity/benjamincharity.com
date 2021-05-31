@@ -8,7 +8,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { fadeInDownOnEnterAnimation } from 'angular-animations';
+import {
+  bounceInRightOnEnterAnimation,
+  fadeInDownOnEnterAnimation,
+  rotateOutDownRightOnLeaveAnimation,
+} from 'angular-animations';
 import { BehaviorSubject, timer } from 'rxjs';
 import { delay, filter, tap } from 'rxjs/operators';
 
@@ -18,7 +22,8 @@ import { shrinkHeaderAnimation } from './shared/animation.constants';
 import { createSVG } from './squiggle';
 import { BC_WINDOW } from './window.service';
 
-const DEFAULT_KEYBOARD_DELAY = 7000;
+const DEFAULT_INFO_INTRO_DELAY = 7000;
+const DEFAULT_INFO_EXIT_DELAY = DEFAULT_INFO_INTRO_DELAY * 2;
 
 export enum LogoStates {
   VOID = 'void',
@@ -38,6 +43,8 @@ export type LogoState = keyof typeof LogoStates;
       translate: '1.6rem',
     }),
     shrinkHeaderAnimation,
+    bounceInRightOnEnterAnimation(),
+    rotateOutDownRightOnLeaveAnimation(),
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,6 +54,7 @@ export class AppComponent implements OnInit {
   logoState$ = new BehaviorSubject<LogoStates>(LogoStates.VOID);
   showKeyboard = true;
   showKeyboard$ = new BehaviorSubject<boolean>(false);
+  showInfo$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   showCanvas$ = new BehaviorSubject<boolean>(false);
   mediaQuery = this.window.matchMedia('(prefers-reduced-motion: reduce)');
   backgroundIsActive$ = new BehaviorSubject<boolean>(true);
@@ -64,7 +72,6 @@ export class AppComponent implements OnInit {
     return this._currentRoute;
   }
   private _currentRoute = '';
-  private previousPath = '';
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
@@ -79,15 +86,12 @@ export class AppComponent implements OnInit {
     timer(240)
       .pipe(filter(() => this.router.url.length < 2))
       .subscribe(() => this.showCanvas$.next(true));
-    timer(DEFAULT_KEYBOARD_DELAY)
+    timer(DEFAULT_INFO_INTRO_DELAY)
       .pipe(
-        tap(() => {
-          if (!this.currentRoute.includes('articles')) {
-            this.showKeyboard$.next(true);
-          }
-        }),
-        delay(4000),
-        tap(() => this.showKeyboard$.next(false)),
+        filter(() => !(this.currentRoute.length > 2)),
+        tap(() => this.showInfo$.next(true)),
+        delay(DEFAULT_INFO_EXIT_DELAY),
+        tap(() => this.showInfo$.next(false)),
       )
       .subscribe();
 
@@ -102,9 +106,6 @@ export class AppComponent implements OnInit {
 
     this.router.events
       .pipe(
-        // filter(
-        //   (event): event is NavigationEnd => event instanceof NavigationEnd
-        // ),
         filter(
           (event): event is NavigationStart => event instanceof NavigationStart,
         ),
@@ -124,16 +125,13 @@ export class AppComponent implements OnInit {
   paletteChange(palette: Palette): void {
     // console.log('app got palette change, setting doc: ', palette);
     this.document.documentElement.style.setProperty(
-      `--animatedLink-backgroundImage`,
+      `--o-squiggle-link-backgroundImage`,
       `url(data:image/svg+xml;base64,${window.btoa(createSVG(palette[0]))})`,
     );
-    this.document.documentElement.style.setProperty(
-      `--highlight-color`,
-      `${palette[0]}`,
-    );
-    this.document.documentElement.style.setProperty(
-      `--highlight-color-2`,
-      `${palette[1]}`,
-    );
+
+    for (let i = 0; i < palette.length; i += 1) {
+      const cssVar = `--highlight-color-${i + 1}`;
+      this.document.documentElement.style.setProperty(cssVar, `${palette[i]}`);
+    }
   }
 }

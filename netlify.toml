@@ -1,10 +1,10 @@
 [build]
-  command = "npx nx build web --prod"
-  publish = "/dist/web/browser"
-[[redirects]]
- from="/*"
-  to="/index.html"
-  status=200
+  command = "yarn run jam-it"
+  publish = "dist/static"
+#[[redirects]]
+# from="/*"
+#  to="/index.html"
+#  status=200
 # from = "https://blog.zealous-galileo-668240.netlify.app/*"
 #  to = "https://zealous-galileo-668240.netlify.app/blog/:splat"
 #  status = 200

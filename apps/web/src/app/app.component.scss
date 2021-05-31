@@ -1,73 +1,38 @@
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-@mixin take-space($position: absolute) {
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  position: $position;
-  right: 0;
-  top: 0;
-  width: 100%;
-}
+@import '../styles/3-tools/layout';
+@import '../styles/3-tools/text';
 
 :root {
-  --highlight-color: #ff9800;
-  --highlight-color-2: #ff9800;
-  --bg-light: #fafafa;
-  --bg-border: #808080;
-  --animatedLink-backgroundImage: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23ff9800' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
-  --fontFamily: 'Open Sans', sans-serif;
-  --fontFamily-unicode: 'VT323', monospace;
-  --fontFamily-serif: 'Source Serif Pro', serif;
-
-  --title-color: #fff;
-  --title-fontSize-small: clamp(2rem, 23vw, 2rem);
-  --title-fontSize: clamp(3rem, 23vw, 6rem);
-  //--title-lineHeight-small: 1.2em;
-  //--title-lineHeight: 1.4em;
-  --title-shadow-color: rgba(0, 0, 0, 0.4);
-  --title-shadow: 2px 2px 2px var(--title-shadow-color);
-  --title-sub-page-color: #444;
-  --title-transition-duration-fast: 50ms;
-  --title-transition-duration: 200ms;
-
-  --opacity-transition: opacity 200ms ease-out;
-
-  --canvas-opacity: 1;
-  --canvas-opacity-faded: 0.3;
-  --canvas-zindex: -1;
+  --canvas-fallback-transition:
+    all var(--canvas-transition-duration-in)
+    cubic-bezier(0.26, 0.86, 0.44, 0.985);
   --canvas-fallback-zindex: calc(var(--canvas-zindex) - 1);
-  --canvas-transition-duration-in: 200ms;
-  --canvas-transition-duration-out: 400ms;
-
-  //--custom-easing: cubic-bezier(0.51, 0.84, 0.84, 1.03);
-  --custom-easing: cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  --canvas-opacity-faded: 0.3;
+  --canvas-opacity: 1;
+  --canvas-zindex: -1;
+  --page-backgroundColor: var(--app-color-light);
+  --page-minWidth: 15rem;
 }
 
 .bc-root {
   display: block;
-  font-family: var(--fontFamily);
   height: 100vh;
-  min-width: 15rem;
+  min-width: var(--page-minWidth);
   position: relative;
   width: 100vw;
-  //pointer-events: none;
 }
 
 .container {
   @include take-space;
+
+  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-  // Set up base context
+  // Set up stacking context
   z-index: 1;
 
+  // Class added when on any sub-page (i.e. not '/')
   &--sub-page {
-    background-color: var(--bg-light);
+    background-color: var(--page-backgroundColor);
 
-    //.bc-canvas,
     .canvas-fallback {
       opacity: 0;
     }
@@ -81,42 +46,31 @@ ul {
     pointer-events: none;
     // Set up for route transition styles
     position: relative;
+    z-index: var(--global-zindex-page);
+  }
+
+  .background {
+    @include take-space;
+
+    z-index: var(--global-zindex-site-background);
   }
 
   .bc-canvas {
     @include take-space(fixed);
-    z-index: var(--canvas-zindex);
   }
 
   .canvas-fallback {
     @include take-space(fixed);
-    background-color: var(--highlight-color);
+
+    background-color: var(--highlight-color-1);
     opacity: var(--canvas-opacity);
     position: fixed;
-    transition: all var(--canvas-transition-duration-in)
-      cubic-bezier(0.26, 0.86, 0.44, 0.985);
-    z-index: var(--canvas-fallback-zindex);
+    transition: var(--canvas-fallback-transition);
 
     &--faded {
-      transition-duration: var(--canvas-transition-duration-out);
       opacity: 0;
+      transition-duration: var(--canvas-transition-duration-out);
     }
-  }
-
-  .keys {
-    bottom: 0.6rem;
-    height: auto;
-    max-width: 4rem;
-    //opacity: 0;
-    position: absolute;
-    right: 1rem;
-    stroke: #fff;
-    transition: opacity 800ms ease-in-out;
-    transform: scale(0.7);
-
-    //&--visible {
-    //  opacity: .7;
-    //}
   }
 }
 
@@ -124,14 +78,16 @@ ul {
   margin-top: clamp(16px, 1em, 32px);
   max-height: initial;
   pointer-events: none;
+  position: relative;
   text-align: center;
   transition: max-height 500ms ease-out;
+  z-index: var(--global-zindex-header);
 
   // TODO: refactor multiple small classes
   &--small {
     max-height: 80px;
 
-    @media (max-width: 600px) {
+    @media (min-width: 600px) {
       max-height: 100px;
     }
   }
@@ -139,36 +95,28 @@ ul {
   &__title {
     color: var(--title-color);
     display: inline-block;
-    font-family: var(--fontFamily-unicode);
+    font-family: var(--font-stack-unicode);
     font-size: var(--title-fontSize);
-    //font-size: 60px;
     margin: 1rem 0 0 0;
     pointer-events: none;
     text-align: center;
     text-shadow: var(--title-shadow);
     text-transform: uppercase;
-    //transition: all var(--title-transition-duration) ease-out;
-    //transition: color var(--title-transition-duration) ease-out,
-    //  font-size var(--title-transition-duration-fast) ease-out;
 
+    // Class added when on any sub-page (i.e. not '/')
     &--small {
-      //--title-transition-duration-fast: 200ms;
-      //transition-delay: 0;
-      //--title-fontSize: var(--title-fontSize-small);
-      //--title-fontSize: 2rem;
       --title-color: var(--title-sub-page-color);
-      //color: var(--title-sub-page-color);
-      //padding-top: 0.5em;
+
       pointer-events: auto;
     }
 
     a {
-      --article-link-underline-color: transparent;
-      --article-link-underline-color-hover: #71cbc4;
-      --underline-height: 4px;
+      --o-sliding-background-link-underline-color: transparent;
+      --o-sliding-background-link-underline-color-hover: #71cbc4;
+      --o-sliding-background-link-color-underline-height: 4px;
+
       padding: 0;
       text-decoration: none;
-      //transition: all var(--title-transition-duration) cubic-bezier(0.26, 0.86, 0.44, 0.985);
 
       &:any-link {
         color: inherit;
@@ -177,103 +125,8 @@ ul {
   }
 }
 
-//router-outlet {
-//  + .ng-animating {
-//    outline: 3px solid red;
-//    position: absolute;
-//  }
-//}
-
-.panel {
-  background-color: var(--bg-light);
-  border: 1px solid var(--highlight-color);
-  border-radius: 2px;
-  margin-bottom: 2rem;
-  padding: 1em;
-  pointer-events: auto;
-}
-
-.o-animated-link {
-  background: linear-gradient(
-      to bottom,
-      var(--highlight-color) 0%,
-      var(--highlight-color) 100%
-    )
-    repeat-x 0 100%;
-  background-size: 3px 3px;
-  color: var(--highlight-color);
-  padding: 0 0 0.5rem 0;
-  text-decoration: none;
-
-  &:focus,
-  &:hover {
-    background-image: var(--animatedLink-backgroundImage);
-    background-position: 0 100%;
-    background-size: auto 6px;
-    background-repeat: repeat-x;
-    text-decoration: none;
-  }
-
-  &:focus {
-    outline: 2px dashed;
-    outline-offset: 8px;
-  }
-}
-
-.o-sliding-link {
-  --underline-gap-width: 20px;
-  --underline-height: 18px;
-  --underline-animation-duration: 320ms;
-  --underline-animation-delay: 100ms;
-  --underline-y-offset: 100%;
-  background-image: linear-gradient(
-      var(--article-link-underline-colorGap),
-      var(--article-link-underline-colorGap)
-    ),
-    linear-gradient(
-      var(--article-link-underline-color),
-      var(--article-link-underline-color)
-    ),
-    linear-gradient(
-      var(--article-link-underline-color-hover),
-      var(--article-link-underline-color-hover)
-    );
-  background-position: calc(var(--underline-gap-width) * -1) 100%,
-    100% var(--underline-y-offset), 0 100%;
-  background-repeat: no-repeat;
-  background-size: var(--underline-gap-width) var(--underline-height),
-    100% var(--underline-height), 0 var(--underline-height);
-  color: var(--article-link-color);
-  display: inline;
-  padding: 0 0.2em;
-  position: relative;
-  text-decoration: none;
-  transition: all var(--underline-animation-duration)
-    var(--underline-animation-delay) ease-out;
-
-  &:focus,
-  &:hover {
-    background-size: var(--underline-gap-width) var(--underline-height),
-      0 var(--underline-height), 100% var(--underline-height);
-    background-position: calc(100% + var(--underline-gap-width)) 100%,
-      100% var(--underline-y-offset), 0 100%;
-  }
-}
-
-.u-pointer {
-  pointer-events: auto;
-}
-
-.u-pointer-off {
-  pointer-events: none;
-}
-
-.u-sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+@mixin info-base-styles() {
+  border-radius: 50%;
+  height: 44px;
+  width: 44px;
 }

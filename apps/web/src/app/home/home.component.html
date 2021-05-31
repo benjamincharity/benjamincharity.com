@@ -1,18 +1,18 @@
 <div class="page u-pointer-off">
   <h3 class="title title--secondary u-pointer" @AnimationIn1>
-    UX, UI and design systems
+    UX, UI, and design systems
     <br />
     Engineer
   </h3>
 
-  <nav class="navigation" @AnimationIn2>
+  <nav class="navigation u-pointer" @AnimationIn2>
     <ul class="navigation__list">
       <li class="navigation__list-item" *ngFor="let link of navigationLinks">
         <ng-container
           *ngIf="link?.destination?.startsWith('http'); else internalLink"
         >
           <a
-            class="navigation__link o-animated-link u-pointer"
+            class="navigation__link o-squiggle-underline-link"
             [href]="link.destination"
           >
             {{ link.display }}
@@ -31,7 +31,7 @@
         </ng-container>
         <ng-template #internalLink>
           <a
-            class="navigation__link o-animated-link u-pointer"
+            class="navigation__link o-squiggle-underline-link u-pointer"
             [routerLink]="link.destination"
             >{{ link.display }}</a
           >
@@ -40,11 +40,11 @@
     </ul>
   </nav>
 
-  <section class="companies" @AnimationIn3>
+  <section class="companies u-pointer" @AnimationIn3>
     <h4 class="companies__title">Trusted by</h4>
     <ul class="companies__list">
       <li
-        class="companies__company u-pointer"
+        class="companies__company"
         *ngFor="let company of companies; let last = last"
       >
         {{ company }}

@@ -1,18 +1,31 @@
-html,
-body {
-  box-sizing: border-box;
-  font-family: 'VT323', monospace;
-  height: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  width: 100%;
+/* prettier-ignore */
 
-  > * {
-    box-sizing: inherit;
+// 1. Settings
+@import
+  "styles/1-settings/global";
 
-    &:before,
-    &:after {
-      box-sizing: inherit;
-    }
-  }
-}
+// 2. Design Tokens
+@import
+  "styles/2-tokens/animation",
+  "styles/2-tokens/color",
+  "styles/2-tokens/typography",
+  "styles/2-tokens/zindex";
+
+// 3. Tools
+@import
+  "styles/3-tools/a11y",
+  "styles/3-tools/cursors",
+  "styles/3-tools/layout",
+  "styles/3-tools/text";
+
+// 4. Generic
+@import
+  "styles/4-generic/normalize",
+  "styles/4-generic/print";
+
+// 5. Elements
+@import
+  "styles/5-elements/link";
+
+// 6. Skeleton
+

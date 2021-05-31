@@ -1,11 +1,18 @@
 <article
+  *ngIf="articleMetadata$ | async as metadata"
   class="article line-numbers"
   @fadeInUpOnEnter
   @fadeOutDownOnLeave
-  *ngIf="articleMetadata$ | async as metadata"
 >
   <!--  <pre>{{ metadata | json }}</pre>-->
   <!--  <div>Reading time: {{ metadata.readingTime | number: '1.0-0' }}min</div>-->
+  <nav class="article__nav">
+    <a
+      class="article__nav-link o-animated-link-underline"
+      routerLink="/articles"
+      ><span>&#8668;</span> Back to all articles</a
+    >
+  </nav>
   <div class="article__content">
     <scully-content></scully-content>
   </div>
