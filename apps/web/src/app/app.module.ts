@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { CircledLinkComponent } from './shared/circled-link/circled-link.component';
 import { InfoComponent } from './shared/info/info.component';
 import { KonamiDirective } from './shared/konami/konami.directive';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { KonamiDirective } from './shared/konami/konami.directive';
     InfoComponent,
     KonamiDirective,
     TagLinksComponent,
+    NotFoundComponent,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

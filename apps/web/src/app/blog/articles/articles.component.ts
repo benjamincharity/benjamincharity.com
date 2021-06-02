@@ -41,6 +41,7 @@ export function pluckTagFromUrl(url: string): string {
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
   animations: [fadeInUpOnEnterAnimation({ anchor: 'enter' })],
+
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -65,6 +66,7 @@ export class ArticlesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // TODO: dis be broken again
     this.navigationEnd$.pipe().subscribe((b) => {
       const tag = pluckTagFromUrl(b.url);
       if (typeGuardArticleTags(tag)) {

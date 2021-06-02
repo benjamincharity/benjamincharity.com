@@ -1,32 +1,39 @@
 <div
   class="container"
-  [class.container--sub-page]="isSubPage"
+  [class.container--no-background]="!shouldShowBackground"
   [class.container--reduced-motion]="shouldBeReducedMotion"
   bcKonami
   (konami)="togglePartyMode($event)"
 >
-  <header class="global-header" [class.global-header--small]="isSubPage">
-    <h1
-      class="global-header__title"
-      [class.global-header__title--small]="isSubPage"
-      [@shrink]="logoState$ | async"
+  <div
+    class="container__scroll"
+    [class.container_scroll--no-bg]="!shouldShowBackground"
+  >
+    <header
+      class="global-header"
+      [class.global-header--small]="!shouldShowBackground"
+      [class.u-pointer-off]="shouldShowBackground"
     >
-      <ng-container *ngIf="isSubPage; else noLink">
-        <a class="o-sliding-background-link" routerLink="/"
-          >Benjamin<br />Charity</a
-        >
-      </ng-container>
-      <ng-template #noLink> Benjamin<br />Charity </ng-template>
-    </h1>
-  </header>
+      <h1 class="global-header__title" [@shrink]="logoState$ | async">
+        <ng-container *ngIf="shouldShowBackground; else link">
+          Benjamin<br />Charity
+        </ng-container>
+        <ng-template #link>
+          <a class="o-sliding-background-link" routerLink="/"
+            >Benjamin<br />Charity</a
+          >
+        </ng-template>
+      </h1>
+    </header>
 
-  <main class="container__inner">
-    <router-outlet #routerOutlet="outlet"></router-outlet>
-  </main>
+    <main class="container__inner" [class.u-pointer-off]="shouldShowBackground">
+      <router-outlet #routerOutlet="outlet"></router-outlet>
+    </main>
+  </div>
 
   <div
     class="background"
-    [class.background--hidden]="isSubPage"
+    [class.background--hidden]="!shouldShowBackground"
     [class.background--party-mode]="partyModeEnabled"
   >
     <div class="canvas-fallback"></div>

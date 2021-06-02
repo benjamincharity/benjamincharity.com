@@ -22,7 +22,9 @@
   }
 }
 
-.bc-root {
+bc-root {
+  @include take-space;
+
   display: block;
   height: 100vh;
   min-width: var(--page-minWidth);
@@ -33,13 +35,13 @@
 .container {
   @include take-space;
 
-  -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
+  //-webkit-overflow-scrolling: touch;
+  //overflow-y: scroll;
   // Set up stacking context
   z-index: 1;
 
-  // Class added when on any sub-page (i.e. not '/')
-  &--sub-page {
+  // Class added when background should be hidden
+  &--no-background {
     background-color: var(--page-backgroundColor);
 
     .canvas-fallback {
@@ -51,8 +53,27 @@
     }
   }
 
-  &__inner {
+  &__scroll {
+    @include take-space;
+
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
     pointer-events: none;
+    z-index: var(--global-zindex-page);
+
+    @media (max-height: 700px) {
+      pointer-events: auto;
+    }
+
+    &--no-bg {
+      pointer-events: auto;
+    }
+  }
+
+  &__inner {
+    max-width: var(--global-site-maxWidth);
+    margin-left: auto;
+    margin-right: auto;
     // Set up for route transition styles
     position: relative;
     z-index: var(--global-zindex-page);
@@ -76,16 +97,19 @@
   }
 
   .bc-canvas {
-    @include take-space(fixed);
+    @include take-space();
+
+    z-index: -1;
   }
 
   .canvas-fallback {
-    @include take-space(fixed);
+    @include take-space();
 
     background-color: var(--highlight-color-1);
     opacity: var(--canvas-opacity);
     position: fixed;
     transition: var(--canvas-fallback-transition);
+    z-index: -2;
 
     &--faded {
       opacity: 0;
@@ -110,6 +134,12 @@
     @media (min-width: 600px) {
       max-height: 100px;
     }
+
+    .global-header__title {
+      --title-color: var(--title-sub-page-color);
+
+      pointer-events: auto;
+    }
   }
 
   &__title {
@@ -122,13 +152,7 @@
     text-align: center;
     text-shadow: var(--title-shadow);
     text-transform: uppercase;
-
-    // Class added when on any sub-page (i.e. not '/')
-    &--small {
-      --title-color: var(--title-sub-page-color);
-
-      pointer-events: auto;
-    }
+    will-change: transform;
 
     a {
       --o-sliding-background-link-underline-color: transparent;

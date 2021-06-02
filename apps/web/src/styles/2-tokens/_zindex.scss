@@ -8,12 +8,13 @@ $z-layers: (
   'header',
   'info',
   'page',
-  'site-background',
+  'site-background'
 );
 
 :root {
   @each $index in $z-layers {
-    --global-zindex-#{$index}: #{(
+    --global-zindex-#{$index}:
+      #{(
         length($z-layers) - index($z-layers, $index)
       ) +
       500};

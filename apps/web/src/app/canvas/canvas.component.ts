@@ -128,21 +128,21 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
 
     if (!this.isDisabled) {
       this.ngZone.runOutsideAngular(() => {
-        fromEvent<MouseEvent>(canvas, 'mousemove')
+        fromEvent<MouseEvent>(canvas, 'mousemove', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe((event) =>
             this.handleMove(event.pageX, event.pageY, scale),
           );
 
-        fromEvent<MouseEvent>(canvas, 'mousedown')
+        fromEvent<MouseEvent>(canvas, 'mousedown', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe(() => this.wobbleRows());
 
-        fromEvent<MouseEvent>(canvas, 'mouseleave')
+        fromEvent<MouseEvent>(canvas, 'mouseleave', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe(() => this.resetMousePositions());
 
-        fromEvent<TouchEvent>(canvas, 'touchmove')
+        fromEvent<TouchEvent>(canvas, 'touchmove', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe((event) =>
             this.handleMove(
@@ -152,18 +152,18 @@ export class CanvasComponent implements AfterViewInit, OnDestroy {
             ),
           );
 
-        fromEvent<TouchEvent>(canvas, 'touchstart')
+        fromEvent<TouchEvent>(canvas, 'touchstart', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe((event) => event.preventDefault());
 
-        fromEvent<TouchEvent>(canvas, 'touchend')
+        fromEvent<TouchEvent>(canvas, 'touchend', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe(() => {
             this.wobbleRows();
             this.resetMousePositions();
           });
 
-        fromEvent<KeyboardEvent>(window, 'keyup')
+        fromEvent<KeyboardEvent>(window, 'keyup', { passive: true })
           .pipe(takeUntil(this.destroy$))
           .subscribe((event) => {
             if (event.code === ArrowDirection.ARROW_LEFT) {

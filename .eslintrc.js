@@ -34,6 +34,7 @@ module.exports = {
         'prefer-template': 'error',
         'quote-props': ['warn', 'consistent-as-needed'],
         'space-before-blocks': 'warn',
+        '@angular-eslint/no-host-metadata-property': 'off',
 
         '@nrwl/nx/enforce-module-boundaries': [
           'error',

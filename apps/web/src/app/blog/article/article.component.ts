@@ -20,8 +20,8 @@ import { HighlightService } from '../../shared/highlight.service';
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
   animations: [
-    fadeInUpOnEnterAnimation({ duration: 300, translate: '32px' }),
-    fadeOutDownOnLeaveAnimation({ duration: 300, translate: '32px' }),
+    fadeInUpOnEnterAnimation({ duration: 300, translate: '16px' }),
+    fadeOutDownOnLeaveAnimation({ duration: 300, translate: '16px' }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

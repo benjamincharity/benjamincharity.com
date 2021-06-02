@@ -62,13 +62,14 @@
 
     &-item {
       display: grid;
-      margin-bottom: 0.4em;
       place-content: center;
     }
   }
 
   &__link {
     font-size: var(--nav-link-fontSize);
+    // Needed to create 48px link target
+    padding: 0.46em;
     pointer-events: auto;
     position: relative;
     text-shadow: var(--title-shadow);

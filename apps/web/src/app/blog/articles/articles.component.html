@@ -1,9 +1,11 @@
-<section class="articles">
+<section
+  class="articles"
+  [@enter]="{ value: '', params: { translate: '26px' } }"
+>
   <div class="articles__current-tag" *ngIf="currentTag$ | async as tag">
     <div>
       <span class="articles__current-tag-info">
-        Showing articles about <strong>{{ tag }}</strong
-        >.
+        Showing articles tagged <strong>`{{ tag }}`</strong>.
       </span>
       <a
         class="o-animated-link-underline"
@@ -41,6 +43,8 @@
     </li>
   </ul>
 </section>
+
+<hr class="o-fancy-hr" />
 
 <aside class="tags-filter">
   <h6 class="tags-filter__title">Browse articles by tag:</h6>

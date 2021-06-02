@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import {
   bounceInRightOnEnterAnimation,
   fadeInDownOnEnterAnimation,
@@ -31,6 +31,14 @@ export enum LogoStates {
   SHRUNK = 'shrunk',
 }
 
+const pagesWithBackground = ['', '404'];
+export function shouldShowBackground(url: string): boolean {
+  return pagesWithBackground.includes(url.replace(/\//, ''));
+}
+
+// TODO: split header size and color changes.
+// 404 page needs size change, but article pages need size AND color
+
 @Component({
   selector: 'bc-root',
   templateUrl: './app.component.html',
@@ -51,6 +59,7 @@ export class AppComponent implements OnInit {
   set currentRoute(value: string) {
     this._currentRoute = value ?? '';
     const urlWithoutQuery = this._currentRoute.split('?')[0] ?? '';
+    this.shouldShowBackground = shouldShowBackground(this._currentRoute);
     this.isSubPage = urlWithoutQuery.length > 1;
   }
   get currentRoute(): string {
@@ -59,12 +68,13 @@ export class AppComponent implements OnInit {
   private _currentRoute = '';
   // NOTE: We initialize as `true` so that the canvas is hidden by default
   isSubPage = true;
+  shouldShowBackground = false;
   logoState$ = new BehaviorSubject<LogoStates>(LogoStates.VOID);
   mediaQuery = this.window.matchMedia('(prefers-reduced-motion: reduce)');
   palettes: ReadonlyArray<Palette> = [...PALETTES];
   partyModeEnabled = false;
   partyModeSubscription: Subscription | undefined;
-  showInfo$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  showInfo$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild(CanvasComponent)
   canvas?: CanvasComponent;
@@ -90,7 +100,7 @@ export class AppComponent implements OnInit {
   showThenHideInfo(): void {
     timer(DEFAULT_INFO_INTRO_DELAY)
       .pipe(
-        filter(() => !this.isSubPage),
+        filter(() => this.shouldShowBackground),
         tap(() => this.showInfo$.next(true)),
         delay(DEFAULT_INFO_EXIT_DELAY),
         tap(() => this.showInfo$.next(false)),
@@ -105,12 +115,12 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(
         filter(
-          (event): event is NavigationStart => event instanceof NavigationStart,
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
         ),
         tap((event) => {
-          this.currentRoute = event.url ?? '';
+          this.currentRoute = event.urlAfterRedirects ?? '';
           this.logoState$.next(
-            this.isSubPage ? LogoStates.SHRUNK : LogoStates.DEFAULT,
+            !this.shouldShowBackground ? LogoStates.SHRUNK : LogoStates.DEFAULT,
           );
         }),
       )

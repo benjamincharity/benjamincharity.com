@@ -4,11 +4,13 @@ import { RouterModule, Route, Data } from '@angular/router';
 import { ArticleComponent } from './blog/article/article.component';
 import { ArticlesComponent } from './blog/articles/articles.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export enum BcPageNames {
   HOME = 'home',
   ARTICLES = 'articles',
   ARTICLE = 'article',
+  NOT_FOUND = 'notFound',
 }
 
 export interface BcRouteData {
@@ -17,7 +19,7 @@ export interface BcRouteData {
 }
 
 export interface BcRoute extends Route {
-  data: BcRouteData;
+  data?: BcRouteData;
 }
 
 export const coerceRouteData = (data: Data): data is BcRouteData =>
@@ -39,6 +41,12 @@ const routes: BcRoute[] = [
     component: HomeComponent,
     data: { animation: BcPageNames.HOME },
   },
+  {
+    path: '404',
+    component: NotFoundComponent,
+    data: { animation: BcPageNames.NOT_FOUND },
+  },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
