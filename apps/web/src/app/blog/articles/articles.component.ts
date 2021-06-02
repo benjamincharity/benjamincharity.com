@@ -9,10 +9,31 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { fadeInUpOnEnterAnimation } from 'angular-animations';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { MetafrenzyService } from 'ngx-metafrenzy';
+import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { ArticleTags, ScullyService } from '../../shared/scully.service';
+
+/**
+ * Convert string to ArticleTag
+ *
+ * @param value - The value to check
+ * @returns True if it is an ArticleTag
+ */
+export function typeGuardArticleTags(value: any): value is ArticleTags {
+  return Object.values(ArticleTags).includes(value);
+}
+
+/**
+ * Return the value from the URL param for tag
+ *
+ * @param url - The full URL string
+ * @returns The tag
+ */
+export function pluckTagFromUrl(url: string): string {
+  return url?.split('?')[1]?.split('=')[1] ?? '';
+}
 
 @UntilDestroy()
 @Component({
@@ -27,39 +48,39 @@ export class ArticlesComponent implements OnInit {
   allArticles$ = this.scullyService.visibleArticles$;
   allTags$: BehaviorSubject<readonly ArticleTags[]> =
     this.scullyService.allTags$;
-  currentTag$: Observable<ArticleTags> = this.route.queryParams.pipe(
+  currentTag$ = new BehaviorSubject<ArticleTags | null>(null);
+  navigationEnd$ = this.router.events.pipe(
     untilDestroyed(this),
-    filter((qps) => qps.tag),
-    map((qp) => qp.tag),
+    filter((e): e is NavigationEnd => e instanceof NavigationEnd),
   );
 
   @HostBinding('class.bc-articles') baseClass = true;
 
   constructor(
-    private scully: ScullyRoutesService,
-    private scullyService: ScullyService,
+    private readonly metafrenzyService: MetafrenzyService,
     private route: ActivatedRoute,
     private router: Router,
+    private scully: ScullyRoutesService,
+    private scullyService: ScullyService,
   ) {}
 
   ngOnInit(): void {
-    const navEnd$ = this.router.events.pipe(
-      untilDestroyed(this),
-      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-    );
+    this.navigationEnd$.pipe().subscribe((b) => {
+      const tag = pluckTagFromUrl(b.url);
+      if (typeGuardArticleTags(tag)) {
+        this.currentTag$.next(tag);
+        this.scullyService.getArticlesByTag(tag);
+      } else {
+        this.scullyService.clearTagFilter();
+        this.currentTag$.next(null);
+        this.clearFilter();
+      }
+    });
 
-    combineLatest([navEnd$, this.route.queryParams])
-      .pipe(
-        untilDestroyed(this),
-        switchMap(([_, b]) => of(b)),
-      )
-      .subscribe((v) => {
-        if (v?.tag) {
-          this.scullyService.getArticlesByTag(v.tag);
-        } else {
-          this.scullyService.clearTagFilter();
-        }
-      });
+    this.metafrenzyService.setAllTitleTags('Articles | Benjamin Charity');
+    this.metafrenzyService.setAllDescriptionTags(
+      'Articles on UI, UX and Design Systems by Benjamin Charity',
+    );
   }
 
   clearFilter(): void {

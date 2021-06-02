@@ -9,6 +9,7 @@ import {
   fadeInUpOnEnterAnimation,
   fadeOutDownOnLeaveAnimation,
 } from 'angular-animations';
+import { MetafrenzyService } from 'ngx-metafrenzy';
 import { combineLatest } from 'rxjs';
 import { map, pluck, tap } from 'rxjs/operators';
 
@@ -36,11 +37,22 @@ export class ArticleComponent implements AfterViewChecked {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private scully: ScullyRoutesService,
     private highlightService: HighlightService,
+    private readonly metafrenzyService: MetafrenzyService,
+    private scully: ScullyRoutesService,
   ) {}
 
   ngAfterViewChecked() {
     this.highlightService.highlightAll();
+    this.articleMetadata$.subscribe((m) => {
+      if (m?.title) {
+        const title = m.title;
+        this.metafrenzyService.setAllTitleTags(title);
+      }
+      if (m?.description) {
+        const description = m.description;
+        this.metafrenzyService.setAllDescriptionTags(description);
+      }
+    });
   }
 }

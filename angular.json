@@ -45,17 +45,16 @@
             }
           },
           "options": {
-            "assets": [
-              "apps/web/src/favicon.ico",
-              "apps/web/src/assets"
-            ],
+            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
             "outputPath": "dist/web/browser",
             "polyfills": "apps/web/src/polyfills.ts",
             "scripts": [],
             "styles": [
-              "apps/web/src/styles.scss"
+              "apps/web/src/styles.scss",
+              "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "node_modules/prismjs/themes/prism-solarizedlight.css"
             ],
             "tsConfig": "apps/web/tsconfig.app.json",
             "vendorChunk": true,
@@ -98,17 +97,12 @@
             "jestConfig": "apps/web/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": [
-            "coverage/apps/web"
-          ]
+          "outputs": ["coverage/apps/web"]
         },
         "scully": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": [
-              "npm run scully --scanRoutes",
-              "npm run scully serve"
-            ],
+            "commands": ["npm run scully --scanRoutes", "npm run scully serve"],
             "parallel": false
           }
         }
@@ -136,9 +130,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/web-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/web-e2e/**/*.{js,ts}"]
           }
         }
       },

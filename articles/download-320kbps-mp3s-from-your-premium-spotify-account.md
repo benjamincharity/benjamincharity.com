@@ -1,7 +1,7 @@
 ---
 title: Download 320kbps MP3s From Your Premium Spotify Account
 description: Learn how to store a local copy of your premium Spotify music using open-source software.
-tags: [music, spotify]
+tags: [music]
 published: true
 publishDate: 2015-01-27
 previousUrl: https://blog.benjamincharity.com/download-320kbps-mp3s-from-your-premium-spotify-account/

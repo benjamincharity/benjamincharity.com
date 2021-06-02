@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
 export enum ArticleTags {
-  ANGULAR = 'angular',
+  // ANGULAR = 'angular',
   ANGULARJS = 'angularjs',
   CLI = 'cli',
   CSS = 'css',
@@ -18,7 +18,6 @@ export enum ArticleTags {
   OSX = 'osx',
   S3 = 's3',
   SASS = 'sass',
-  SPOTIFY = 'spotify',
   TOOL = 'tool',
   UI = 'ui',
   UX = 'ux',
@@ -61,6 +60,20 @@ export function filterByTag(
   };
 }
 
+export function filterByTags(
+  tags: ArticleTags[],
+): (source: Observable<ArticleRoute[]>) => Observable<ArticleRoute[]> {
+  return function (source: Observable<ArticleRoute[]>) {
+    return source.pipe(
+      map((routes) =>
+        routes.filter((r) =>
+          r?.tags?.some((tag: ArticleTags) => tags.includes(tag)),
+        ),
+      ),
+    );
+  };
+}
+
 /**
  * Convert a standard ScullyRoute to an ArticleRoute
  */
@@ -87,6 +100,34 @@ export function convertToArticleRoutes(): (
   };
 }
 
+/**
+ * Return the date's time or 0
+ *
+ * @param date - The date to get the time from
+ * @returns The date time
+ */
+export function determineDateTime(date: Date | undefined): number {
+  return date != null ? new Date(date).getTime() : 0;
+}
+
+/**
+ * Sort the array of article routes by publish date
+ */
+export function sortByPublishDate(): (
+  source: Observable<ArticleRoute[]>,
+) => Observable<ArticleRoute[]> {
+  return function (source: Observable<ArticleRoute[]>) {
+    return source.pipe(
+      map((routes) =>
+        routes.sort(
+          (a, b) =>
+            determineDateTime(a.publishDate) - determineDateTime(b.publishDate),
+        ),
+      ),
+    );
+  };
+}
+
 @UntilDestroy()
 @Injectable({ providedIn: 'root' })
 export class ScullyService {
@@ -97,6 +138,7 @@ export class ScullyService {
     untilDestroyed(this),
     onlyArticleRoutes(),
     convertToArticleRoutes(),
+    sortByPublishDate(),
   );
   visibleArticlesSource$ = new BehaviorSubject<ArticleRoute[]>([]);
   visibleArticles$ = this.visibleArticlesSource$.asObservable();

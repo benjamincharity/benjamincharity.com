@@ -6,10 +6,12 @@ import {
   HostBinding,
   HostListener,
   Inject,
+  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { fadeInUpOnEnterAnimation } from 'angular-animations';
+import { MetafrenzyService } from 'ngx-metafrenzy';
 
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
@@ -19,7 +21,6 @@ import {
   fadeUpDuration,
 } from '../shared/animation.constants';
 import { ScullyService } from '../shared/scully.service';
-import { createSVG } from '../shared/squiggle';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
 
@@ -54,7 +55,7 @@ export enum ArrowDirection {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   companies: ReadonlyArray<string> = shuffle<string>([...COMPANIES]);
   navigationLinks: ReadonlyArray<Link> = [...NAVIGATION_LINKS];
   palettes: ReadonlyArray<Palette> = [...PALETTES];
@@ -64,10 +65,18 @@ export class HomeComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private cdr: ChangeDetectorRef,
+    private readonly metafrenzyService: MetafrenzyService,
     // NOTE: ScullyService is injected here so articles get prefetched
     private scullyService: ScullyService,
-    private cdr: ChangeDetectorRef,
   ) {}
+
+  ngOnInit(): void {
+    this.metafrenzyService.setAllTitleTags('Benjamin Charity - UX Engineer');
+    this.metafrenzyService.setAllDescriptionTags(
+      'Benjamin Charity - UX, UI, and design systems engineer',
+    );
+  }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {

@@ -12085,6 +12085,13 @@ network-information-types@^0.1.0:
   resolved "https://registry.yarnpkg.com/network-information-types/-/network-information-types-0.1.0.tgz#5c880bebc2a9e6b25eb00ed23854d13ff3a7fe3a"
   integrity sha512-cRUCYZoRHTMjYcgk5MbwqM0h0Za34panRxAJKY8n+mQ+NLMuRIw7aKzmaZqkC/cte7bnRcdfTwFA27GgN62EtQ==
 
+ngx-metafrenzy@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-metafrenzy/-/ngx-metafrenzy-6.0.0.tgz#45246e990ae0f44eb5654d14bdf04ad423409d55"
+  integrity sha512-u8H1T/OXugL2jugm4smQLxL4ASVvXkiqMk9qI8M+UR9zN7d4xUEmfALbKYb+uYlxz/Lja6Lns1Zi/XQAPey6jg==
+  dependencies:
+    tslib "^2.0.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

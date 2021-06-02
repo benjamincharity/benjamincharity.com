@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Route, Data } from '@angular/router';
+import { RouterModule, Route, Data } from '@angular/router';
 
 import { ArticleComponent } from './blog/article/article.component';
 import { ArticlesComponent } from './blog/articles/articles.component';
@@ -13,6 +13,7 @@ export enum BcPageNames {
 
 export interface BcRouteData {
   animation: BcPageNames;
+  metafrenzy?: Record<string, unknown>;
 }
 
 export interface BcRoute extends Route {
@@ -33,7 +34,11 @@ const routes: BcRoute[] = [
     component: ArticlesComponent,
     data: { animation: BcPageNames.ARTICLES },
   },
-  { path: '', component: HomeComponent, data: { animation: BcPageNames.HOME } },
+  {
+    path: '',
+    component: HomeComponent,
+    data: { animation: BcPageNames.HOME },
+  },
 ];
 
 @NgModule({

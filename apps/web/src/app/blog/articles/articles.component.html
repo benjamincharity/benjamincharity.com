@@ -1,10 +1,17 @@
 <section class="articles">
   <div class="articles__current-tag" *ngIf="currentTag$ | async as tag">
     <div>
-      Showing articles about <strong>{{ tag }}</strong
-      >:
+      <span class="articles__current-tag-info">
+        Showing articles about <strong>{{ tag }}</strong
+        >.
+      </span>
+      <a
+        class="o-animated-link-underline"
+        routerLink="/articles"
+        [queryParams]="{}"
+        >Clear filter</a
+      >
     </div>
-    <div><button (click)="clearFilter()">Clear filter</button></div>
   </div>
 
   <ul class="articles__list" aria-label="Articles">
@@ -27,14 +34,15 @@
       </a>
       <div *ngIf="article?.description" class="articles__listing-description">
         {{ article.description }}
-        <!--        <small-->
-        <!--          *ngIf="article.readingTime"-->
-        <!--          class="articles__listing-reading-time"-->
-        <!--          >Reading time: {{ article.readingTime | number: '1.0-0' }}min</small-->
-        <!--        >-->
+        <span class="articles__listing-reading-time"
+          >[{{ article.readingTime | number: '1.0-0' }}min]</span
+        >
       </div>
     </li>
   </ul>
 </section>
 
-<bc-tag-links [tags]="allTags$ | async" routeBase="/articles"></bc-tag-links>
+<aside class="tags-filter">
+  <h6 class="tags-filter__title">Browse articles by tag:</h6>
+  <bc-tag-links [tags]="allTags$ | async" routeBase="/articles"></bc-tag-links>
+</aside>
