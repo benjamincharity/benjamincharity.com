@@ -58,7 +58,8 @@ bc-root {
 
     -webkit-overflow-scrolling: touch;
     overflow-y: scroll;
-    pointer-events: none;
+    // TODO
+    //pointer-events: none;
     z-index: var(--global-zindex-page);
 
     @media (max-height: 700px) {

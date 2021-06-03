@@ -7,6 +7,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CircledLinkComponent {
-  @Input() routerLink: string | string[] = '';
+  @Input() isActive = false;
   @Input() queryParams: Record<string, string> | undefined;
+  @Input() routerLink: string | string[] = '';
 }

@@ -66,23 +66,30 @@ export class ArticlesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // TODO: dis be broken again
+    const initialTag = pluckTagFromUrl(this.router.url);
+    this.handleTagChange(
+      typeGuardArticleTags(initialTag) ? initialTag : undefined,
+    );
     this.navigationEnd$.pipe().subscribe((b) => {
       const tag = pluckTagFromUrl(b.url);
-      if (typeGuardArticleTags(tag)) {
-        this.currentTag$.next(tag);
-        this.scullyService.getArticlesByTag(tag);
-      } else {
-        this.scullyService.clearTagFilter();
-        this.currentTag$.next(null);
-        this.clearFilter();
-      }
+      this.handleTagChange(typeGuardArticleTags(tag) ? tag : undefined);
     });
 
     this.metafrenzyService.setAllTitleTags('Articles | Benjamin Charity');
     this.metafrenzyService.setAllDescriptionTags(
       'Articles on UI, UX and Design Systems by Benjamin Charity',
     );
+  }
+
+  handleTagChange(tag: ArticleTags | undefined): void {
+    if (tag) {
+      this.currentTag$.next(tag);
+      this.scullyService.getArticlesByTag(tag);
+      return;
+    }
+    this.scullyService.clearTagFilter();
+    this.currentTag$.next(null);
+    this.clearFilter();
   }
 
   clearFilter(): void {

@@ -76,18 +76,17 @@ export class AppComponent implements OnInit {
   partyModeSubscription: Subscription | undefined;
   showInfo$ = new BehaviorSubject<boolean>(false);
 
-  @ViewChild(CanvasComponent)
-  canvas?: CanvasComponent;
+  get shouldBeReducedMotion(): boolean {
+    return this.mediaQuery.media.includes('reduce') && this.mediaQuery.matches;
+  }
+
+  @ViewChild(CanvasComponent) canvas?: CanvasComponent;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(BC_WINDOW) private window: Window,
     private router: Router,
   ) {}
-
-  get shouldBeReducedMotion(): boolean {
-    return this.mediaQuery.media.includes('reduce') && this.mediaQuery.matches;
-  }
 
   ngOnInit(): void {
     this.showThenHideInfo();

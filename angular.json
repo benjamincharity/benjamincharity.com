@@ -45,7 +45,7 @@
             }
           },
           "options": {
-            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
+            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets", "apps/web/src/manifest.webmanifest"],
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
             "outputPath": "dist/web/browser",
@@ -62,7 +62,9 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "serviceWorker": true,
+            "ngswConfigPath": "apps/web/ngsw-config.json"
           }
         },
         "extract-i18n": {

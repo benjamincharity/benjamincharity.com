@@ -1,4 +1,8 @@
-<a [routerLink]="routerLink" [queryParams]="queryParams">
+<a
+  [class.active]="isActive"
+  [routerLink]="routerLink"
+  [queryParams]="queryParams"
+>
   <ng-content></ng-content>
   <svg viewBox="0 0 70 36">
     <path

@@ -47,6 +47,10 @@
 <hr class="o-fancy-hr" />
 
 <aside class="tags-filter">
-  <h6 class="tags-filter__title">Browse articles by tag:</h6>
-  <bc-tag-links [tags]="allTags$ | async" routeBase="/articles"></bc-tag-links>
+  <h2 class="tags-filter__title">Browse articles by tag:</h2>
+  <bc-tag-links
+    [tags]="allTags$ | async"
+    routeBase="/articles"
+    [currentTag]="currentTag$ | async"
+  ></bc-tag-links>
 </aside>

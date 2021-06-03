@@ -28,6 +28,7 @@ a {
       stroke-dasharray 0.16s;
   }
 
+  &.active,
   &:hover {
     --stroke: var(--line-active);
     --stroke-delay: 0.1s;

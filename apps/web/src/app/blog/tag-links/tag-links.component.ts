@@ -9,6 +9,7 @@ import { ArticleTags } from '../../shared/scully.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagLinksComponent {
-  @Input() tags: ReadonlyArray<ArticleTags> | null = [];
+  @Input() currentTag: ArticleTags | null = null;
   @Input() routeBase = '';
+  @Input() tags: ReadonlyArray<ArticleTags> | null = [];
 }
