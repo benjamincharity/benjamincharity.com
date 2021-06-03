@@ -8,7 +8,6 @@ import { timeToRead, timeToReadOptions } from 'scully-plugin-time-to-read';
 // } as timeToReadOptions);
 
 export const config: ScullyConfig = {
-  projectRoot: './apps/web/src',
   projectName: 'web',
   outDir: './dist/static',
   distFolder: './dist/web/browser',
