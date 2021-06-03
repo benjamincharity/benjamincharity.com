@@ -7,8 +7,7 @@
 }
 
 .article {
-  // TODO: Abstract higher
-  --article-link-color: #2262a1;
+  --article-link-color: var(--app-color-accent-1);
   --article-maxWidth: 640px;
 
   margin: auto;
@@ -37,20 +36,12 @@
     }
   }
 
-  &__content {
-    margin-bottom: 1rem;
-
-    h1:first-of-type {
-      margin-top: 0;
-    }
-  }
-
   &__tags {
     padding: 2rem 1rem 1rem;
     text-align: center;
 
     h6 {
-      color: #444;
+      color: var(--app-color-dark);
       font-family: var(--font-stack-unicode);
       font-size: 100%;
       margin: 1em;
@@ -59,12 +50,17 @@
   }
 }
 
-// Markdown styles
+// Styles for article markdown content
 .article__content {
-  // TODO: abstract
+  margin-bottom: 1rem;
+
+  h1:first-of-type {
+    margin-top: 0;
+  }
+
   pre {
-    background: #f7f7f7 !important;
-    box-shadow: 0 0 0 1px #dfdfdf !important;
+    background: var(--color-code-background) !important;
+    box-shadow: 0 0 0 1px var(--color-code-boxShadow) !important;
   }
 
   blockquote {
@@ -90,10 +86,9 @@
   }
 
   :not(pre) > code {
-    // TODO: abstract
-    background-color: #e4e4e4;
+    background-color: var(--color-inlineCode-backgroundColor);
     border-radius: 4px;
-    color: #444;
+    color: var(--app-color-dark);
     font-size: 80%;
     font-weight: bold;
     margin: 0;

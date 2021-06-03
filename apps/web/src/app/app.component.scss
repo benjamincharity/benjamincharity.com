@@ -2,8 +2,7 @@
 @import '../styles/3-tools/text';
 
 :root {
-  --canvas-fallback-transition:
-    all var(--canvas-transition-duration-in)
+  --canvas-fallback-transition: all var(--canvas-transition-duration-in)
     cubic-bezier(0.26, 0.86, 0.44, 0.985);
   --canvas-fallback-zindex: calc(var(--canvas-zindex) - 1);
   --canvas-opacity: 1;
@@ -30,19 +29,19 @@ bc-root {
   min-width: var(--page-minWidth);
   position: relative;
   width: 100vw;
+  z-index: 1;
 }
 
 .container {
   @include take-space;
 
-  //-webkit-overflow-scrolling: touch;
-  //overflow-y: scroll;
   // Set up stacking context
-  z-index: 1;
+  z-index: 2;
 
   // Class added when background should be hidden
   &--no-background {
     background-color: var(--page-backgroundColor);
+    overflow-y: auto;
 
     .canvas-fallback {
       opacity: 0;
@@ -50,24 +49,6 @@ bc-root {
 
     .global-header__title {
       text-shadow: none;
-    }
-  }
-
-  &__scroll {
-    @include take-space;
-
-    -webkit-overflow-scrolling: touch;
-    overflow-y: scroll;
-    // TODO
-    //pointer-events: none;
-    z-index: var(--global-zindex-page);
-
-    @media (max-height: 700px) {
-      pointer-events: auto;
-    }
-
-    &--no-bg {
-      pointer-events: auto;
     }
   }
 
@@ -79,28 +60,28 @@ bc-root {
     position: relative;
     z-index: var(--global-zindex-page);
   }
+}
 
-  .background {
-    @include take-space;
+.background {
+  @include take-space;
 
-    transition: opacity 200ms 120ms ease-out;
-    z-index: var(--global-zindex-site-background);
+  transition: opacity 200ms 120ms ease-out;
+  z-index: 1;
 
-    &--party-mode {
-      animation: spin 5s infinite linear;
-    }
+  &--party-mode {
+    animation: spin 5s infinite linear;
+  }
 
-    &--hidden {
-      opacity: 0;
-      pointer-events: none;
-      transition-delay: 0;
-    }
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0ms;
   }
 
   .bc-canvas {
     @include take-space();
 
-    z-index: -1;
+    z-index: 2;
   }
 
   .canvas-fallback {
@@ -108,9 +89,8 @@ bc-root {
 
     background-color: var(--highlight-color-1);
     opacity: var(--canvas-opacity);
-    position: fixed;
     transition: var(--canvas-fallback-transition);
-    z-index: -2;
+    z-index: 1;
 
     &--faded {
       opacity: 0;
@@ -128,7 +108,6 @@ bc-root {
   transition: max-height 500ms ease-out;
   z-index: var(--global-zindex-header);
 
-  // TODO: refactor multiple small classes
   &--small {
     max-height: 80px;
 
@@ -157,7 +136,7 @@ bc-root {
 
     a {
       --o-sliding-background-link-underline-color: transparent;
-      --o-sliding-background-link-underline-color-hover: #71cbc4;
+      --o-sliding-background-link-underline-color-hover: var(--app-color-accent-2);
       --o-sliding-background-link-color-underline-height: 4px;
 
       padding: 0;

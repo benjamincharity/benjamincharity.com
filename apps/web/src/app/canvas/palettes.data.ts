@@ -1,7 +1,7 @@
 export type Color = string;
 export type Palette = [Color, Color, Color, Color, Color];
 export const PALETTES: ReadonlyArray<Palette> = [
-  ['#0CF', '#0FC', '#FF0', '#C0F', '#F0C'],
+  ['#C0F', '#F0C', '#0CF', '#0FC', '#FF0'],
   ['#333', '#666', '#999', '#CCC', '#FFF'],
   ['#305', '#606', '#907', '#C08', '#F09'],
   ['#036', '#067', '#098', '#0C9', '#0FA'],
@@ -11,7 +11,7 @@ export const PALETTES: ReadonlyArray<Palette> = [
   ['#8783d1', '#aa9aba', '#bfa4a4', '#d1abad', '#e3b9bc'],
   ['#b47eb3', '#fdf5bf', '#ffd5ff', '#92d1c3', '#8bb8a8'],
   ['#d81159', '#8f2d56', '#218380', '#fbb13c', '#73d2de'],
-  ['#c1c1c1', '#2c4251', '#d16666', '#b6c649', '#870058'],
+  ['#2c4251', '#c1c1c1', '#d16666', '#b6c649', '#870058'],
   ['#586ba4', '#324376', '#f5dd90', '#f68e5f', '#f76c5e'],
   ['#DA3E52', '#092327', '#00a9a5', '#4e8098', '#90c2e7'],
   ['#2f4858', '#336699', '#86bbd8', '#9ee493', '#daf7dc'],
@@ -28,7 +28,7 @@ export const PALETTES: ReadonlyArray<Palette> = [
   ['#60463b', '#ffcad4', '#b0d0d3', '#c08497', '#f7af9d'],
   ['#beb8eb', '#5299d3', '#0b5563', '#5e5c6c', '#a2bce0'],
   ['#122C91', '#2A6FDB', '#48D6D2', '#81E9E6', '#FEFCBF'],
-  ['#80A1C1', '#1F306E', '#8F3B76', '#C7417B', '#F5487F'],
+  ['#1F306E', '#80A1C1', '#8F3B76', '#C7417B', '#F5487F'],
   ['#454D66', '#309975', '#58B368', '#DAD873', '#EFEEB4'],
   ['#00A0B0', '#6A4A3C', '#CC333F', '#EB6841', '#EDC951'],
   ['#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51'],

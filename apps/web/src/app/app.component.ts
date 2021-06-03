@@ -36,9 +36,6 @@ export function shouldShowBackground(url: string): boolean {
   return pagesWithBackground.includes(url.replace(/\//, ''));
 }
 
-// TODO: split header size and color changes.
-// 404 page needs size change, but article pages need size AND color
-
 @Component({
   selector: 'bc-root',
   templateUrl: './app.component.html',

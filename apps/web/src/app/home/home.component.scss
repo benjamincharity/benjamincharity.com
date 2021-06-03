@@ -32,7 +32,6 @@
   }
 }
 
-// TODO: separate this from primary title - not enough overlap
 .title--secondary {
   color: var(--title-color);
   display: inline-block;
@@ -61,16 +60,27 @@
     }
 
     &-item {
-      display: grid;
-      place-content: center;
+      display: inline-block;
+
+      @media only screen and (max-height: 679px) {
+        &:not(:last-of-type) {
+          margin-right: 1.4em;
+        }
+      }
+
+      @media only screen and (min-height: 680px) {
+        display: block;
+      }
     }
   }
 
   &__link {
+    display: inline-block;
     font-size: var(--nav-link-fontSize);
     // Needed to create 48px link target
     padding: 0.46em 0.2em;
     pointer-events: auto;
+    // Set up for external link SVG
     position: relative;
     text-shadow: var(--title-shadow);
 
@@ -79,7 +89,7 @@
       opacity: 0;
       position: absolute;
       stroke: var(--highlight-color-1);
-      top: 0;
+      top: 0.2em;
       transform: scale(0.4) translate(-4px, 4px);
       transition: all 200ms var(--custom-easing);
     }
