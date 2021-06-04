@@ -4,7 +4,7 @@ import { PLATFORM_ID } from '@angular/core';
 
 // Base
 import 'clipboard';
-import 'prismjs';
+import Prism from 'prismjs';
 
 // Plugins
 // Note: Toolbar must be above copy to clipboard
@@ -26,15 +26,15 @@ import 'prismjs/components/prism-vim';
 import 'prismjs/components/prism-yaml';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare let Prism: any;
+// declare let Prism: any;
 
 @Injectable({ providedIn: 'root' })
 export class HighlightService {
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Record<string, unknown>,
+    @Inject(PLATFORM_ID) private platformId: Record<string, unknown>
   ) {}
 
-  highlightAll() {
+  highlightAll(): void {
     if (isPlatformBrowser(this.platformId)) {
       Prism.highlightAll();
     }

@@ -17,10 +17,6 @@
   "projects": {
     "web": {
       "tags": []
-    },
-    "web-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web"]
     }
   },
   "tasksRunnerOptions": {

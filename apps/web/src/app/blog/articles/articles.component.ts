@@ -11,7 +11,7 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { fadeInUpOnEnterAnimation } from 'angular-animations';
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 import { ArticleTags, ScullyService } from '../../shared/scully.service';
 
@@ -35,17 +35,37 @@ export function pluckTagFromUrl(url: string): string {
   return url?.split('?')[1]?.split('=')[1] ?? '';
 }
 
+export interface SkeletonInstanceThemeObject {
+  title: SkeletonTheme;
+  description: SkeletonTheme;
+}
+
+export interface SkeletonTheme {
+  'height.px'?: number;
+  width?: string;
+}
+
 @UntilDestroy()
 @Component({
   selector: 'bc-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
   animations: [fadeInUpOnEnterAnimation({ anchor: 'enter' })],
-
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class ArticlesComponent implements OnInit {
+  readonly skeletonCount = new Array(3);
+  readonly skeletonSizes: SkeletonInstanceThemeObject = {
+    title: {
+      'height.px': 40,
+      width: '100%',
+    },
+    description: {
+      'height.px': 22,
+      width: '70%',
+    },
+  };
   allArticles$ = this.scullyService.visibleArticles$;
   allTags$: BehaviorSubject<readonly ArticleTags[]> =
     this.scullyService.allTags$;

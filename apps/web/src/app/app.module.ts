@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { MetafrenzyModule } from 'ngx-metafrenzy';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { KonamiDirective } from './shared/konami/konami.directive';
     CommonModule,
     FormsModule,
     MetafrenzyModule.forRoot(),
+    NgxSkeletonLoaderModule.forRoot(),
     RouterModule,
     ScullyLibModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
