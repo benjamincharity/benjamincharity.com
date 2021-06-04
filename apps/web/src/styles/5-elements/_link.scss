@@ -3,7 +3,6 @@
   font-weight: bold;
   position: relative;
   text-decoration: none;
-  transition: all 150ms ease-out;
 
   &::before {
     background: var(--app-link-color);
@@ -14,12 +13,12 @@
     opacity: 0;
     position: absolute;
     transform: scaleX(0);
-    transition: all 200ms ease-out 0s;
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
     width: 100%;
   }
 
   &:hover {
-    transition: all 150ms ease-out;
+    transition-duration: 150ms;
 
     &::before {
       opacity: 1;
@@ -29,8 +28,7 @@
 }
 
 .o-squiggle-underline-link {
-  background:
-    linear-gradient(
+  background: linear-gradient(
       to bottom,
       var(--highlight-color-1) 0%,
       var(--highlight-color-1) 100%
@@ -66,10 +64,11 @@
   --o-sliding-background-link-color: var(--app-color-dark);
   --o-sliding-background-link-underline-color-hover: var(--color-loveLetter);
   --o-sliding-background-link-underline-color: var(--color-turkishTeal);
-  --o-sliding-background-link-underline-colorGap: var(--app-light-backgroundColor);
+  --o-sliding-background-link-underline-colorGap: var(
+    --app-light-backgroundColor
+  );
 
-  background-image:
-    linear-gradient(
+  background-image: linear-gradient(
       var(--o-sliding-background-link-underline-colorGap),
       var(--o-sliding-background-link-underline-colorGap)
     ),
@@ -81,17 +80,14 @@
       var(--o-sliding-background-link-underline-color-hover),
       var(--o-sliding-background-link-underline-color-hover)
     );
-  background-position:
-    calc(
-      var(--o-sliding-background-link-color-underline-gap-width) * -1
-    )
-    100%,
-    100% var(--o-sliding-background-link-color-underline-y-offset),
-    0 100%;
+  background-position: calc(
+        var(--o-sliding-background-link-color-underline-gap-width) * -1
+      )
+      100%,
+    100% var(--o-sliding-background-link-color-underline-y-offset), 0 100%;
   background-repeat: no-repeat;
-  background-size:
-    var(--o-sliding-background-link-color-underline-gap-width)
-    var(--o-sliding-background-link-color-underline-height),
+  background-size: var(--o-sliding-background-link-color-underline-gap-width)
+      var(--o-sliding-background-link-color-underline-height),
     100% var(--o-sliding-background-link-color-underline-height),
     0 var(--o-sliding-background-link-color-underline-height);
   color: var(--o-sliding-background-link-color);
@@ -99,24 +95,24 @@
   padding: 0 0.2em;
   position: relative;
   text-decoration: none;
-  transition:
-    all var(--o-sliding-background-link-color-underline-animation-duration)
-    var(--o-sliding-background-link-color-underline-animation-delay) ease-out;
+  transition: background-size
+      var(--o-sliding-background-link-color-underline-animation-duration)
+      var(--o-sliding-background-link-color-underline-animation-delay) ease-out,
+    background-position
+      var(--o-sliding-background-link-color-underline-animation-duration)
+      var(--o-sliding-background-link-color-underline-animation-delay) ease-out;
 
   &:focus,
   &:hover {
-    background-size:
-      var(--o-sliding-background-link-color-underline-gap-width)
-      var(--o-sliding-background-link-color-underline-height),
+    background-size: var(--o-sliding-background-link-color-underline-gap-width)
+        var(--o-sliding-background-link-color-underline-height),
       0 var(--o-sliding-background-link-color-underline-height),
       100% var(--o-sliding-background-link-color-underline-height);
-    background-position:
-      calc(
-        100% + var(--o-sliding-background-link-color-underline-gap-width)
-      )
-      100%,
-      100% var(--o-sliding-background-link-color-underline-y-offset),
-      0 100%;
+    background-position: calc(
+          100% + var(--o-sliding-background-link-color-underline-gap-width)
+        )
+        100%,
+      100% var(--o-sliding-background-link-color-underline-y-offset), 0 100%;
   }
 }
 

@@ -91,7 +91,8 @@
       stroke: var(--highlight-color-1);
       top: 0.2em;
       transform: scale(0.4) translate(-4px, 4px);
-      transition: all 200ms var(--custom-easing);
+      transition: transform 200ms var(--custom-easing),
+        opacity 200ms var(--custom-easing);
     }
 
     &:focus,

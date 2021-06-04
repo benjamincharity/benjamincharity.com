@@ -109,11 +109,7 @@ bc-root {
   z-index: var(--global-zindex-header);
 
   &--small {
-    max-height: 80px;
-
-    @media (min-width: 600px) {
-      max-height: 100px;
-    }
+    max-height: 100px;
 
     .global-header__title {
       --title-color: var(--title-sub-page-color);
@@ -136,7 +132,9 @@ bc-root {
 
     a {
       --o-sliding-background-link-underline-color: transparent;
-      --o-sliding-background-link-underline-color-hover: var(--app-color-accent-2);
+      --o-sliding-background-link-underline-color-hover: var(
+        --app-color-accent-2
+      );
       --o-sliding-background-link-color-underline-height: 4px;
 
       padding: 0;

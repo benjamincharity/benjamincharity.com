@@ -2,11 +2,9 @@
 
 bc-info {
   --info-borderRadius: 4px;
-  --info-boxShadow-large:
-    rgba(0, 0, 0, 0.3) 0 19px 38px,
+  --info-boxShadow-large: rgba(0, 0, 0, 0.3) 0 19px 38px,
     rgba(0, 0, 0, 0.22) 0 15px 12px;
-  --info-boxShadow-small:
-    rgba(0, 0, 0, 0.16) 0 3px 6px,
+  --info-boxShadow-small: rgba(0, 0, 0, 0.16) 0 3px 6px,
     rgba(0, 0, 0, 0.23) 0 3px 6px;
   --info-color: rgba(#fff, 0.7);
   --info-fontFamily: var(--font-stack-unicode);
@@ -14,10 +12,8 @@ bc-info {
   --info-window-offset: 1rem;
   --info-wrapper-opacity-visible: 0.7;
   --info-wrapper-opacity: 0;
-  --info-wrapper-transitions:
-    transform 400ms ease-out,
-    box-shadow 200ms ease-out,
-    opacity 200ms ease-out;
+  --info-wrapper-transitions: transform 400ms ease-out,
+    box-shadow 200ms ease-out, opacity 200ms ease-out;
 
   .info {
     background-color: var(--highlight-color-5);
@@ -53,7 +49,8 @@ bc-info {
       overflow: hidden;
       top: -1px;
       transform: rotate3d(0, 0, 1, 120deg);
-      transition: transform 400ms ease-out, color 600ms ease-out, box-shadow 200ms ease-out;
+      transition: transform 400ms ease-out, color 600ms ease-out,
+        box-shadow 200ms ease-out;
       z-index: 1;
     }
 
@@ -93,7 +90,7 @@ bc-info {
       position: absolute;
       right: 0;
       transform: translate3d(0, 0.7em, 0);
-      transition: all 200ms ease-out, opacity 200ms ease-out;
+      transition: transform 200ms ease-out, opacity 200ms ease-out;
       width: 90vw;
       z-index: var(--global-zindex-popover);
 
@@ -102,7 +99,8 @@ bc-info {
 
         background-color: var(--app-light-backgroundColor);
         bottom: -8px;
-        box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px, rgba(0, 0, 0, 0.23) 0 6px 6px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0 10px 20px,
+          rgba(0, 0, 0, 0.23) 0 6px 6px;
         content: '';
         height: var(--arrow-size);
         position: absolute;
@@ -131,7 +129,7 @@ bc-info {
       align-items: center;
       display: flex;
       justify-content: center;
-      margin-bottom: .6em;
+      margin-bottom: 0.6em;
 
       &-button {
         background: var(--app-color-accent-1-tint);
