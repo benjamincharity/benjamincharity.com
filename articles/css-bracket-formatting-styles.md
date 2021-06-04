@@ -81,7 +81,7 @@ first and/or last declaration sharing a line with the selector or bracket.
 > **Note:** I couldn't actually find documentation to verify some of these naming conventions. If anyone knows a 
 > source or possibly a different name for a style, reach out on Twitter: [@benjamincharity][twitter-link]
 
-[pico]: http://en.wikipedia.org/wiki/Indent_style#Pico_style
-[gnu]: http://en.wikipedia.org/wiki/Indent_style#GNU_style
-[banner]: http://en.wikipedia.org/wiki/Indent_style#Banner_style
-[twitter-link]: http://twitter.com/benjamincharity
+[pico]: https://en.wikipedia.org/wiki/Indent_style#Pico_style
+[gnu]: https://en.wikipedia.org/wiki/Indent_style#GNU_style
+[banner]: https://en.wikipedia.org/wiki/Indent_style#Banner_style
+[twitter-link]: https://twitter.com/benjamincharity

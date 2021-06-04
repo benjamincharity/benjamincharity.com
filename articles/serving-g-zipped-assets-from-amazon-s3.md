@@ -68,13 +68,13 @@ That's it! Your files should now load correctly and happiness will flow over the
 Question][so-question]
 
 
-[aws]: http://aws.amazon.com/s3/
+[aws]: https://aws.amazon.com/s3/
 "Amazon S3"
-[grunt]: http://gruntjs.com/
+[grunt]: https://gruntjs.com/
 "GruntJS"
-[yeoman]: http://yeoman.io/
+[yeoman]: https://yeoman.io/
 "Yeoman"
-[so]: http://stackoverflow.com
+[so]: https://stackoverflow.com
 "StackOverflow"
-[so-question]: http://stackoverflow.com/questions/8080824/how-to-serve-gzipped-assets-from-amazon-s3/15117310#15117310
+[so-question]: https://stackoverflow.com/questions/8080824/how-to-serve-gzipped-assets-from-amazon-s3/15117310#15117310
 "How to serve gzipped assets from Amazon S3"

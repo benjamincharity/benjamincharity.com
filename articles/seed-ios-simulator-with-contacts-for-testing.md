@@ -11,7 +11,8 @@ previousUrl: https://blog.benjamincharity.com/seed-ios-simulator-with-contacts-f
 
 Recently I was tasked with building a custom contacts display/picker for iOS using JavaScript. I needed a way to test my code against a large contacts base to ensure good performance. Unfortunately there didn't seem to be any easy solution.
 
-Of the solutions I found, only one actually worked but it was limited to 200 contacts which didn't put enough stress on my code. If all you need is 200, you can find it here: [DummyContacts][dummy].
+Of the solutions I found, only one actually worked, but it was limited to 200 contacts which didn't put enough 
+stress on my code. If all you need is 200, you can find it here: [DummyContacts][dummy].
 
 I came across an article by [Adam Harris][adam] who had devised a [clever way][20000] to build a VCard with 20,000 contacts. He even offers that VCard for download. Unfortunately, importing 20,000 contacts locked up my simulator.
 
@@ -65,41 +66,41 @@ Now we simply need to open the Contacts app in the simulator and drop the downlo
 - [Gist with all project files][fullgist]
 - [JSON Generator template][template]
 - [VCard to JSON library][vcard]
-- [VCard with 1,000 contacts](http://cdn.benjamincharity.com/vcards/contacts0-1000.vcf)
-- [VCard with 1,000 (different) contacts](http://cdn.benjamincharity.com/vcards/contacts1000-2000.vcf)
-- [Zip of all VCards](http://cdn.benjamincharity.com/vcards/ContactsVCards.zip)
+- [VCard with 1,000 contacts](https://cdn.benjamincharity.com/vcards/contacts0-1000.vcf)
+- [VCard with 1,000 (different) contacts](https://cdn.benjamincharity.com/vcards/contacts1000-2000.vcf)
+- [Zip of all VCards](https://cdn.benjamincharity.com/vcards/ContactsVCards.zip)
 
 ##### Batches of 100 contacts per VCard:
 
-- [VCard 1-100](http://cdn.benjamincharity.com/vcards/contacts1-100.vcf)
-- [VCard 101-200](http://cdn.benjamincharity.com/vcards/contacts101-200.vcf)
-- [VCard 201-300](http://cdn.benjamincharity.com/vcards/contacts201-300.vcf)
-- [VCard 301-400](http://cdn.benjamincharity.com/vcards/contacts301-400.vcf)
-- [VCard 401-500](http://cdn.benjamincharity.com/vcards/contacts401-500.vcf)
-- [VCard 501-600](http://cdn.benjamincharity.com/vcards/contacts501-600.vcf)
-- [VCard 601-700](http://cdn.benjamincharity.com/vcards/contacts601-700.vcf)
-- [VCard 701-800](http://cdn.benjamincharity.com/vcards/contacts701-800.vcf)
-- [VCard 801-900](http://cdn.benjamincharity.com/vcards/contacts801-900.vcf)
-- [VCard 901-1000](http://cdn.benjamincharity.com/vcards/contacts901-1000.vcf)
-- [VCard 1001-1100](http://cdn.benjamincharity.com/vcards/contacts1001-1100.vcf)
-- [VCard 1101-1200](http://cdn.benjamincharity.com/vcards/contacts1101-1200.vcf)
-- [VCard 1201-1300](http://cdn.benjamincharity.com/vcards/contacts1201-1300.vcf)
-- [VCard 1301-1400](http://cdn.benjamincharity.com/vcards/contacts1301-1400.vcf)
-- [VCard 1401-1500](http://cdn.benjamincharity.com/vcards/contacts1401-1500.vcf)
-- [VCard 1501-1600](http://cdn.benjamincharity.com/vcards/contacts1501-1600.vcf)
-- [VCard 1601-1700](http://cdn.benjamincharity.com/vcards/contacts1601-1700.vcf)
-- [VCard 1701-1800](http://cdn.benjamincharity.com/vcards/contacts1701-1800.vcf)
-- [VCard 1801-1900](http://cdn.benjamincharity.com/vcards/contacts1801-1900.vcf)
-- [VCard 1901-2000](http://cdn.benjamincharity.com/vcards/contacts1901-2000.vcf)
+- [VCard 1-100](https://cdn.benjamincharity.com/vcards/contacts1-100.vcf)
+- [VCard 101-200](https://cdn.benjamincharity.com/vcards/contacts101-200.vcf)
+- [VCard 201-300](https://cdn.benjamincharity.com/vcards/contacts201-300.vcf)
+- [VCard 301-400](https://cdn.benjamincharity.com/vcards/contacts301-400.vcf)
+- [VCard 401-500](https://cdn.benjamincharity.com/vcards/contacts401-500.vcf)
+- [VCard 501-600](https://cdn.benjamincharity.com/vcards/contacts501-600.vcf)
+- [VCard 601-700](https://cdn.benjamincharity.com/vcards/contacts601-700.vcf)
+- [VCard 701-800](https://cdn.benjamincharity.com/vcards/contacts701-800.vcf)
+- [VCard 801-900](https://cdn.benjamincharity.com/vcards/contacts801-900.vcf)
+- [VCard 901-1000](https://cdn.benjamincharity.com/vcards/contacts901-1000.vcf)
+- [VCard 1001-1100](https://cdn.benjamincharity.com/vcards/contacts1001-1100.vcf)
+- [VCard 1101-1200](https://cdn.benjamincharity.com/vcards/contacts1101-1200.vcf)
+- [VCard 1201-1300](https://cdn.benjamincharity.com/vcards/contacts1201-1300.vcf)
+- [VCard 1301-1400](https://cdn.benjamincharity.com/vcards/contacts1301-1400.vcf)
+- [VCard 1401-1500](https://cdn.benjamincharity.com/vcards/contacts1401-1500.vcf)
+- [VCard 1501-1600](https://cdn.benjamincharity.com/vcards/contacts1501-1600.vcf)
+- [VCard 1601-1700](https://cdn.benjamincharity.com/vcards/contacts1601-1700.vcf)
+- [VCard 1701-1800](https://cdn.benjamincharity.com/vcards/contacts1701-1800.vcf)
+- [VCard 1801-1900](https://cdn.benjamincharity.com/vcards/contacts1801-1900.vcf)
+- [VCard 1901-2000](https://cdn.benjamincharity.com/vcards/contacts1901-2000.vcf)
 
 
 
 
-[plunkr]: http://plnkr.co/edit/0Q1gz3BLocaIFg2B0rVH?p=preview
+[plunkr]: https://plnkr.co/edit/0Q1gz3BLocaIFg2B0rVH?p=preview
 [template]: https://gist.github.com/benjamincharity/c295aea01a74b036fec0
 [fullgist]: https://gist.github.com/benjamincharity/ac35ac288552feee349a
 [json]: https://next.json-generator.com/
 [vcard]: https://github.com/andrewppace/vcard-json
 [adam]: https://github.com/aharris88
-[20000]: http://www.adamwadeharris.com/heres-how-i-created-20000-fake-contacts-on-the-iphone/
+[20000]: https://www.adamwadeharris.com/heres-how-i-created-20000-fake-contacts-on-the-iphone/
 [dummy]: https://github.com/Janak-Nirmal/DummyContacts

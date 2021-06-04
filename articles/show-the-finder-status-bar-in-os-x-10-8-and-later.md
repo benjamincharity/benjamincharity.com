@@ -13,10 +13,10 @@ The Finder status bar offered a quick reference to how many files/folders existe
 with your hard-drive's available space.
 
 Finder, _without_ the status bar:
-![Finder without the status bar](http://cdn.benjamincharity.com/blog_content/2015/withoutStatusBar.jpg)
+![Finder without the status bar](https://cdn.benjamincharity.com/blog_content/2015/withoutStatusBar.jpg)
 
 Finder, _with_ the status bar:
-![Finder with the status bar](http://cdn.benjamincharity.com/blog_content/2015/withStatusBar.jpg)
+![Finder with the status bar](https://cdn.benjamincharity.com/blog_content/2015/withStatusBar.jpg)
 
 It turns out that rather than removing it, Apple simply defaulted it to hidden (at least since 10.8).
 

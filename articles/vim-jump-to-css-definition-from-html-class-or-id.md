@@ -14,7 +14,7 @@ jump from a class or ID within an HTML document directly to the associated style
 
 Place this function in your `.vimrc` file:
 
-```javascript
+```vim
 function! JumpToCSS()
   let id_pos = searchpos("id", "nb", line('.'))[1]
   let class_pos = searchpos("class", "nb", line('.'))[1]
@@ -34,7 +34,7 @@ reference your SCSS/LESS/CSS/etc directory (don't forget to change the extension
 
 Inside Vim, open an HTML document and place your cursor over a class or ID and run the function by typing:
 
-```bash
+```vim
 :call JumpToCSS()
 ```
 
@@ -44,10 +44,10 @@ Once the query finishes, Vim will open the file and take you to the correct styl
 
 > **Bonus:** If you love your keyboard shorcuts like I do, add a quick shortcut to your `.vimrc`:
 
-```bash
+```vim
 nnoremap <leader>] :call JumpToCSS()
 ```
 
 This will allow you to simply hit your leader key followed by a closing bracket: `]` to call the function.
 
-[so]: http://stackoverflow.com/questions/12833189/jump-to-css-selector-in-a-css-file-from-the-html-file-in-vim-using-a-single-keys
+[so]: https://stackoverflow.com/questions/12833189/jump-to-css-selector-in-a-css-file-from-the-html-file-in-vim-using-a-single-keys

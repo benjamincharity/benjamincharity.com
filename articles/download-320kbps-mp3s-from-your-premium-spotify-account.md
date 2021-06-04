@@ -161,12 +161,12 @@ The only other thing that I wish Spotijay did out of the box was support differe
 
 
 [spotijay]: https://github.com/alexperezpaya/Spotijay
-[homebrew]: http://brew.sh/
+[homebrew]: https://brew.sh/
 [spotify_keys]: https://devaccount.spotify.com/my-account/keys/
 [npm]: https://www.npmjs.com/
 [forever]: https://github.com/foreverjs/forever
 [install_error]: https://github.com/alexperezpaya/Spotijay/issues/3
 [libspotify_name]: https://github.com/alexperezpaya/Spotijay/issues/5
 [spotijay_docs]: https://github.com/alexperezpaya/Spotijay/blob/master/README.md
-[web_player]: http://play.spotify.com
+[web_player]: https://play.spotify.com
 [track]: https://github.com/alexperezpaya/Spotijay/blob/master/app.js#L103-L111

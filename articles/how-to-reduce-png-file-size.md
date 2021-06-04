@@ -26,7 +26,6 @@ However, if we replace the opacities with a sample of the color created by the o
 
 ### Further Reading
 
-- [Great StackOverflow post explaining different image formats and their benefits & drawbacks](http://stackoverflow.
-  com/a/7752936/722367)
-- [Why you can't zip PNGs](https://www.ou.edu/class/digitalmedia/articles/CompressionMethods_Gif_Jpeg_PNG.html)
-- [Finer details about the types](http://theydiffer.com/difference-between-gif-png-and-jpg/)
+- [Great StackOverflow post explaining different image formats and their benefits & drawbacks](http://stackoverflow.com/a/7752936/722367)
+- _[dead link removed]_
+- _[dead link removed]_

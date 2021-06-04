@@ -38,14 +38,14 @@ Personally, I'm a fan of using _Sign In_ and _Create an Account_.
 
 ### Further Reading
 
-- http://loginisnotaverb.com/
-- http://www.quora.com/Diction-and-Word-Usage/Which-is-correct-Login-or-Log-In
-- http://www.leemunroe.com/login-vs-signin/
-- http://grammarpartyblog.com/2013/09/05/log-in-vs-login/
-- http://grammarist.com/spelling/log-in-login/
-- http://ux.stackexchange.com/questions/1080/using-sign-in-vs-using-log-in
-- http://www.quora.com/What-is-the-difference-between-sign-in-and-log-in-and-how-websites-choose-one-VS-the-other
+- https://loginisnotaverb.com/
+- https://www.quora.com/Diction-and-Word-Usage/Which-is-correct-Login-or-Log-In
+- https://www.leemunroe.com/login-vs-signin/
+- https://grammarpartyblog.com/2013/09/05/log-in-vs-login/
+- https://grammarist.com/spelling/log-in-login/
+- https://ux.stackexchange.com/questions/1080/using-sign-in-vs-using-log-in
+- https://www.quora.com/What-is-the-difference-between-sign-in-and-log-in-and-how-websites-choose-one-VS-the-other
 
 
 [nielson]: https://www.nngroup.com
-[monroe]: http://www.leemunroe.com/login-vs-signin/
+[monroe]: https://www.leemunroe.com/login-vs-signin/

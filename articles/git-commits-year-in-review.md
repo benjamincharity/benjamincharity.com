@@ -23,7 +23,7 @@ I created a post-commit git hook that would take a picture with the built in web
 
 Inside the `post-commit` file paste this snippet:
 
-```ruby
+```bash
 #!/usr/bin/env ruby
 file="~/Dropbox/gitshots/#{Time.now.to_i}.jpg"
 puts "Taking capture into #{file}!"
@@ -45,19 +45,19 @@ If you want to create a movie or gif from your gitshots, you will need to instal
 
 If you are a [homebrew][3] user, simply brew install:
 
-```ruby
+```bash
 brew install imagemagick
 ```
 
 Once ImageMagick is installed, navigate into your gitshots directory and run this command:
 
-```ruby
+```bash
 convert -quality 100 -delay 30 *.jpg _myGifName.gif
 ```
 
 Or for a movie:
 
-```ruby
+```bash
 convert -quality 100 -delay 30 *.jpg _myMovieName.mp4
 ```
 
@@ -75,12 +75,12 @@ Templates for git hooks live in `~/.git_template/hooks/`. Simply drop in your `p
 
 Since the video creation wouldn't work, here is a sample Gif.
 
-![Gitshots Year In Review](http://cdn.benjamincharity.com/2014/2014_gitshots.gif)
+![Gitshots Year In Review](https://cdn.benjamincharity.com/2014/2014_gitshots.gif)
 
 
-[1]: http://dropbox.com
-[2]: http://www.imagemagick.org
-[3]: http://brew.sh/
-[4]: http://www.imagemagick.org/script/convert.php
-[5]: http://www.imagemagick.org/script/command-line-options.php#delay
-[6]: http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+[1]: https://dropbox.com
+[2]: https://www.imagemagick.org
+[3]: https://brew.sh/
+[4]: https://www.imagemagick.org/script/convert.php
+[5]: https://www.imagemagick.org/script/command-line-options.php#delay
+[6]: https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks

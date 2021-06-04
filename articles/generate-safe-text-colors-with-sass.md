@@ -115,9 +115,9 @@ There it is. A sass function that will return a safe text color for any backgrou
 For further learning check out [SassMe][sassMe] to see the Sass functions I use in action.
 
 [gist]: https://gist.github.com/benjamincharity/8531621.js
-[colorFunctions]: http://sass-lang.com/documentation/Sass/Script/Functions.html
-[firstTry]: http://sassmeister.com/gist/benjamincharity/8546697
-[secondTry]: http://sassmeister.com/gist/benjamincharity/8531621
-[finalTry]: http://sassmeister.com/gist/benjamincharity/8548185
-[dangerZone]: http://youtu.be/RRU3I_o1vLc
-[sassMe]: http://sassme.arc90.com/
+[colorFunctions]: https://sass-lang.com/documentation/Sass/Script/Functions.html
+[firstTry]: https://sassmeister.com/gist/benjamincharity/8546697
+[secondTry]: https://sassmeister.com/gist/benjamincharity/8531621
+[finalTry]: https://sassmeister.com/gist/benjamincharity/8548185
+[dangerZone]: https://youtu.be/RRU3I_o1vLc
+[sassMe]: https://sassme.arc90.com/

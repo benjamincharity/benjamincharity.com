@@ -37,5 +37,5 @@ An incredibly easy fix to get your design looking [streets ahead][1] in smaller 
 ![A website with padding](https://blog.benjamincharity.com/content/images/2014/Jan/padding02.jpg)
 
 
-[1]: http://youtu.be/rf1GSjo4zSY
+[1]: https://youtu.be/rf1GSjo4zSY
 "Streets ahead as defined by Pierce Hawthorne."

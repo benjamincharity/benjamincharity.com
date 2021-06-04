@@ -22,4 +22,4 @@ According to his account:
 
 [1]: *The User Experience Team of One* - Leah Buley
 
-[dNorman]: http://www.jnd.org/
+[dNorman]: https://www.jnd.org/
