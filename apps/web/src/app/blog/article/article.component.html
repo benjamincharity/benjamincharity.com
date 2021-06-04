@@ -12,6 +12,20 @@
     >
   </nav>
   <div class="article__content">
+    <ng-container *ngIf="(allArticles$ | async)?.length < 1">
+      <ng-container *ngFor="let skeleton of skeletonCount">
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="skeletonSizes.title"
+        ></ngx-skeleton-loader>
+
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="skeletonSizes.description"
+        ></ngx-skeleton-loader>
+      </ng-container>
+    </ng-container>
+
     <scully-content></scully-content>
   </div>
 

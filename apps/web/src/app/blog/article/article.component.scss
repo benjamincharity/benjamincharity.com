@@ -1,15 +1,15 @@
 @import '../../../styles/5-elements/link';
 @import '../../../styles/5-elements/hr';
 
-:host {
+bc-article {
+  --article-link-color: var(--app-color-accent-1);
+  --article-maxWidth: 640px;
+
   display: block;
   font-family: var(--font-stack-serif);
 }
 
 .article {
-  --article-link-color: var(--app-color-accent-1);
-  --article-maxWidth: 640px;
-
   margin: auto;
   max-width: var(--article-maxWidth);
   padding: clamp(6px, 1rem, 2rem);

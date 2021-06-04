@@ -66,15 +66,13 @@ export class ArticlesComponent implements OnInit {
       width: '70%',
     },
   };
-  allArticles$ = this.scullyService.visibleArticles$.pipe(
-    tap((a) => console.log('articles: ', a))
-  );
-  allTags$: BehaviorSubject<readonly ArticleTags[]> = this.scullyService
-    .allTags$;
+  allArticles$ = this.scullyService.visibleArticles$;
+  allTags$: BehaviorSubject<readonly ArticleTags[]> =
+    this.scullyService.allTags$;
   currentTag$ = new BehaviorSubject<ArticleTags | null>(null);
   navigationEnd$ = this.router.events.pipe(
     untilDestroyed(this),
-    filter((e): e is NavigationEnd => e instanceof NavigationEnd)
+    filter((e): e is NavigationEnd => e instanceof NavigationEnd),
   );
 
   @HostBinding('class.bc-articles') baseClass = true;
@@ -84,13 +82,13 @@ export class ArticlesComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private scully: ScullyRoutesService,
-    private scullyService: ScullyService
+    private scullyService: ScullyService,
   ) {}
 
   ngOnInit(): void {
     const initialTag = pluckTagFromUrl(this.router.url);
     this.handleTagChange(
-      typeGuardArticleTags(initialTag) ? initialTag : undefined
+      typeGuardArticleTags(initialTag) ? initialTag : undefined,
     );
     this.navigationEnd$.pipe().subscribe((b) => {
       const tag = pluckTagFromUrl(b.url);
@@ -99,7 +97,7 @@ export class ArticlesComponent implements OnInit {
 
     this.metafrenzyService.setAllTitleTags('Articles | Benjamin Charity');
     this.metafrenzyService.setAllDescriptionTags(
-      'Articles on UI, UX and Design Systems by Benjamin Charity'
+      'Articles on UI, UX and Design Systems by Benjamin Charity',
     );
   }
 

@@ -2,6 +2,7 @@ import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
@@ -11,7 +12,7 @@ import {
 } from 'angular-animations';
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { combineLatest } from 'rxjs';
-import { map, pluck, tap } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 
 import { HighlightService } from '../../shared/highlight.service';
 
@@ -24,6 +25,7 @@ import { HighlightService } from '../../shared/highlight.service';
     fadeOutDownOnLeaveAnimation({ duration: 300, translate: '16px' }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements AfterViewChecked {
   articleMetadata$ = combineLatest([

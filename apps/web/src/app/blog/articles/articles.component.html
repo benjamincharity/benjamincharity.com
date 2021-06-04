@@ -16,16 +16,18 @@
     </div>
   </div>
 
-  <ng-container *ngFor="let skeleton of skeletonCount">
-    <ngx-skeleton-loader
-      count="1"
-      [theme]="skeletonSizes.title"
-    ></ngx-skeleton-loader>
+  <ng-container *ngIf="(allArticles$ | async)?.length < 1">
+    <ng-container *ngFor="let skeleton of skeletonCount">
+      <ngx-skeleton-loader
+        count="1"
+        [theme]="skeletonSizes.title"
+      ></ngx-skeleton-loader>
 
-    <ngx-skeleton-loader
-      count="1"
-      [theme]="skeletonSizes.description"
-    ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        count="1"
+        [theme]="skeletonSizes.description"
+      ></ngx-skeleton-loader>
+    </ng-container>
   </ng-container>
 
   <ul
