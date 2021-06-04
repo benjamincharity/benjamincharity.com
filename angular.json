@@ -32,12 +32,12 @@
               ],
               "namedChunks": false,
               "optimization": {
+                "fonts": true,
                 "scripts": true,
                 "styles": {
-                  "minify": true,
-                  "inlineCritical": true
-                },
-                "fonts": true
+                  "inlineCritical": true,
+                  "minify": true
+                }
               },
               "outputHashing": "all",
               "sourceMap": false,
@@ -50,25 +50,28 @@
               "apps/web/src/assets",
               "apps/web/src/manifest.webmanifest"
             ],
+            "buildOptimizer": false,
+            "extractLicenses": false,
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
+            "namedChunks": true,
+            "ngswConfigPath": "apps/web/ngsw-config.json",
+            "optimization": false,
             "outputPath": "dist/web/browser",
             "polyfills": "apps/web/src/polyfills.ts",
             "scripts": [],
+            "serviceWorker": true,
+            "sourceMap": true,
             "styles": [
               "apps/web/src/styles.scss",
               "node_modules/prismjs/plugins/toolbar/prism-toolbar.css",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+              "node_modules/prismjs/plugins/diff-highlight/prism-diff-highlight.css",
+              "node_modules/prismjs/plugins/inline-color/prism-inline-color.css",
               "node_modules/prismjs/themes/prism-solarizedlight.css"
             ],
             "tsConfig": "apps/web/tsconfig.app.json",
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "serviceWorker": true,
-            "ngswConfigPath": "apps/web/ngsw-config.json"
+            "vendorChunk": true
           }
         },
         "extract-i18n": {
@@ -84,6 +87,13 @@
               "apps/web/src/**/*.ts",
               "apps/web/src/**/*.html"
             ]
+          }
+        },
+        "scully": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["npm run scully --scanRoutes", "npm run scully serve"],
+            "parallel": false
           }
         },
         "serve": {
@@ -104,16 +114,9 @@
             "passWithNoTests": true
           },
           "outputs": ["coverage/apps/web"]
-        },
-        "scully": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["npm run scully --scanRoutes", "npm run scully serve"],
-            "parallel": false
-          }
         }
       },
-      "prefix": "bc",
+      "prefix": "web",
       "projectType": "application",
       "root": "apps/web",
       "sourceRoot": "apps/web/src"
