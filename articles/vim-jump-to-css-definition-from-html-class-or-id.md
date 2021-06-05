@@ -42,7 +42,7 @@ Once the query finishes, Vim will open the file and take you to the correct styl
 
 ---
 
-> **Bonus:** If you love your keyboard shorcuts like I do, add a quick shortcut to your `.vimrc`:
+> **Bonus:** If you love your keyboard shortcuts like I do, add a quick shortcut to your `.vimrc`:
 
 ```vim
 nnoremap <leader>] :call JumpToCSS()

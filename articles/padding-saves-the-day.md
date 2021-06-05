@@ -14,17 +14,17 @@ overlook for the umpteenth time, I decided, what the hell.
 
 ## Breathing Room
 
-As an application's UI is designed and built out, we are often in our own
-special little silo. Whether that silo is designing an app within the forgiving boundaries of a design document or
-developing within a fixed container centered gently within the viewport.
+As an application's UI is designed and built out, we are often in our own special little silo. Whether that silo is
+designing an app within the forgiving boundaries of a design document or developing within a fixed container
+centered gently within the viewport.
 
-Thought and effort go into designing the UI and then that beautiful UI is jammed inside a frame with no room to
+Thought and effort go into designing the UI and then that beautiful UI gets jammed inside a frame with no room to
 breathe inside smaller viewports.
 
 ![A website without padding](assets/blog/padding.jpg)
 
 Simply adding padding to the primary container does the trick. In small websites I may use the `<body>` element, but
-in applications I usually have an app container element.
+in applications I usually have an application 'container' element.
 
 ```css
 .window {

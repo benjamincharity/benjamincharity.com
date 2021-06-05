@@ -52,10 +52,15 @@ bc-article {
 
 // Styles for article markdown content
 .article__content {
+  --content-lineHeight: 1.4em;
   margin-bottom: 1rem;
 
   h1:first-of-type {
     margin-top: 0;
+  }
+
+  p {
+    line-height: var(--content-lineHeight);
   }
 
   pre {
@@ -89,6 +94,7 @@ bc-article {
     @include fancy-hr;
   }
 
+  kbd,
   :not(pre) > code {
     background-color: var(--color-inlineCode-backgroundColor);
     border-radius: 4px;
@@ -102,6 +108,8 @@ bc-article {
   }
 
   img {
+    display: inline-block;
+    outline: 1px solid var(--color-image-outline);
     max-width: 100%;
   }
 
@@ -110,6 +118,7 @@ bc-article {
   }
 
   ul {
+    line-height: var(--content-lineHeight);
     list-style: square outside;
     margin-left: 1.4rem;
 

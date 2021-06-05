@@ -12,13 +12,14 @@ previousUrl: https://blog.benjamincharity.com/how-to-reduce-png-file-size/
 Because the PNG format can compress solid colors more efficiently than opacity (info at the end), if we flatten any 
 opacities before exporting the image, it can drastically reduce file size.
 
-For example, when the fills in this image are set to white with an opacity of 50%, the exported PNG weighs in around 45kb.
+For example, when the fills in this image are set to white with an opacity of 50%, the exported PNG weighs in around 
+45kb.
 
-![opacity.png](assets/blog/opacity_1.png)
+![A promotional design created using opacity](assets/blog/opacity_1.png)
 
 However, if we replace the opacities with a sample of the color created by the opacity:
 
-![Finder - images - Screen Shot January 21, 2016 at 11-38 AM.png](assets/blog/opacity_2.png)
+![The same design as above created without opacity](assets/blog/opacity_2.png)
 
 ...the file size comes down to around 25kb.
 
@@ -26,6 +27,8 @@ However, if we replace the opacities with a sample of the color created by the o
 
 ### Further Reading
 
-- [Great StackOverflow post explaining different image formats and their benefits & drawbacks](http://stackoverflow.com/a/7752936/722367)
+- Great [StackOverflow post][so-post] explaining different image formats and their benefits & drawbacks.
 - _[dead link removed]_
 - _[dead link removed]_
+
+[so-post]: http://stackoverflow.com/a/7752936/722367

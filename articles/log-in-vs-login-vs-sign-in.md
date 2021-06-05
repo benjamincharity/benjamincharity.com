@@ -9,7 +9,8 @@ previousUrl: https://blog.benjamincharity.com/log-in-vs-login-vs-sign-in/
 
 # Log In vs Login vs Sign In
 
-This is a subjective question, but as a team you may need to come to an agreement on what is 'right' for your product. Here are some snippets of information gathered for a team discussion.
+This is a subjective question, but as a team you may need to come to an agreement on what is 'right' for your 
+product. Here are some snippets of information gathered for a team discussion.
 
 - - -
 
@@ -28,7 +29,7 @@ This is a subjective question, but as a team you may need to come to an agreemen
 ## Login vs Log In
 
 - _Login_ is the noun/adjective form referring to the form, page or actual credentials.
-- _Log In_ is the verb form referring to the action. i.e. _"Use your login credentials to log in via the login page."_
+- _Log In_ is the verb form referring to the action. i.e., _"Use your login credentials to log in via the login page."_
 
 - - -
 
@@ -38,13 +39,13 @@ Personally, I'm a fan of using _Sign In_ and _Create an Account_.
 
 ### Further Reading
 
-- https://loginisnotaverb.com/
-- https://www.quora.com/Diction-and-Word-Usage/Which-is-correct-Login-or-Log-In
-- https://www.leemunroe.com/login-vs-signin/
-- https://grammarpartyblog.com/2013/09/05/log-in-vs-login/
-- https://grammarist.com/spelling/log-in-login/
-- https://ux.stackexchange.com/questions/1080/using-sign-in-vs-using-log-in
-- https://www.quora.com/What-is-the-difference-between-sign-in-and-log-in-and-how-websites-choose-one-VS-the-other
+- <https://loginisnotaverb.com/>
+- <https://www.quora.com/Diction-and-Word-Usage/Which-is-correct-Login-or-Log-In>
+- <https://www.leemunroe.com/login-vs-signin/>
+- <https://grammarpartyblog.com/2013/09/05/log-in-vs-login/>
+- <https://grammarist.com/spelling/log-in-login/>
+- <https://ux.stackexchange.com/questions/1080/using-sign-in-vs-using-log-in>
+- <https://www.quora.com/What-is-the-difference-between-sign-in-and-log-in-and-how-websites-choose-one-VS-the-other>
 
 
 [nielson]: https://www.nngroup.com

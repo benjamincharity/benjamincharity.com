@@ -9,26 +9,33 @@ previousUrl: https://blog.benjamincharity.com/seed-ios-simulator-with-contacts-f
 
 # Seed iOS Simulator with Contacts for Testing
 
-Recently I was tasked with building a custom contacts display/picker for iOS using JavaScript. I needed a way to test my code against a large contacts base to ensure good performance. Unfortunately there didn't seem to be any easy solution.
+Recently I was tasked with building a custom contacts display/picker for iOS using JavaScript. I needed a way to 
+test my code against a large contacts base to ensure good performance. Unfortunately there didn't seem to be any 
+easy solution.
 
 Of the solutions I found, only one actually worked, but it was limited to 200 contacts which didn't put enough 
 stress on my code. If all you need is 200, you can find it here: [DummyContacts][dummy].
 
-I came across an article by [Adam Harris][adam] who had devised a [clever way][20000] to build a VCard with 20,000 contacts. He even offers that VCard for download. Unfortunately, importing 20,000 contacts locked up my simulator.
+I came across an article by [Adam Harris][adam] who had devised a [clever way][20000] to build a VCard with 20,000 
+contacts. He even offers that VCard for download. Unfortunately, importing 20,000 contacts locked up my simulator.
 
-Below I have outlined how I created a 2000 contact VCard for import (heavily based off of Adam's work). Full Plunkr can be found [here][plunkr].
+Below I have outlined how I created a 2000 contact VCard for import (heavily based off of Adam's work). Full Plunkr 
+can be found [here][plunkr].
 
-> A full list of resources along with downloadable VCards containing various amounts of contacts will be available for download at the end of this article.
+> A full list of resources along with downloadable VCards containing various amounts of contacts will be available 
+> for download at the end of this article.
 
 ## Generate a JSON array full of contacts
 
-Luckily there is a great online tool for generating objects with random data called [JSON Generator][json]. You can create an object template using a few custom tags to generate random names/numbers/etc.
+Luckily there is a great online tool for generating objects with random data called [JSON Generator][json]. You can 
+create an object template using a few custom tags to generate random names/numbers/etc.
 
 Here is the [template][template] I used:
 
 <script src="https://gist.github.com/benjamincharity/c295aea01a74b036fec0.js"></script>
 
-I won't dive into the template here. If you are curious about the structure of the object, check out Adam's article (linked above). Also, the custom tags are well explained by the help section on the JSON Generator website.
+I won't dive into the template here. If you are curious about the structure of the object, check out Adam's article 
+(linked above). Also, the custom tags are well explained by the help section on the JSON Generator website.
 
 The primary changes between Adam's template and my own is:
 
@@ -36,7 +43,8 @@ The primary changes between Adam's template and my own is:
 2. All emails are 'fake' e.g. user@gmail9999.com
 3. `n.families` & `n.givens` are strings rather than arrays
 
-> Note: There seems to be a limit of about 100 that the generator will output in one run, so I had to run it several times to copy enough output.
+> Note: There seems to be a limit of about 100 that the generator will output in one run, so I had to run it several 
+> times to copy enough output.
 
 This is what the template and results would look like:
 
@@ -46,19 +54,26 @@ This is what the template and results would look like:
 
 An open source project called [VCard to JSON][vcard] will allow us to convert a contacts object into the VCard format.
 
-**NOTE:** This library expects `n.families` and `n.givens` to contain arrays. However, at the time of this writing, the JSON Generator outputs the same name over and over again across all objects when inside an array. You can find a modified version of this library as part of the [full gist][fullgist] of this process.
+**NOTE:** This library expects `n.families` and `n.givens` to contain arrays. However, at the time of this writing, 
+the JSON Generator outputs the same name over and over again across all objects when inside an array. You can find a 
+modified version of this library as part of the [full gist][fullgist] of this process.
 
-**Note #2:** For some reason, the output always seems to have `undefined` at the beginning. I didn't have the time to debug it, so in the Plunkr, I am simply stripping out the first 9 characters of the string. Hacky, but it gets it done. If anyone takes the time to find a fix, I'll be more than happy to update the Plunkr and this article.
+**Note #2:** For some reason, the output always seems to have `undefined` at the beginning. I didn't have the time 
+to debug it, so in the Plunkr, I am simply stripping out the first 9 characters of the string. Hacky, but it gets it 
+done. If anyone takes the time to find a fix, I'll be more than happy to update the Plunkr and this article.
 
 ## Tie it all together
 
-I created a [plunkr][plunkr] to tie everything together. Simply replace the contents of `contacts.js` with your array of contacts, click 'Create Link' which will create a text file containing all of the VCard formatted contacts, and finally click download to download the file.
+I created a [plunkr][plunkr] to tie everything together. Simply replace the contents of `contacts.js` with your 
+array of contacts, click 'Create Link' which will create a text file containing all the VCard formatted contacts. 
+Finally, click 'download' to download the file.
 
 ## Import the contacts
 
-Now we simply need to open the Contacts app in the simulator and drop the downloaded vcf file onto it. Depending on how many contacts you are importing, it may take a few minutes. (1000 was quite fast though)
+Now we simply need to open the Contacts' application in the simulator and drop the downloaded vcf file onto it. 
+Depending on how many contacts you are importing, it may take a few minutes. (1000 was quite fast though)
 
-- - -
+---
 
 ##### Resources
 
@@ -92,9 +107,6 @@ Now we simply need to open the Contacts app in the simulator and drop the downlo
 - [VCard 1701-1800](https://cdn.benjamincharity.com/vcards/contacts1701-1800.vcf)
 - [VCard 1801-1900](https://cdn.benjamincharity.com/vcards/contacts1801-1900.vcf)
 - [VCard 1901-2000](https://cdn.benjamincharity.com/vcards/contacts1901-2000.vcf)
-
-
-
 
 [plunkr]: https://plnkr.co/edit/0Q1gz3BLocaIFg2B0rVH?p=preview
 [template]: https://gist.github.com/benjamincharity/c295aea01a74b036fec0

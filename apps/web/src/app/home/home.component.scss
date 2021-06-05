@@ -1,7 +1,5 @@
 :root {
   --nav-link-fontSize: 1.6rem;
-  --nav-column-count: 2;
-  --nav-column-count-desktop: 4;
   --section-height: calc(100vh / 5);
 }
 
@@ -46,7 +44,6 @@
   }
 }
 
-// <nav>
 .navigation {
   padding: 1rem 0;
 
@@ -55,20 +52,16 @@
     margin: 0;
     padding: 0;
 
-    @media only screen and (min-width: 800px) {
-      --nav-column-count: var(--nav-column-count-desktop);
-    }
-
     &-item {
       display: inline-block;
 
-      @media only screen and (max-height: 679px) {
+      @media only screen and (max-height: 660px) {
         &:not(:last-of-type) {
           margin-right: 1.4em;
         }
       }
 
-      @media only screen and (min-height: 680px) {
+      @media only screen and (min-height: 660px) {
         display: block;
       }
     }
@@ -106,24 +99,15 @@
 }
 
 .companies {
-  --scale: 0.7;
-  --desktop-scale: 1;
-  //--companies-maxWidth: 90vw;
   --companies-maxWidth: clamp(400px, 90vw, 600px);
-  --scale: var(--desktop-scale);
 
   align-items: center;
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
 
-  @media only screen and (min-width: 800px) {
-    //--companies-maxWidth: clamp(400px, 60vw, 640px);
-    --scale: var(--desktop-scale);
-  }
-
   &__title {
-    font-size: calc(var(--scale) * 1.2rem);
+    font-size: 1.2rem;
     opacity: 0.6;
     margin: 0 0 0.4em 0;
     text-decoration-color: inherit;
@@ -136,17 +120,21 @@
   }
 
   &__list {
-    font-size: calc(var(--scale) * 1.2rem);
+    font-size: 1rem;
     list-style: none;
     padding: 0;
     max-width: var(--companies-maxWidth);
+
+    @media only screen and (min-width: 680px) {
+      font-size: 1.2rem;
+    }
   }
 
   &__company {
     display: inline-block;
     line-height: 1em;
-    margin-right: calc(var(--scale) * 0.6em);
-    padding: 0.1em calc(var(--scale) * 0.6em) 0.1em 0.2em;
+    margin-right: 0.6em;
+    padding: 0.1em 0.6em 0.1em 0.2em;
     pointer-events: auto;
     position: relative;
     white-space: nowrap;

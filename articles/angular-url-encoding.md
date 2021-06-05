@@ -17,7 +17,7 @@ This is dead simple thanks to JavaScript's `encodeURI` and `decodeURI`. Take a l
 
 <iframe style="width: 100%; height: 600px" src="https://embed.plnkr.co/oPJZWt/?show=preview" frameborder="0" allowfullscren="allowfullscren"></iframe>
 
-Feel free to [grab it on Github](https://github.com/benjamincharity/angular-url-encode) or [offer any improvements](https://github.com/benjamincharity/angular-url-encode/issues).
+Feel free to [grab it on Github][gh] or [offer any improvements][issues].
 
 ---
 
@@ -25,3 +25,6 @@ Feel free to [grab it on Github](https://github.com/benjamincharity/angular-url-
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI>
+
+[gh]: https://github.com/benjamincharity/angular-url-encode
+[issues]: https://github.com/benjamincharity/angular-url-encode/issues
