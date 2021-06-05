@@ -1,7 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
+  Inject,
   ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +15,11 @@ import {
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { combineLatest } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
+import {
+  blogDescription,
+  blogImagePath,
+  siteTitle,
+} from '../../shared/content.constants';
 
 import { HighlightService } from '../../shared/highlight.service';
 
@@ -38,23 +45,22 @@ export class ArticleComponent implements AfterViewChecked {
   );
 
   constructor(
+    @Inject(DOCUMENT) private readonly document: Document,
     private activatedRoute: ActivatedRoute,
     private highlightService: HighlightService,
     private readonly metafrenzyService: MetafrenzyService,
     private scully: ScullyRoutesService,
   ) {}
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     this.highlightService.highlightAll();
     this.articleMetadata$.subscribe((m) => {
-      if (m?.title) {
-        const title = m.title;
-        this.metafrenzyService.setAllTitleTags(title);
-      }
-      if (m?.description) {
-        const description = m.description;
-        this.metafrenzyService.setAllDescriptionTags(description);
-      }
+      this.metafrenzyService.setTags({
+        title: m?.title ?? siteTitle,
+        description: m?.description ?? blogDescription,
+        url: this.document.documentURI.split('?')[0],
+        image: blogImagePath,
+      });
     });
   }
 }

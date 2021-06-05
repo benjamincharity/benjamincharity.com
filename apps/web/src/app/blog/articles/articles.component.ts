@@ -1,7 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   HostBinding,
+  Inject,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
@@ -11,7 +13,12 @@ import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { fadeInUpOnEnterAnimation } from 'angular-animations';
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { BehaviorSubject } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
+import {
+  blogDescription,
+  blogImagePath,
+  siteTitle,
+} from '../../shared/content.constants';
 
 import { ArticleTags, ScullyService } from '../../shared/scully.service';
 
@@ -78,6 +85,7 @@ export class ArticlesComponent implements OnInit {
   @HostBinding('class.bc-articles') baseClass = true;
 
   constructor(
+    @Inject(DOCUMENT) private readonly document: Document,
     private readonly metafrenzyService: MetafrenzyService,
     private route: ActivatedRoute,
     private router: Router,
@@ -95,10 +103,12 @@ export class ArticlesComponent implements OnInit {
       this.handleTagChange(typeGuardArticleTags(tag) ? tag : undefined);
     });
 
-    this.metafrenzyService.setAllTitleTags('Articles | Benjamin Charity');
-    this.metafrenzyService.setAllDescriptionTags(
-      'Articles on UI, UX and Design Systems by Benjamin Charity',
-    );
+    this.metafrenzyService.setTags({
+      title: siteTitle,
+      description: blogDescription,
+      url: this.document.documentURI.split('?')[0],
+      image: blogImagePath,
+    });
   }
 
   handleTagChange(tag: ArticleTags | undefined): void {

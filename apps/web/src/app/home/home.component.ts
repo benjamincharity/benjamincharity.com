@@ -20,6 +20,11 @@ import {
   fadeUpDistance,
   fadeUpDuration,
 } from '../shared/animation.constants';
+import {
+  homeDescription,
+  homeImagePath,
+  siteTitle,
+} from '../shared/content.constants';
 import { ScullyService } from '../shared/scully.service';
 import { COMPANIES } from './companies.data';
 import { Link, NAVIGATION_LINKS } from './navigation.data';
@@ -72,10 +77,12 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.metafrenzyService.setAllTitleTags('Benjamin Charity - UX Engineer');
-    this.metafrenzyService.setAllDescriptionTags(
-      'Benjamin Charity - UX, UI, and design systems engineer',
-    );
+    this.metafrenzyService.setTags({
+      title: siteTitle,
+      description: homeDescription,
+      url: this.document.documentURI.split('?')[0],
+      image: homeImagePath,
+    });
   }
 
   @HostListener('window:keyup', ['$event'])
