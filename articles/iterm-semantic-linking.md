@@ -12,7 +12,7 @@ previousUrl: https://blog.benjamincharity.com/iterm-semantic-linking/
 I just learned that [iTerm 2][iterm] supports semantic linking (at the time of this article I'm on 2.9.2). Now any file
 path printed to the terminal can be <kbd>⌘+click</kbd> to open the file in your default editor.
 
-![iTerm Semantic Links](https://blog.benjamincharity.com/content/images/2020/07/iTermSemanticLinks.gif)
+![iTerm Semantic Links](assets/blog/iTermSemanticLinks.gif)
 
 > _**Learn more:** [iTerm2 Documentation][iterm_docs]<br>
 > (search in page for `semantic`)_

@@ -40,7 +40,7 @@ The primary changes between Adam's template and my own is:
 
 This is what the template and results would look like:
 
-![Generated example](https://blog.benjamincharity.com/content/images/2015/05/generatorExample.png)
+![Generated example](assets/blog/generatorExample.png)
 
 ## Convert the array into a VCard text file
 

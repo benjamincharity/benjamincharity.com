@@ -19,7 +19,7 @@ was looking into fine-tuning the performance of my site I quickly ran into a wal
 
 ## The gzip mystery
 
-![Fred Jones ready to unmask a villain](https://blog.benjamincharity.com/content/images/2014/Jan/unmasking.jpg)
+![Fred Jones ready to unmask a villain](assets/blog/unmasking.jpg)
 
 This was before many of the new tools like [Yeoman][yeoman] or [GruntJS][grunt] ever crossed my path, so my method 
 was to gzip from the command line and FTP the files to my S3 bucket. However, no matter what I tried I simply saw 
@@ -45,7 +45,7 @@ other person deploying their entire site to S3. Or maybe just no one that cared 
 
 ## The gzip answer
 
-![Fred Jones solves the case](https://blog.benjamincharity.com/content/images/2014/Jan/unmasked.jpg)
+![Fred Jones solves the case](assets/blog/unmasked.jpg)
 
 Come to find out, it was all about the content-encoding. The tricky part is that while Amazon offers handy dropdowns 
 with values for both `content-type` and `content-encoding`, the options we need are not in the lists by default. So 
@@ -54,7 +54,7 @@ these options have not been added after all this time.)
 
 Head to your bucket and highlight your gzipped file and click on the 'Properties' tab. Then expand the metadata section.
 
-![Open the metadata section](https://blog.benjamincharity.com/content/images/2014/Jan/metadata.jpg)
+![Open the metadata section](assets/blog/metadata.jpg)
 
 If you don't see these three options, just click the 'Add more metadata' button and select the missing ones. Now, 
 for the value of `content-type` input `text/css`, `text/js` or `text/html` to match the type of gzipped file you 

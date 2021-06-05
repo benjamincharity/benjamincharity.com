@@ -81,7 +81,7 @@ comes in at 50% lightness), a lighter text will still be incredibly hard to read
 
 After trying color after color I came up with what I call [The Danger Zone][dangerZone] of the HSL color space.
 
-![The danger zone of the HSL color space](https://blog.benjamincharity.com/content/images/2014/12/hsl.jpg)
+![The danger zone of the HSL color space][hsl]
 
 Lightness is defined on a vertical scale from 0 to 100 while Hue is defined on a horizontal scale from 0<sup>o</sup> to 360<sup>o</sup>.
 
@@ -121,3 +121,4 @@ For further learning check out [SassMe][sassMe] to see the Sass functions I use 
 [finalTry]: https://sassmeister.com/gist/benjamincharity/8548185
 [dangerZone]: https://youtu.be/RRU3I_o1vLc
 [sassMe]: https://sassme.arc90.com/
+[hsl]: assets/blog/hsl.jpg

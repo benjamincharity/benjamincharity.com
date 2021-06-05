@@ -75,7 +75,7 @@ Templates for git hooks live in `~/.git_template/hooks/`. Simply drop in your `p
 
 Since the video creation wouldn't work, here is a sample Gif.
 
-![Gitshots Year In Review](https://cdn.benjamincharity.com/2014/2014_gitshots.gif)
+![Gitshots Year In Review](assets/blog/2014_gitshots.gif)
 
 
 [1]: https://dropbox.com
