@@ -1,0 +1,28 @@
+{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    }
+  },
+  "npmScope": "web",
+  "projects": {
+    "web": {
+      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "accessToken": "NWZjNTljMzItNGEyMi00NjBkLWJkNDQtZjJlZTViYzhlNTc4fHJlYWQtd3JpdGU=",
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      },
+      "runner": "@nrwl/nx-cloud"
+    }
+  }
+}
