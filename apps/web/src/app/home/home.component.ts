@@ -10,8 +10,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { fadeInUpOnEnterAnimation } from 'angular-animations';
 import { MetafrenzyService } from 'ngx-metafrenzy';
+import { buildCanonicalUrl } from '../app-routing.module';
 
 import { CanvasComponent, shuffle } from '../canvas/canvas.component';
 import { Palette, PALETTES } from '../canvas/palettes.data';
@@ -70,8 +72,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private readonly metafrenzyService: MetafrenzyService,
+    private metafrenzyService: MetafrenzyService,
     // NOTE: ScullyService is injected here so articles get prefetched
     private scullyService: ScullyService,
   ) {}
@@ -80,7 +83,7 @@ export class HomeComponent implements OnInit {
     this.metafrenzyService.setTags({
       title: siteTitle,
       description: homeDescription,
-      url: this.document.documentURI.split('?')[0],
+      url: buildCanonicalUrl(this.activatedRoute),
       image: homeImagePath,
     });
   }

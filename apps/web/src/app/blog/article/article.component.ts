@@ -15,6 +15,7 @@ import {
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { combineLatest } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
+import { buildCanonicalUrl } from '../../app-routing.module';
 import {
   blogDescription,
   blogImagePath,
@@ -48,7 +49,7 @@ export class ArticleComponent implements AfterViewChecked {
     @Inject(DOCUMENT) private readonly document: Document,
     private activatedRoute: ActivatedRoute,
     private highlightService: HighlightService,
-    private readonly metafrenzyService: MetafrenzyService,
+    private metafrenzyService: MetafrenzyService,
     private scully: ScullyRoutesService,
   ) {}
 
@@ -58,7 +59,7 @@ export class ArticleComponent implements AfterViewChecked {
       this.metafrenzyService.setTags({
         title: m?.title ?? siteTitle,
         description: m?.description ?? blogDescription,
-        url: this.document.documentURI.split('?')[0],
+        url: buildCanonicalUrl(this.activatedRoute),
         image: blogImagePath,
       });
     });

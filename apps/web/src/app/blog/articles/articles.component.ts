@@ -14,6 +14,7 @@ import { fadeInUpOnEnterAnimation } from 'angular-animations';
 import { MetafrenzyService } from 'ngx-metafrenzy';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { buildCanonicalUrl } from '../../app-routing.module';
 import {
   blogDescription,
   blogImagePath,
@@ -86,7 +87,8 @@ export class ArticlesComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
-    private readonly metafrenzyService: MetafrenzyService,
+    private activatedRoute: ActivatedRoute,
+    private metafrenzyService: MetafrenzyService,
     private route: ActivatedRoute,
     private router: Router,
     private scully: ScullyRoutesService,
@@ -106,7 +108,7 @@ export class ArticlesComponent implements OnInit {
     this.metafrenzyService.setTags({
       title: siteTitle,
       description: blogDescription,
-      url: this.document.documentURI.split('?')[0],
+      url: buildCanonicalUrl(this.activatedRoute),
       image: blogImagePath,
     });
   }

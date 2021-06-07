@@ -1,10 +1,13 @@
 [build]
   command = "nx build web --prod --aot && npx scully --scan"
   publish = "dist/static"
-#[[redirects]]
-#  from="/*"
-#  to="/index.html"
-#  status=200
-# from = "https://blog.zealous-galileo-668240.netlify.app/*"
-#  to = "https://zealous-galileo-668240.netlify.app/blog/:splat"
-#  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "https://blog.benjamincharity.com/*"
+  to = "https://www.benjamincharity.com/articles/:splat"
+  status = 301
