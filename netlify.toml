@@ -1,6 +1,6 @@
-[build]
-  command = "nx build web --prod --aot && npx scully --scan"
-  publish = "dist/static"
+#[build]
+#  command = "nx build web --prod --aot && npx scully --scan"
+#  publish = "dist/static"
 
 [[redirects]]
   from = "/contact"

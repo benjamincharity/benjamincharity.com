@@ -19,7 +19,8 @@
     "test": "ng test",
     "update": "nx migrate latest",
     "log": "ls && ls dist && ls dist/web && ls dist/static",
-    "workspace-generator": "nx workspace-generator"
+    "workspace-generator": "nx workspace-generator",
+    "deploy": "nx build web --prod --aot && npx scully --scan"
   },
   "private": false,
   "dependencies": {
