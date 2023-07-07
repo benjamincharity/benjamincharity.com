@@ -87,7 +87,7 @@
     "prettier": "^2.3.0",
     "scully-plugin-minify-html": "^6.0.0",
     "scully-plugin-time-to-read": "^0.0.4",
-    "stylelint": "^13.13.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^22.0.0",
     "ts-jest": "^27.0.1",
     "ts-node": "~9.1.1",
